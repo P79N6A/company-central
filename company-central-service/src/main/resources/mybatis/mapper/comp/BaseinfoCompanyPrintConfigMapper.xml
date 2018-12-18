@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihappy.company.infrastructure.repo.mybatis.mapper.comp.BaseinfoCompanyPrintConfigMapper">
+  <resultMap id="BaseResultMap" type="com.ihappy.company.domain.dbdo.BaseinfoCompanyPrintConfig">
+    <id column="config_id" jdbcType="BIGINT" property="configId" />
+    <result column="comp_id" jdbcType="INTEGER" property="compId" />
+    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+    <result column="bill_type" jdbcType="INTEGER" property="billType" />
+    <result column="bill_type_code" jdbcType="INTEGER" property="billTypeCode" />
+    <result column="bill_type_name" jdbcType="VARCHAR" property="billTypeName" />
+    <result column="print_bill" jdbcType="BIT" property="printBill" />
+    <result column="print_num" jdbcType="INTEGER" property="printNum" />
+    <result column="print_size" jdbcType="VARCHAR" property="printSize" />
+    <result column="bill_name" jdbcType="VARCHAR" property="billName" />
+    <result column="print_warn" jdbcType="VARCHAR" property="printWarn" />
+    <result column="created_at" jdbcType="BIGINT" property="createdAt" />
+    <result column="updated_at" jdbcType="BIGINT" property="updatedAt" />
+    <result column="created_person_id" jdbcType="BIGINT" property="createdPersonId" />
+    <result column="updated_person_id" jdbcType="BIGINT" property="updatedPersonId" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="immediately_print" property="immediatelyPrint" />
+
+    <result column="bar_code_template_type" property="barCodeTemplateType"/>
+    <result column="is_first_print" property="firstPrintFlag"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    config_id, comp_id, store_id, bill_type, bill_type_code, bill_type_name, print_bill, print_num, print_size,
+    bill_name, print_warn, created_at, updated_at, created_person_id, updated_person_id,
+    is_deleted, version,immediately_print,bar_code_template_type,is_first_print
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from baseinfo_company_print_config
+    where config_id = #{configId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from baseinfo_company_print_config
+    where config_id = #{configId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompanyPrintConfig">
+    insert into baseinfo_company_print_config (config_id, comp_id, store_id, 
+      bill_type, bill_type_code, bill_type_name, print_bill,
+      print_num, print_size, bill_name, 
+      print_warn, created_at, updated_at, 
+      created_person_id, updated_person_id, is_deleted, immediately_print,
+      version)
+    values (#{configId,jdbcType=BIGINT}, #{compId,jdbcType=INTEGER}, #{storeId,jdbcType=BIGINT},
+      #{billType,jdbcType=INTEGER}, #{billTypeCode,jdbcType=INTEGER}, #{billTypeName, jdbcType=VARCHAR}, #{printBill,jdbcType=BIT},
+      #{printNum,jdbcType=INTEGER}, #{printSize,jdbcType=VARCHAR}, #{billName,jdbcType=VARCHAR}, 
+      #{printWarn,jdbcType=VARCHAR}, #{createdAt,jdbcType=BIGINT}, #{updatedAt,jdbcType=BIGINT}, 
+      #{createdPersonId,jdbcType=BIGINT}, #{updatedPersonId,jdbcType=BIGINT}, #{isDeleted,jdbcType=TINYINT}, #{immediatelyPrint},
+      #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompanyPrintConfig">
+    insert into baseinfo_company_print_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="configId != null">
+        config_id,
+      </if>
+      <if test="compId != null">
+        comp_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="billType != null">
+        bill_type,
+      </if>
+      <if test="billTypeCode != null">
+        bill_type_code,
+      </if>
+      <if test="billTypeName != null">
+        bill_type_name,
+      </if>
+      <if test="printBill != null">
+        print_bill,
+      </if>
+      <if test="printNum != null">
+        print_num,
+      </if>
+      <if test="printSize != null">
+        print_size,
+      </if>
+      <if test="billName != null">
+        bill_name,
+      </if>
+      <if test="printWarn != null">
+        print_warn,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="createdPersonId != null">
+        created_person_id,
+      </if>
+      <if test="updatedPersonId != null">
+        updated_person_id,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="version != null">
+      version,
+    </if>
+      <if test="immediatelyPrint != null">
+        immediately_print,
+      </if>
+      <if test="barCodeTemplateType != null">
+        bar_code_template_type,
+      </if>
+      <if test="firstPrintFlag != null">
+        is_first_print,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="configId != null">
+        #{configId,jdbcType=BIGINT},
+      </if>
+      <if test="compId != null">
+        #{compId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="billType != null">
+        #{billType,jdbcType=INTEGER},
+      </if>
+      <if test="billTypeCode != null">
+        #{billTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="billTypeName != null">
+        #{billTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="printBill != null">
+        #{printBill,jdbcType=BIT},
+      </if>
+      <if test="printNum != null">
+        #{printNum,jdbcType=INTEGER},
+      </if>
+      <if test="printSize != null">
+        #{printSize,jdbcType=VARCHAR},
+      </if>
+      <if test="billName != null">
+        #{billName,jdbcType=VARCHAR},
+      </if>
+      <if test="printWarn != null">
+        #{printWarn,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdPersonId != null">
+        #{createdPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedPersonId != null">
+        #{updatedPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="immediatelyPrint != null">
+        #{immediatelyPrint},
+      </if>
+      <if test="barCodeTemplateType != null">
+        #{barCodeTemplateType},
+      </if>
+      <if test="firstPrintFlag != null">
+        #{firstPrintFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompanyPrintConfig">
+    update baseinfo_company_print_config
+    <set>
+      <if test="compId != null">
+        comp_id = #{compId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="billType != null">
+        bill_type = #{billType,jdbcType=INTEGER},
+      </if>
+      <if test="billTypeCode != null">
+        bill_type_code = #{billTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="billTypeName != null">
+        bill_type_name = #{billTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="printBill != null">
+        print_bill = #{printBill,jdbcType=BIT},
+      </if>
+      <if test="printNum != null">
+        print_num = #{printNum,jdbcType=INTEGER},
+      </if>
+      <if test="printSize != null">
+        print_size = #{printSize,jdbcType=VARCHAR},
+      </if>
+      <if test="billName != null">
+        bill_name = #{billName,jdbcType=VARCHAR},
+      </if>
+      <if test="printWarn != null">
+        print_warn = #{printWarn,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdPersonId != null">
+        created_person_id = #{createdPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedPersonId != null">
+        updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="immediatelyPrint != null">
+        immediately_print = #{immediatelyPrint},
+      </if>
+      <if test="barCodeTemplateType != null">
+        bar_code_template_type = #{barCodeTemplateType},
+      </if>
+      <if test="firstPrintFlag != null">
+        is_first_print = #{firstPrintFlag},
+      </if>
+    </set>
+        ,version = version + 1
+    where config_id = #{configId,jdbcType=BIGINT} and version = #{version}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompanyPrintConfig">
+    update baseinfo_company_print_config
+    set comp_id = #{compId,jdbcType=INTEGER},
+      store_id = #{storeId,jdbcType=BIGINT},
+      bill_type = #{billType,jdbcType=INTEGER},
+      bill_type_code = #{billTypeCode,jdbcType=INTEGER},
+      bill_type_name = #{billTypeName,jdbcType=VARCHAR},
+      print_bill = #{printBill,jdbcType=BIT},
+      print_num = #{printNum,jdbcType=INTEGER},
+      print_size = #{printSize,jdbcType=VARCHAR},
+      bill_name = #{billName,jdbcType=VARCHAR},
+      print_warn = #{printWarn,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      updated_at = #{updatedAt,jdbcType=BIGINT},
+      created_person_id = #{createdPersonId,jdbcType=BIGINT},
+      updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      immediately_print = #{immediatelyPrint},
+      version = version + 1
+    where config_id = #{configId,jdbcType=BIGINT} and version = #{version}
+  </update>
+  <select id="selectSelective" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompanyPrintConfig" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from baseinfo_company_print_config
+    where is_deleted = 0
+      <if test="configId != null">
+        and config_id = #{configId,jdbcType=BIGINT}
+      </if>
+      <if test="compId != null">
+        and comp_id = #{compId,jdbcType=INTEGER}
+      </if>
+      <if test="storeId != null">
+        and store_id = #{storeId,jdbcType=BIGINT}
+      </if>
+      <if test="billType != null">
+        and bill_type = #{billType,jdbcType=INTEGER}
+      </if>
+      <if test="billTypeCode != null">
+        and bill_type_code = #{billTypeCode,jdbcType=INTEGER}
+      </if>
+      <if test="billTypeName != null">
+        and bill_type_name = #{billTypeName,jdbcType=VARCHAR}
+      </if>
+      <if test="printBill != null">
+        and print_bill = #{printBill,jdbcType=BIT}
+      </if>
+      <if test="printNum != null">
+        and print_num = #{printNum,jdbcType=INTEGER}
+      </if>
+      <if test="printSize != null">
+        and print_size = #{printSize,jdbcType=VARCHAR}
+      </if>
+      <if test="billName != null">
+        and bill_name = #{billName,jdbcType=VARCHAR}
+      </if>
+      <if test="printWarn != null">
+        and print_warn = #{printWarn,jdbcType=VARCHAR}
+      </if>
+      <if test="createdAt != null">
+        and created_at = #{createdAt,jdbcType=BIGINT}
+      </if>
+      <if test="updatedAt != null">
+        and updated_at = #{updatedAt,jdbcType=BIGINT}
+      </if>
+      <if test="createdPersonId != null">
+        and created_person_id = #{createdPersonId,jdbcType=BIGINT}
+      </if>
+      <if test="updatedPersonId != null">
+        and updated_person_id = #{updatedPersonId,jdbcType=BIGINT}
+      </if>
+      <if test="immediatelyPrint != null">
+        and immediately_print = #{immediatelyPrint}
+      </if>
+  </select>
+</mapper>

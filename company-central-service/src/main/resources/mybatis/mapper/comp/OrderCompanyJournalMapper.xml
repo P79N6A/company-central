@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihappy.company.infrastructure.repo.mybatis.mapper.comp.OrderCompanyJournalMapper">
+  <resultMap id="BaseResultMap" type="com.ihappy.company.domain.dbdo.OrderCompanyJournal">
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="pay_time" jdbcType="BIGINT" property="payTime" />
+    <result column="pay_person_login" jdbcType="VARCHAR" property="payPersonLogin" />
+    <result column="pay_person_name" jdbcType="VARCHAR" property="payPersonName" />
+    <result column="pay_type" jdbcType="INTEGER" property="payType" />
+    <result column="pay_money" jdbcType="BIGINT" property="payMoney" />
+    <result column="comp_id" jdbcType="BIGINT" property="compId" />
+    <result column="ct_id" jdbcType="INTEGER" property="ctId" />
+    <result column="pay_content" jdbcType="VARCHAR" property="payContent" />
+    <result column="is_bill" jdbcType="INTEGER" property="isBill" />
+    <result column="pay_title" jdbcType="VARCHAR" property="payTitle" />
+    <result column="tax_no" jdbcType="VARCHAR" property="taxNo" />
+    <result column="invite_person_id" jdbcType="BIGINT" property="invitePersonId" />
+    <result column="invite_person_mobile" jdbcType="VARCHAR" property="invitePersonMobile" />
+    <result column="service_due_time" jdbcType="BIGINT" property="serviceDueTime" />
+    <result column="service_start_time" jdbcType="BIGINT" property="serviceStartTime" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="memo_person_id" jdbcType="BIGINT" property="memoPersonId" />
+    <result column="memo_person_name" jdbcType="VARCHAR" property="memoPersonName" />
+    <result column="register_time" jdbcType="BIGINT" property="registerTime" />
+    <result column="register_person_id" jdbcType="BIGINT" property="registerPersonId" />
+    <result column="register_person_mobile" jdbcType="VARCHAR" property="registerPersonMobile" />
+    <result column="created_at" jdbcType="BIGINT" property="createdAt" />
+    <result column="created_person_id" jdbcType="BIGINT" property="createdPersonId" />
+    <result column="updated_at" jdbcType="BIGINT" property="updatedAt" />
+    <result column="updated_person_id" jdbcType="BIGINT" property="updatedPersonId" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+    <result column="is_cancel" jdbcType="INTEGER" property="isCancel" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="source_order_no" jdbcType="VARCHAR" property="sourceOrderNo" />
+    <result column="auditor_name" jdbcType="VARCHAR" property="auditorName" />
+    <result column="auditor_id" jdbcType="BIGINT" property="auditorId" />
+    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    order_id,order_no,pay_time,pay_person_login,pay_person_name,pay_type,pay_money,comp_id, ct_id,pay_content,is_bill,pay_title,tax_no,
+    invite_person_id,invite_person_mobile,service_due_time,memo,memo_person_id, memo_person_name,
+    register_time, register_person_id, register_person_mobile, created_at, updated_at, created_person_id, updated_person_id,
+    is_deleted,source_order_no,is_cancel,version,service_start_time,auditor_name,auditor_id,store_id
+  </sql>
+  <insert id="insert" parameterType="com.ihappy.company.domain.dbdo.OrderCompanyJournal">
+    insert into order_company_journal (order_id, order_no, pay_time, 
+      pay_person_login, pay_person_name, pay_type, 
+      pay_money, comp_id, ct_id, 
+      pay_content, is_bill, pay_title, 
+      tax_no, invite_person_id, invite_person_mobile, 
+      service_due_time, memo, memo_person_id, 
+      memo_person_name, register_time, register_person_id,
+      register_person_mobile, created_at, created_person_id,
+      updated_at, updated_person_id, is_deleted,source_order_no,
+      auditor_name,auditor_id,store_id
+      )
+    values (#{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{payTime,jdbcType=BIGINT}, 
+      #{payPersonLogin,jdbcType=VARCHAR}, #{payPersonName,jdbcType=VARCHAR}, #{payType,jdbcType=INTEGER}, 
+      #{payMoney,jdbcType=BIGINT}, #{compId,jdbcType=BIGINT}, #{ctId,jdbcType=INTEGER}, 
+      #{payContent,jdbcType=VARCHAR}, #{isBill,jdbcType=INTEGER}, #{payTitle,jdbcType=VARCHAR}, 
+      #{taxNo,jdbcType=VARCHAR}, #{invitePersonId,jdbcType=BIGINT}, #{invitePersonMobile,jdbcType=VARCHAR}, 
+      #{serviceDueTime,jdbcType=BIGINT}, #{memo,jdbcType=VARCHAR}, #{memoPersonId,jdbcType=BIGINT}, 
+      #{memoPersonName,jdbcType=VARCHAR}, #{registerTime,jdbcType=BIGINT}, #{registerPersonId,jdbcType=BIGINT},
+      #{registerPersonMobile,jdbcType=VARCHAR}, #{createdAt,jdbcType=BIGINT}, #{createdPersonId,jdbcType=BIGINT},
+      #{updatedAt,jdbcType=BIGINT}, #{updatedPersonId,jdbcType=BIGINT}, #{isDeleted,jdbcType=INTEGER},#{sourceOrderNo,jdbcType=VARCHAR},
+      #{auditorName,jdbcType=VARCHAR}, #{auditorId,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ihappy.company.domain.dbdo.OrderCompanyJournal" useGeneratedKeys="true" keyProperty="orderId" >
+    insert into order_company_journal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="payPersonLogin != null">
+        pay_person_login,
+      </if>
+      <if test="payPersonName != null">
+        pay_person_name,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="payMoney != null">
+        pay_money,
+      </if>
+      <if test="compId != null">
+        comp_id,
+      </if>
+      <if test="ctId != null">
+        ct_id,
+      </if>
+      <if test="payContent != null">
+        pay_content,
+      </if>
+      <if test="isBill != null">
+        is_bill,
+      </if>
+      <if test="payTitle != null">
+        pay_title,
+      </if>
+      <if test="taxNo != null">
+        tax_no,
+      </if>
+      <if test="invitePersonId != null">
+        invite_person_id,
+      </if>
+      <if test="invitePersonMobile != null">
+        invite_person_mobile,
+      </if>
+      <if test="serviceDueTime != null">
+        service_due_time,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="memoPersonId != null">
+        memo_person_id,
+      </if>
+      <if test="memoPersonName != null">
+        memo_person_name,
+      </if>
+      <if test="registerTime != null">
+        register_time,
+      </if>
+      <if test="registerPersonId != null">
+        register_person_id,
+      </if>
+      <if test="registerPersonMobile != null">
+        register_person_mobile,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="createdPersonId != null">
+        created_person_id,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="updatedPersonId != null">
+        updated_person_id,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="sourceOrderNo != null">
+        source_order_no,
+      </if>
+      <if test="serviceStartTime != null">
+        service_start_time,
+      </if>
+      <if test="isCancel != null">
+        is_cancel,
+      </if>
+      <if test="auditorId != null">
+        auditor_id,
+      </if>
+      <if test="auditorName != null">
+        auditor_name,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=BIGINT},
+      </if>
+      <if test="payPersonLogin != null">
+        #{payPersonLogin,jdbcType=VARCHAR},
+      </if>
+      <if test="payPersonName != null">
+        #{payPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null">
+        #{payMoney,jdbcType=BIGINT},
+      </if>
+      <if test="compId != null">
+        #{compId,jdbcType=BIGINT},
+      </if>
+      <if test="ctId != null">
+        #{ctId,jdbcType=INTEGER},
+      </if>
+      <if test="payContent != null">
+        #{payContent,jdbcType=VARCHAR},
+      </if>
+      <if test="isBill != null">
+        #{isBill,jdbcType=INTEGER},
+      </if>
+      <if test="payTitle != null">
+        #{payTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNo != null">
+        #{taxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="invitePersonId != null">
+        #{invitePersonId,jdbcType=BIGINT},
+      </if>
+      <if test="invitePersonMobile != null">
+        #{invitePersonMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceDueTime != null">
+        #{serviceDueTime,jdbcType=BIGINT},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="memoPersonId != null">
+        #{memoPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="memoPersonName != null">
+        #{memoPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null">
+        #{registerTime,jdbcType=BIGINT},
+      </if>
+      <if test="registerPersonId != null">
+        #{registerPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="registerPersonMobile != null">
+        #{registerPersonMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdPersonId != null">
+        #{createdPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=BIGINT},
+      </if>
+      <if test="updatedPersonId != null">
+        #{updatedPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="sourceOrderNo != null">
+        #{sourceOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceStartTime != null">
+        #{serviceStartTime,jdbcType=BIGINT},
+      </if>
+      <if test="isCancel != null">
+        #{isCancel,jdbcType=INTEGER},
+      </if>
+      <if test="auditorId != null">
+        #{auditorId,jdbcType=BIGINT},
+      </if>
+      <if test="auditorName != null">
+        #{auditorName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getOrderCompanyJournalList" parameterType="com.ihappy.company.domain.bo.OrderCompanyJournalPageQueryBO"  resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from order_company_journal
+    where
+    is_deleted = 0
+    <if test="payTimeStart != null">
+      and pay_time &gt;= #{payTimeStart}
+    </if>
+    <if test="payTimeEnd != null">
+      and pay_time &lt;= #{payTimeEnd}
+    </if>
+    <if test="payType != null">
+      and pay_type = #{payType}
+    </if>
+    <if test="payPersonName != null">
+      and pay_person_name like CONCAT(#{payPersonName},'%')
+    </if>
+    <if test="compId != null">
+      and comp_id = #{compId}
+    </if>
+    <if test="storeId != null">
+      and store_id = #{storeId}
+    </if>
+    <if test="memoPersonId != null">
+    and memo_person_id = #{memoPersonId}
+    </if>
+    <if test="assessorPersonId != null">
+      and is_cancel != 0
+      and updated_person_id = #{assessorPersonId}
+    </if>
+    <if test="auditorName != null">
+      and is_cancel != 0
+      and auditor_name like CONCAT(#{auditorName},'%')
+    </if>
+    ORDER BY  updated_at DESC
+    limit #{limit} offset #{offset}
+  </select>
+
+
+  <select id="getOrderCompanyJournalCount" parameterType="com.ihappy.company.domain.bo.OrderCompanyJournalPageQueryBO" resultType="java.lang.Integer">
+    SELECT
+    count(order_id)
+    FROM order_company_journal
+    where
+    is_deleted = 0
+    <if test="payTimeStart != null">
+      and pay_time &gt;= #{payTimeStart}
+    </if>
+    <if test="payTimeEnd != null">
+      and pay_time &lt;= #{payTimeEnd}
+    </if>
+    <if test="payType != null">
+      and pay_type = #{payType}
+    </if>
+    <if test="payPersonName != null">
+      and pay_person_name like CONCAT(#{payPersonName},'%')
+    </if>
+    <if test="compId != null">
+      and comp_id = #{compId}
+    </if>
+    <if test="storeId != null">
+      and store_id = #{storeId}
+    </if>
+    <if test="memoPersonId != null">
+      and memo_person_id = #{memoPersonId}
+    </if>
+    <if test="assessorPersonId != null">
+      and is_cancel != 0
+      and updated_person_id = #{assessorPersonId}
+    </if>
+    <if test="auditorName != null">
+      and is_cancel != 0
+      and auditor_name like CONCAT(#{auditorName},'%')
+    </if>
+  </select>
+
+  <select id="getOrderCompanyJournalDetailById" parameterType="com.ihappy.company.domain.bo.OrderCompanyJournalByIdBO"  resultMap="BaseResultMap">
+  SELECT
+  <include refid="Base_Column_List" />
+  from order_company_journal
+  where is_deleted = 0 and order_id= #{orderId}
+  </select>
+
+  <select id="getOrderCompanyJournalDetailByCompId" parameterType="com.ihappy.company.domain.bo.OrderCompanyJournalByCompIdBO"  resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from order_company_journal
+    where is_deleted = 0
+    <if test="compId != null">
+      and comp_id = #{compId}
+    </if>
+    <if test="isCancel != null">
+      and is_cancel = #{isCancel}
+    </if>
+    <if test="sourceOrderNo != null">
+      and source_order_no = #{sourceOrderNo}
+    </if>
+    <if test="cancelList != null and cancelList.size > 0">
+      and is_cancel in
+      <foreach collection="cancelList" index="isCancel" item="item" open="(" separator="," close=")">
+          #{item}
+      </foreach>
+    </if>
+  </select>
+
+  <update id="updateOrderCompanyJournalById" parameterType="com.ihappy.company.domain.bo.UpdateOrderCompanyJournalBO" >
+    update order_company_journal
+        set
+     <if test="payTime != null">
+       pay_time =#{payTime,jdbcType=BIGINT},
+     </if>
+    <if test="payPersonLogin != null">
+      pay_person_login = #{payPersonLogin,jdbcType=VARCHAR},
+    </if>
+    <if test="payPersonName != null">
+      pay_person_name = #{payPersonName,jdbcType=VARCHAR},
+    </if>
+    <if test="payType != null">
+      pay_type = #{payType,jdbcType=INTEGER},
+    </if>
+    <if test="payMoney != null">
+      pay_money = #{payMoney,jdbcType=BIGINT},
+    </if>
+    <if test="compId != null">
+      comp_id =  #{compId,jdbcType=BIGINT},
+    </if>
+    <if test="ctId != null">
+      ct_id = #{ctId,jdbcType=INTEGER},
+    </if>
+    <if test="payContent != null">
+      pay_content = #{payContent,jdbcType=VARCHAR},
+    </if>
+    <if test="billFlag != null">
+      is_bill = #{billFlag,jdbcType=INTEGER},
+    </if>
+    <if test="payTitle != null">
+      pay_title = #{payTitle,jdbcType=VARCHAR},
+    </if>
+    <if test="taxNo != null">
+      tax_no = #{taxNo,jdbcType=VARCHAR},
+    </if>
+    <if test="invitePersonId != null">
+      invite_person_id = #{invitePersonId,jdbcType=BIGINT},
+    </if>
+    <if test="invitePersonMobile != null">
+      invite_person_mobile = #{invitePersonMobile,jdbcType=VARCHAR},
+    </if>
+    <if test="memo != null">
+      memo = #{memo,jdbcType=VARCHAR},
+    </if>
+    <if test="memoPersonId != null">
+      memo_person_id = #{memoPersonId,jdbcType=BIGINT},
+    </if>
+    <if test="memoPersonName != null">
+      memo_person_name = #{memoPersonName,jdbcType=VARCHAR},
+    </if>
+    <if test="registerTime != null">
+      register_time = #{registerTime,jdbcType=BIGINT},
+    </if>
+    <if test="registerPersonId != null">
+      register_person_id = #{registerPersonId,jdbcType=BIGINT},
+    </if>
+    <if test="registerPersonMobile != null">
+      register_person_mobile = #{registerPersonMobile,jdbcType=VARCHAR},
+    </if>
+    <if test="sourceOrderNo != null">
+       source_order_no = #{sourceOrderNo,jdbcType=VARCHAR},
+    </if>
+    <if test="auditorId != null">
+      auditor_id = #{auditorId,jdbcType=BIGINT},
+    </if>
+    <if test="auditorName != null">
+      auditor_name = #{auditorName,jdbcType=VARCHAR},
+    </if>
+    <if test="storeId != null">
+      store_id = #{storeId,jdbcType=BIGINT},
+    </if>
+      updated_at = #{updatedAt,jdbcType=BIGINT},
+      updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+      version = version+1
+      where order_id= #{orderId} and version =#{version}
+  </update>
+
+  <update id="cancelOrderCompanyJournalById" parameterType="com.ihappy.company.domain.bo.CancelOrderCompanyJournalBO" >
+    update order_company_journal
+    set is_cancel=#{isCancel},
+    updated_at = #{updatedAt,jdbcType=BIGINT},
+    <if test="serviceDueTime != null">
+      service_due_time = #{serviceDueTime,jdbcType=BIGINT},
+    </if>
+    <if test="serviceStartTime != null">
+      service_start_time = #{serviceStartTime,jdbcType=BIGINT},
+    </if>
+    <if test="auditorName != null">
+      auditor_name = #{auditorName},
+    </if>
+    updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+    version = version+1
+    where order_id= #{orderId} and version=#{version}
+  </update>
+
+</mapper>

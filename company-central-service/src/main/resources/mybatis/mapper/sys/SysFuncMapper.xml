@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ihappy.role.infrastructure.repo.mybatis.mapper.sys.SysFuncMapper">
+    <resultMap id="BaseResultMap" type="com.ihappy.role.domain.dbdo.sys.SysFunc">
+        <id column="ct_func_id" property="ctFuncId" jdbcType="INTEGER"/>
+        <result column="cl_id" property="clId" jdbcType="INTEGER"/>
+        <result column="ct_func_name" property="ctFuncName" jdbcType="VARCHAR"/>
+        <result column="ct_func_no" property="ctFuncNo" jdbcType="VARCHAR"/>
+        <result column="ct_func_ico" property="ctFuncIco" jdbcType="VARCHAR"/>
+        <result column="ct_func_link" property="ctFuncLink" jdbcType="VARCHAR"/>
+        <result column="ct_memo" property="ctMemo" jdbcType="VARCHAR"/>
+        <result column="ct_sort" property="ctSort" jdbcType="INTEGER"/>
+        <result column="parent_ct_func_id" property="parentCtFuncId" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="BIT"/>
+        <result column="func_type" property="funcType" jdbcType="BIT"/>
+        <result column="source_codes" property="sourceCodes" jdbcType="VARCHAR"/>
+        <result column="ct_depth" property="ctDepth" jdbcType="INTEGER"/>
+        <result column="canlist_noright" property="canlistNoright" jdbcType="INTEGER"/>
+        <result column="created_at" property="createdAt" jdbcType="BIGINT"/>
+        <result column="updated_at" property="updatedAt" jdbcType="BIGINT"/>
+        <result column="created_person_id" property="createdPersonId" jdbcType="BIGINT"/>
+        <result column="updated_person_id" property="updatedPersonId" jdbcType="BIGINT"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BIT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ct_func_id, cl_id, ct_func_name, ct_func_no, ct_func_ico, ct_func_link, ct_memo, 
+    ct_sort, parent_ct_func_id, status, func_type, source_codes, ct_depth, canlist_noright, 
+    created_at, updated_at, created_person_id, updated_person_id, is_deleted
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_func
+        where ct_func_id = #{ctFuncId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_func
+    where ct_func_id = #{ctFuncId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.ihappy.role.domain.dbdo.sys.SysFunc">
+    insert into sys_func (ct_func_id, cl_id, ct_func_name, 
+      ct_func_no, ct_func_ico, ct_func_link, 
+      ct_memo, ct_sort, parent_ct_func_id, 
+      status, func_type, source_codes, 
+      ct_depth, canlist_noright, created_at, 
+      updated_at, created_person_id, updated_person_id, 
+      is_deleted)
+    values (#{ctFuncId,jdbcType=INTEGER}, #{clId,jdbcType=INTEGER}, #{ctFuncName,jdbcType=VARCHAR}, 
+      #{ctFuncNo,jdbcType=VARCHAR}, #{ctFuncIco,jdbcType=VARCHAR}, #{ctFuncLink,jdbcType=VARCHAR}, 
+      #{ctMemo,jdbcType=VARCHAR}, #{ctSort,jdbcType=INTEGER}, #{parentCtFuncId,jdbcType=INTEGER}, 
+      #{status,jdbcType=BIT}, #{funcType,jdbcType=BIT}, #{sourceCodes,jdbcType=VARCHAR}, 
+      #{ctDepth,jdbcType=INTEGER}, #{canlistNoright,jdbcType=INTEGER}, #{createdAt,jdbcType=BIGINT}, 
+      #{updatedAt,jdbcType=BIGINT}, #{createdPersonId,jdbcType=BIGINT}, #{updatedPersonId,jdbcType=BIGINT}, 
+      #{isDeleted,jdbcType=BIT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.ihappy.role.domain.dbdo.sys.SysFunc">
+        insert into sys_func
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ctFuncId != null">
+                ct_func_id,
+            </if>
+            <if test="clId != null">
+                cl_id,
+            </if>
+            <if test="ctFuncName != null">
+                ct_func_name,
+            </if>
+            <if test="ctFuncNo != null">
+                ct_func_no,
+            </if>
+            <if test="ctFuncIco != null">
+                ct_func_ico,
+            </if>
+            <if test="ctFuncLink != null">
+                ct_func_link,
+            </if>
+            <if test="ctMemo != null">
+                ct_memo,
+            </if>
+            <if test="ctSort != null">
+                ct_sort,
+            </if>
+            <if test="parentCtFuncId != null">
+                parent_ct_func_id,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="funcType != null">
+                func_type,
+            </if>
+            <if test="sourceCodes != null">
+                source_codes,
+            </if>
+            <if test="ctDepth != null">
+                ct_depth,
+            </if>
+            <if test="canlistNoright != null">
+                canlist_noright,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="createdPersonId != null">
+                created_person_id,
+            </if>
+            <if test="updatedPersonId != null">
+                updated_person_id,
+            </if>
+            <if test="isDeleted != null">
+                is_deleted,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ctFuncId != null">
+                #{ctFuncId,jdbcType=INTEGER},
+            </if>
+            <if test="clId != null">
+                #{clId,jdbcType=INTEGER},
+            </if>
+            <if test="ctFuncName != null">
+                #{ctFuncName,jdbcType=VARCHAR},
+            </if>
+            <if test="ctFuncNo != null">
+                #{ctFuncNo,jdbcType=VARCHAR},
+            </if>
+            <if test="ctFuncIco != null">
+                #{ctFuncIco,jdbcType=VARCHAR},
+            </if>
+            <if test="ctFuncLink != null">
+                #{ctFuncLink,jdbcType=VARCHAR},
+            </if>
+            <if test="ctMemo != null">
+                #{ctMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="ctSort != null">
+                #{ctSort,jdbcType=INTEGER},
+            </if>
+            <if test="parentCtFuncId != null">
+                #{parentCtFuncId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=BIT},
+            </if>
+            <if test="funcType != null">
+                #{funcType,jdbcType=BIT},
+            </if>
+            <if test="sourceCodes != null">
+                #{sourceCodes,jdbcType=VARCHAR},
+            </if>
+            <if test="ctDepth != null">
+                #{ctDepth,jdbcType=INTEGER},
+            </if>
+            <if test="canlistNoright != null">
+                #{canlistNoright,jdbcType=INTEGER},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=BIGINT},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=BIGINT},
+            </if>
+            <if test="createdPersonId != null">
+                #{createdPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="updatedPersonId != null">
+                #{updatedPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="isDeleted != null">
+                #{isDeleted,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ihappy.role.domain.dbdo.sys.SysFunc">
+        update sys_func
+        <set>
+            <if test="clId != null">
+                cl_id = #{clId,jdbcType=INTEGER},
+            </if>
+            <if test="ctFuncName != null">
+                ct_func_name = #{ctFuncName,jdbcType=VARCHAR},
+            </if>
+            <if test="ctFuncNo != null">
+                ct_func_no = #{ctFuncNo,jdbcType=VARCHAR},
+            </if>
+            <if test="ctFuncIco != null">
+                ct_func_ico = #{ctFuncIco,jdbcType=VARCHAR},
+            </if>
+            <if test="ctFuncLink != null">
+                ct_func_link = #{ctFuncLink,jdbcType=VARCHAR},
+            </if>
+            <if test="ctMemo != null">
+                ct_memo = #{ctMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="ctSort != null">
+                ct_sort = #{ctSort,jdbcType=INTEGER},
+            </if>
+            <if test="parentCtFuncId != null">
+                parent_ct_func_id = #{parentCtFuncId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=BIT},
+            </if>
+            <if test="funcType != null">
+                func_type = #{funcType,jdbcType=BIT},
+            </if>
+            <if test="sourceCodes != null">
+                source_codes = #{sourceCodes,jdbcType=VARCHAR},
+            </if>
+            <if test="ctDepth != null">
+                ct_depth = #{ctDepth,jdbcType=INTEGER},
+            </if>
+            <if test="canlistNoright != null">
+                canlist_noright = #{canlistNoright,jdbcType=INTEGER},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=BIGINT},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=BIGINT},
+            </if>
+            <if test="createdPersonId != null">
+                created_person_id = #{createdPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="updatedPersonId != null">
+                updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=BIT},
+            </if>
+        </set>
+        where ct_func_id = #{ctFuncId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ihappy.role.domain.dbdo.sys.SysFunc">
+    update sys_func
+    set cl_id = #{clId,jdbcType=INTEGER},
+      ct_func_name = #{ctFuncName,jdbcType=VARCHAR},
+      ct_func_no = #{ctFuncNo,jdbcType=VARCHAR},
+      ct_func_ico = #{ctFuncIco,jdbcType=VARCHAR},
+      ct_func_link = #{ctFuncLink,jdbcType=VARCHAR},
+      ct_memo = #{ctMemo,jdbcType=VARCHAR},
+      ct_sort = #{ctSort,jdbcType=INTEGER},
+      parent_ct_func_id = #{parentCtFuncId,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      func_type = #{funcType,jdbcType=BIT},
+      source_codes = #{sourceCodes,jdbcType=VARCHAR},
+      ct_depth = #{ctDepth,jdbcType=INTEGER},
+      canlist_noright = #{canlistNoright,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      updated_at = #{updatedAt,jdbcType=BIGINT},
+      created_person_id = #{createdPersonId,jdbcType=BIGINT},
+      updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where ct_func_id = #{ctFuncId,jdbcType=INTEGER}
+  </update>
+
+    <select id="selectSysFuncByList" resultMap="BaseResultMap"
+            parameterType="com.ihappy.role.domain.bo.SysFuncByClIdBO">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_func
+        where cl_id = #{clientId,jdbcType=INTEGER} AND is_deleted = 0
+    </select>
+    <select id="selectSysFuncMenuBackstageMenuList" parameterType="com.ihappy.role.domain.bo.SysFuncListBO"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_func where 1 = 1
+        <if test="isDeleted != null">
+            and is_deleted = #{isDeleted}
+        </if>
+        <if test="name != null and name != ''">
+            and ct_func_name like CONCAT(#{name},'%')
+        </if>
+    </select>
+    <select id="selectSysFuncMenuBackstageMenuListTotal" parameterType="com.ihappy.role.domain.bo.SysFuncListBO" resultType="java.lang.Integer">
+        select
+        count(*)
+        from sys_func where 1=1
+        <if test="isDeleted != null">
+            and is_deleted = #{isDeleted}
+        </if>
+        <if test="name != null and name !=''">
+            and ct_func_name like CONCAT(#{name},'%')
+        </if>
+
+    </select>
+    <update id="deleteSysFuncMenuBackstageMenu" parameterType="com.ihappy.role.domain.bo.SysFuncBO">
+    update sys_func set is_deleted=1,updated_at = #{updatedAt},updated_person_id = #{updatedPersonId} where ct_func_id = #{ctFuncId}
+  </update>
+    <insert id="addSysFuncMenuBackstageMenu" parameterType="com.ihappy.role.domain.bo.SysFuncBO">
+    insert into sys_func(func_type,ct_func_name,ct_func_no,parent_ct_func_id,source_codes,ct_func_link,ct_sort,ct_memo,created_at,created_person_id)
+     values
+     (#{funcType},#{ctFuncName},#{ctFuncNo},#{parentCtFuncId},#{sourceCodes},#{ctFuncLink},#{ctSort},#{ctMemo},#{createdAt},#{createdPersonId})
+  </insert>
+    <select id="selectSysFuncMenuBackstageMenuInfo" parameterType="com.ihappy.role.domain.bo.SysFuncBO"
+            resultMap="BaseResultMap">
+        select<include refid="Base_Column_List"/>from sys_func where ct_func_id = #{ctFuncId}
+        <if test="isDeleted != null">
+            and is_deleted = #{isDeleted}
+        </if>
+    </select>
+    <update id="updateSysFuncMenuBackstageMenuInfo" parameterType="com.ihappy.role.domain.bo.SysFuncBO">
+        update sys_func set ct_func_name = #{ctFuncName},ct_func_no = #{ctFuncNo},ct_func_link = #{ctFuncLink},
+        ct_memo = #{ctMemo},ct_sort = #{ctSort},func_type = #{funcType},parent_ct_func_id = #{parentCtFuncId},source_codes= #{sourceCodes},
+        updated_at= #{updatedAt},updated_person_id = #{updatedPersonId}
+        where ct_func_id = #{ctFuncId}
+        <if test="isDeleted != null">
+            and is_deleted = #{isDeleted}
+        </if>
+    </update>
+    <select id="checkMenuNameIsOrNotRepeat" parameterType="com.ihappy.role.domain.bo.SysFuncBO" resultMap="BaseResultMap">
+        select * from sys_func where ct_func_name = #{ctFuncName}
+    </select>
+    <select id="checkMenuNoIsOrNotRepeat" parameterType="com.ihappy.role.domain.bo.SysFuncBO" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>  from sys_func where ct_func_no = #{ctFuncNo}
+    </select>
+</mapper>

@@ -1,0 +1,14 @@
+ALTER TABLE `baseinfo_company_role_0`
+MODIFY COLUMN `role_id`  bigint(20) UNSIGNED NOT NULL COMMENT '角色id' FIRST ,
+MODIFY COLUMN `role_name`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '角色名称 一个企业内部级别下需要唯一' AFTER `role_id`,
+MODIFY COLUMN `role_memo`  varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '角色介绍  角色的职能介绍' AFTER `role_no`,
+MODIFY COLUMN `role_rights`  varchar(8192) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '公司角色权限 {1:’1,2,3,4’,2:’2,3,4,5’}' AFTER `role_memo`,
+MODIFY COLUMN `role_sort`  int(11) NOT NULL DEFAULT 1 COMMENT '角色排序 根据该排序号来确定在页面上位置，越小越在前面。' AFTER `role_rights`,
+MODIFY COLUMN `comp_id`  int(11) NOT NULL DEFAULT 0 COMMENT '公司id' AFTER `is_hide`,
+MODIFY COLUMN `created_at`  bigint(14) NOT NULL DEFAULT 0 COMMENT '创建时间' AFTER `comp_id`,
+MODIFY COLUMN `updated_at`  bigint(14) NOT NULL DEFAULT 0 COMMENT '更新时间' AFTER `created_at`,
+MODIFY COLUMN `created_person_id`  bigint(20) NOT NULL DEFAULT 0 COMMENT '创建人id' AFTER `updated_at`,
+MODIFY COLUMN `updated_person_id`  bigint(20) NOT NULL DEFAULT 0 COMMENT '修改人id' AFTER `created_person_id`,
+MODIFY COLUMN `is_deleted`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否软删除 0 未删除，1已删除' AFTER `updated_person_id`,
+COMMENT='企业角色表';
+

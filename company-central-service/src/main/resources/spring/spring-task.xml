@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName">
+
+    <!--使用这个job工厂实现job里注入spring bean-->
+    <bean id="quartzJobFactory" class="com.ihappy.company.domain.model.factory.QuartzJobFactory"/>
+
+    <bean id="companyQuartzScheduler"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobFactory" ref="quartzJobFactory"></property>
+        <property name="quartzProperties">
+            <props>
+                <!-- Configure Main Scheduler Properties  调度器属性 -->
+                <prop key="org.quartz.scheduler.instanceName">${org.quartz.scheduler.instanceName}</prop>
+                <prop key="org.quartz.scheduler.instanceId">${org.quartz.scheduler.instanceId}</prop>
+                <prop key="org.quartz.scheduler.skipUpdateCheck">${org.quartz.scheduler.skipUpdateCheck}</prop>
+
+                <!-- 线程池的实现类（一般使用SimpleThreadPool即可满足几乎所有用户的需求） -->
+                <prop key="org.quartz.threadPool.class">${org.quartz.threadPool.class}</prop>
+                <!-- 指定线程数，至少为1（无默认值）(一般设置为1-100直接的整数合适)   -->
+                <prop key="org.quartz.threadPool.threadCount">${org.quartz.threadPool.threadCount}</prop>
+                <!--  设置线程的优先级（最大为java.lang.Thread.MAX_PRIORITY 10，最小为Thread.MIN_PRIORITY 1，默认为5）  -->
+                <prop key="org.quartz.threadPool.threadPriority">${org.quartz.threadPool.threadPriority}</prop>
+
+                <!-- 相当于扫描频率，如果系统基于秒级，quartz默认为分级（60000） -->
+                <prop key="org.quartz.jobStore.misfireThreshold">${org.quartz.jobStore.misfireThreshold}</prop>
+                <!-- #使用内存存储记录调度历史
+        #org.quartz.jobStore.class: org.quartz.simpl.RAMJobStore
+        #使用数据库持久化存储记录调度历史 -->
+                <prop key="org.quartz.jobStore.class">${org.quartz.jobStore.class}</prop>
+                <!-- 集群配置  -->
+                <prop key="org.quartz.jobStore.isClustered">${org.quartz.jobStore.isClustered}</prop>
+                <prop key="org.quartz.jobStore.clusterCheckinInterval">${org.quartz.jobStore.clusterCheckinInterval}
+                </prop>
+                <!-- <prop key="org.quartz.jobStore.maxMisfiresTohandleAtATime">${org.quartz.jobStore.maxMisfiresTohandleAtATime}</prop>  -->
+                <!-- 相当于委托给某个特定的 sql 操作类，使用数据库方言（下面配置的是这是 mysql 的） -->
+                <prop key="org.quartz.jobStore.driverDelegateClass">${org.quartz.jobStore.driverDelegateClass}</prop>
+                <prop key="org.quartz.jobStore.useProperties">${org.quartz.jobStore.useProperties}</prop>
+                <!-- 	配置dataSource名 -->
+                <prop key="org.quartz.jobStore.dataSource">${org.quartz.jobStore.dataSource}</prop>
+                <!-- 表前缀 -->
+                <prop key="org.quartz.jobStore.tablePrefix">${org.quartz.jobStore.tablePrefix}</prop>
+
+                <!-- 如果使用数据库持久化则由 quartz 自己使用并维护一个连接池  -->
+                <prop key="org.quartz.dataSource.myDS.driver">${org.quartz.dataSource.myDS.driver}</prop>
+                <!-- <prop key="org.quartz.dataSource.myDS.URL">
+                     jdbc:mysql://127.0.0.1:3306/demo1?useUnicode=true
+                 </prop>
+                 <prop key="org.quartz.dataSource.myDS.user">root</prop>
+                 <prop key="org.quartz.dataSource.myDS.password">root</prop>-->
+                <prop key="org.quartz.dataSource.myDS.URL">${org.quartz.dataSource.myDS.URL}</prop>
+                <prop key="org.quartz.dataSource.myDS.user">${org.quartz.dataSource.myDS.user}</prop>
+                <prop key="org.quartz.dataSource.myDS.password">${org.quartz.dataSource.myDS.password}</prop>
+
+                <prop key="org.quartz.dataSource.myDS.maxConnections">${org.quartz.dataSource.myDS.maxConnections}
+                </prop>
+
+            </props>
+        </property>
+        <!--  延时启动 -->
+        <property name="startupDelay" value="30"/>
+        <property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>
+        <property name="autoStartup" value="true"/>
+        <!-- 修改job时，更新到数据库 -->
+        <property name="overwriteExistingJobs" value="true" />
+        <!--name也必须设置，保证各Scheduler之间不同即可-->
+        <!-- <property name="schedulerName" value="defaultScheduler"/> -->
+        <property name="triggers">
+            <list>
+                <ref bean="refreshSalePerformanceTrigger1"/>
+                <ref bean="refreshSalePerformanceTrigger2"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="refreshSalePerformanceTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="refreshSalePerformanceJob1"/>
+        <property name="group" value="${org.quartz.group}"/>
+        <property name="cronExpression" value="0 0 1 1 * ?"/>
+    </bean>
+
+    <bean id="refreshSalePerformanceJob1" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.ihappy.store.application.task.RefreshSalePerformanceTask"/>
+        <property name="name" value="refreshSalePerformanceJob1"/>
+        <property name="durability" value="true"/>
+        <property name="group" value="${org.quartz.group}"/>
+        <property name="jobDataMap">
+            <map>
+                <entry key="startShardingNumber" value="0"/>
+                <entry key="endShardingNumber" value="14"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="refreshSalePerformanceTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="refreshSalePerformanceJob2"/>
+        <property name="group" value="${org.quartz.group}"/>
+        <property name="cronExpression" value="0 0 1 1 * ?"/>
+    </bean>
+
+    <bean id="refreshSalePerformanceJob2" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.ihappy.store.application.task.RefreshSalePerformanceTask"/>
+        <property name="name" value="refreshSalePerformanceJob2"/>
+        <property name="durability" value="true"/>
+        <property name="group" value="${org.quartz.group}"/>
+        <property name="jobDataMap">
+            <map>
+                <entry key="startShardingNumber" value="15"/>
+                <entry key="endShardingNumber" value="29"/>
+            </map>
+        </property>
+    </bean>
+
+</beans>

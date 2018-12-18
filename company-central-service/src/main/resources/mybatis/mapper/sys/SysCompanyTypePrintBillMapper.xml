@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihappy.company.infrastructure.repo.mybatis.mapper.sys.SysCompanyTypePrintBillMapper">
+  <resultMap id="BaseResultMap" type="com.ihappy.company.domain.dbdo.SysCompanyTypePrintBill">
+    <id column="pb_id" jdbcType="BIGINT" property="pbId" />
+    <result column="bill_type" jdbcType="INTEGER" property="billType" />
+    <result column="bill_type_code" jdbcType="INTEGER" property="billTypeCode" />
+    <result column="bill_type_name" jdbcType="VARCHAR" property="billTypeName" />
+    <result column="ct_id" jdbcType="INTEGER" property="ctId" />
+    <result column="created_at" jdbcType="BIGINT" property="createdAt" />
+    <result column="updated_at" jdbcType="BIGINT" property="updatedAt" />
+    <result column="created_person_id" jdbcType="BIGINT" property="createdPersonId" />
+    <result column="updated_person_id" jdbcType="BIGINT" property="updatedPersonId" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pb_id, bill_type, bill_type_code, bill_type_name, ct_id, created_at, updated_at, 
+    created_person_id, updated_person_id, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_company_type_print_bill
+    where pb_id = #{pbId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_company_type_print_bill
+    where pb_id = #{pbId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ihappy.company.domain.dbdo.SysCompanyTypePrintBill">
+    insert into sys_company_type_print_bill (pb_id, bill_type, bill_type_code, 
+      bill_type_name, ct_id, created_at, 
+      updated_at, created_person_id, updated_person_id, 
+      is_deleted)
+    values (#{pbId,jdbcType=BIGINT}, #{billType,jdbcType=INTEGER}, #{billTypeCode,jdbcType=INTEGER}, 
+      #{billTypeName,jdbcType=VARCHAR}, #{ctId,jdbcType=INTEGER}, #{createdAt,jdbcType=BIGINT}, 
+      #{updatedAt,jdbcType=BIGINT}, #{createdPersonId,jdbcType=BIGINT}, #{updatedPersonId,jdbcType=BIGINT}, 
+      #{isDeleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ihappy.company.domain.dbdo.SysCompanyTypePrintBill">
+    insert into sys_company_type_print_bill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pbId != null">
+        pb_id,
+      </if>
+      <if test="billType != null">
+        bill_type,
+      </if>
+      <if test="billTypeCode != null">
+        bill_type_code,
+      </if>
+      <if test="billTypeName != null">
+        bill_type_name,
+      </if>
+      <if test="ctId != null">
+        ct_id,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="createdPersonId != null">
+        created_person_id,
+      </if>
+      <if test="updatedPersonId != null">
+        updated_person_id,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pbId != null">
+        #{pbId,jdbcType=BIGINT},
+      </if>
+      <if test="billType != null">
+        #{billType,jdbcType=INTEGER},
+      </if>
+      <if test="billTypeCode != null">
+        #{billTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="billTypeName != null">
+        #{billTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="ctId != null">
+        #{ctId,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdPersonId != null">
+        #{createdPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedPersonId != null">
+        #{updatedPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ihappy.company.domain.dbdo.SysCompanyTypePrintBill">
+    update sys_company_type_print_bill
+    <set>
+      <if test="billType != null">
+        bill_type = #{billType,jdbcType=INTEGER},
+      </if>
+      <if test="billTypeCode != null">
+        bill_type_code = #{billTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="billTypeName != null">
+        bill_type_name = #{billTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="ctId != null">
+        ct_id = #{ctId,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdPersonId != null">
+        created_person_id = #{createdPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedPersonId != null">
+        updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where pb_id = #{pbId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ihappy.company.domain.dbdo.SysCompanyTypePrintBill">
+    update sys_company_type_print_bill
+    set bill_type = #{billType,jdbcType=INTEGER},
+      bill_type_code = #{billTypeCode,jdbcType=INTEGER},
+      bill_type_name = #{billTypeName,jdbcType=VARCHAR},
+      ct_id = #{ctId,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      updated_at = #{updatedAt,jdbcType=BIGINT},
+      created_person_id = #{createdPersonId,jdbcType=BIGINT},
+      updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where pb_id = #{pbId,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByCtId" parameterType="int" resultMap="BaseResultMap">
+    select  <include refid="Base_Column_List" />
+    from sys_company_type_print_bill
+    where ct_id = #{value} and is_deleted = 0
+  </select>
+</mapper>

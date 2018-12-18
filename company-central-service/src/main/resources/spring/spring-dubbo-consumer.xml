@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       		http://code.alibabatech.com/schema/dubbo
+       		http://code.alibabatech.com/schema/dubbo/dubbo.xsd" default-autowire="byName">
+
+
+    <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+    <bean id="companyBaseInfoGrantRpcServiceClient" class="com.ihappy.item.infrastructure.service.CompanyBaseInfoGrantRpcServiceClient"/>
+    <dubbo:reference id="companyBaseInfoGrantRpcService"
+                     interface="com.ihappy.item.infrastructure.service.CompanyBaseInfoGrantRpcService"
+                     group="item"
+                     version="${dubbo_item_version}" timeout="3000"
+    />
+
+    <!-- 用户中心 获取用户信息 -->
+    <bean id="baseinfoPersonReadRpcServiceClient" class="com.ihappy.user.service.person.BaseinfoPersonReadRpcServiceClient"/>
+    <dubbo:reference id="baseinfoPersonReadRpcService"
+                     interface="com.ihappy.user.service.person.BaseinfoPersonReadRpcService"
+                     group="user"
+                     version="${dubbo_user_version}" timeout="3000"
+    />
+    <!--用户中心 获取用户角色列表-->
+    <bean id="baseinfoPersonInsideRpcReadServiceClient" class="com.ihappy.user.service.person.BaseinfoPersonInsideRpcReadServiceClient"/>
+    <dubbo:reference id="baseinfoPersonInsideRpcReadService"
+                     interface="com.ihappy.user.service.person.BaseinfoPersonInsideRpcReadService"
+                     group="user"
+                     version="${dubbo_user_version}" timeout="3000"
+    />
+
+
+    <bean id="sysCenterInsideRpcWriteServiceClient" class="com.ihappy.user.service.sys.SysCenterInsideRpcWriteServiceClient"/>
+    <dubbo:reference id="sysCenterInsideRpcWriteService"
+                     interface="com.ihappy.user.service.sys.SysCenterInsideRpcWriteService"
+                     group="user"
+                     version="${dubbo_user_version}" timeout="3000"
+    />
+
+    <!-- 商品中心 商品信息信息 -->
+    <bean id="itemGoodsInfoRpcServiceClient" class="com.ihappy.item.infrastructure.service.ItemGoodsInfoRpcServiceClient"/>
+    <dubbo:reference id="itemGoodsInfoRpcService"
+                     interface="com.ihappy.item.infrastructure.service.ItemGoodsInfoRpcService"
+                     group="item"
+                     version="${dubbo_item_version}" timeout="3000"
+    />
+
+    <!-- 商品中心 微商铺商品数量信息 -->
+    <bean id="weshopItemGoodsRpcServiceClient" class="com.ihappy.item.infrastructure.service.WeshopItemGoodsRpcServiceClient">
+        <property name="weshopItemGoodsRpcService" ref="weshopItemGoodsRpcService"></property>
+    </bean>
+    <dubbo:reference id="weshopItemGoodsRpcService"
+                     interface="com.ihappy.item.infrastructure.service.WeshopItemGoodsRpcService"
+                     group="item"
+                     version="${dubbo_item_version}" timeout="3000"
+    />
+    <!--消息中心-->
+    <bean id="messageWriteRpcServiceClient" class="com.ihappy.message.infrastructure.service.MessageWriteRpcServiceClient"/>
+    <dubbo:reference id="messageWriteRpcService"
+                     interface="com.ihappy.message.infrastructure.service.MessageWriteRpcService"
+                     group="message"
+                     version="${rpc.consumer.message.version}" timeout="3000"
+    />
+    <!--交易中心 采购-->
+    <bean id="orderBuyerReadRpcServiceClient" class="com.ihappy.trade.service.order.OrderBuyerReadRpcServiceClient"/>
+    <dubbo:reference id="orderBuyerReadRpcService"
+                     interface="com.ihappy.trade.service.order.OrderBuyerReadRpcService"
+                     group="trade"
+                     version="${rpc.consumer.trade.version}" timeout="3000"
+    />
+    <!--交易中心 销售-->
+    <bean id="orderSellerReadRpcServiceClient" class="com.ihappy.trade.service.order.OrderSellerReadRpcServiceClient"/>
+    <dubbo:reference id="orderSellerReadRpcService"
+                     interface="com.ihappy.trade.service.order.OrderSellerReadRpcService"
+                     group="trade"
+                     version="${rpc.consumer.trade.version}" timeout="3000"
+    />
+    <!-- 微信二维码 -->
+    <bean id="wechatQRCodePathRpcServiceClient" class="com.ihappy.wechat.infrastructure.service.WechatQRCodePathRpcServiceClient"/>
+    <dubbo:reference id="wechatQRCodePathRpcService"
+                     interface="com.ihappy.wechat.infrastructure.service.WechatQRCodePathRpcService"
+                     group="wechat"
+                     version="${rpc.consumer.wechat.version}" timeout="3000"
+    />
+
+    <bean id="payJournalWriteRpcServiceClient" class="com.ihappy.trade.service.trade.PayJournalWriteRpcServiceClient">
+        <property name="payJournalWriteRpcService" ref="payJournalWriteRpcService"></property>
+    </bean>
+    <dubbo:reference id="payJournalWriteRpcService"
+                     interface="com.ihappy.trade.service.trade.PayJournalWriteRpcService"
+                     group="trade"
+                     version="${rpc.consumer.trade.version}" timeout="3000"
+    />
+
+    <bean id="payJournalReadRpcServiceClient" class="com.ihappy.trade.service.trade.PayJournalReadRpcServiceClient">
+        <property name="payJournalReadRpcService" ref="payJournalReadRpcService"></property>
+    </bean>
+    <dubbo:reference id="payJournalReadRpcService"
+                     interface="com.ihappy.trade.service.trade.PayJournalReadRpcService"
+                     group="trade"
+                     version="${rpc.consumer.trade.version}" timeout="3000"
+    />
+
+    <!--交易中心 统计-->
+    <bean id="statisticsReadRpcServiceClient" class="com.ihappy.trade.service.order.StatisticsReadRpcServiceClient"/>
+    <dubbo:reference id="statisticsReadRpcService"
+                     interface="com.ihappy.trade.service.order.StatisticsReadRpcService"
+                     group="trade"
+                     version="${rpc.consumer.trade.version}" timeout="3000"
+    />
+
+    <!--商品中心 库存查询-->
+    <bean id="itemGoodsStockReadRpcServiceClient" class="com.ihappy.item.infrastructure.service.ItemGoodsStockReadRpcServiceClient"/>
+    <dubbo:reference id="itemGoodsStockReadRpcService"
+                     interface="com.ihappy.item.infrastructure.service.ItemGoodsStockReadRpcService"
+                     group="item"
+                     version="${dubbo_item_version}" timeout="3000"
+    />
+
+    <!--用户中心 -->
+    <bean id="sysCenterInsideRpcReadServiceClient" class="com.ihappy.user.service.sys.SysCenterInsideRpcReadServiceClient"/>
+    <dubbo:reference id="sysCenterInsideRpcReadService"
+                     interface="com.ihappy.user.service.sys.SysCenterInsideRpcReadService"
+                     group="user"
+                     version="${dubbo_user_version}" timeout="3000"
+    />
+    <!--商品中心-商品分类-->
+    <bean id="sysGoodsCategoryRpcServiceClient" class="com.ihappy.item.infrastructure.service.SysGoodsCategoryRpcServiceClient"/>
+    <dubbo:reference interface="com.ihappy.item.infrastructure.service.SysGoodsCategoryRpcService"
+                     id="sysGoodsCategoryRpcService"
+                     group="item"
+                     version="${dubbo_item_version}" timeout="3000"
+                     />
+
+<!--用户中心-->
+    <bean id="baseinfoPersonCompanyOrgReadRpcServiceClient" class="com.ihappy.user.service.person.BaseinfoPersonCompanyOrgReadRpcServiceClient"/>
+    <dubbo:reference interface="com.ihappy.user.service.person.BaseinfoPersonCompanyOrgReadRpcService"
+                     id="baseinfoPersonCompanyOrgReadRpcService"
+                     group="user"
+                     version="${dubbo_user_version}" timeout="3000"/>
+
+</beans>

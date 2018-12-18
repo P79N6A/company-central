@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName">
+
+
+    <bean id="myRedisConfigUtil" class="com.ihappy.myredis.common.MyRedisConfigUtil">
+        <property name="myRedisConfig" ref="myRedisConfig"  />
+    </bean>
+
+
+    <bean id="myRedisConfig" class="com.ihappy.myredis.common.MyRedisConfig">
+        <property name="redisPassword">
+            <map>
+                <entry key="355" value="${redis_password}"></entry>
+                <entry key="356" value="${redis_password}"></entry>
+            </map>
+        </property>
+        <property name="redisStrMap">
+            <map>
+                <entry key="355" value="${redis_ip}" >
+                </entry>
+                <entry key="356" value="${redis_ip}" >
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="myRedisClusterForHessian" class="com.ihappy.myredis.MyRedisClusterForHessian" depends-on="myRedisConfigUtil">
+        <constructor-arg  value="356" />
+        <constructor-arg  value="myredis" />
+    </bean>
+
+    <bean id="distributedPrimaryKeyFactory" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod" value="com.ihappy.communal.infrastructure.util.DistributedPrimaryKeyFactory.init"/>
+        <property name="arguments">
+            <list>
+                <ref bean="myRedisClusterForHessian"/>
+                <ref bean="commParamService"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 用户中心获取用户信息 -->
+    <bean id="sysAndPersonRedisUtil" class="com.ihappy.user.common.util.SysAndPersonRedisUtil">
+        <property name="myRedis" ref="myRedisClusterForHessian"></property>
+    </bean>
+
+    <bean id="companyRedisUtil" class="com.ihappy.company.common.utils.CompanyRedisUtil">
+        <property name="myRedis" ref="myRedisClusterForHessian"></property>
+    </bean>
+
+    <bean id="rolePrivilegeRedisUtil" class="com.ihappy.role.common.util.RolePrivilegeRedisUtil">
+        <property name="myRedis" ref="myRedisClusterForHessian"></property>
+    </bean>
+
+    <bean id="redisTool" class="com.ihappy.partner.common.util.RedisTool">
+        <property name="myRedis" ref="myRedisClusterForHessian"></property>
+    </bean>
+</beans>

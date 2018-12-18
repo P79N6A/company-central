@@ -1,0 +1,71 @@
+SELECT * from baseinfo_company where admin_person_mobile in ('17544474941','15542125613','13579722183');
+
+SELECT MAX(store_id),comp_id from baseinfo_company_store where comp_id in (1201,1202,1203) GROUP BY comp_id;
+
+SELECT MAX(partner_id),comp_id from baseinfo_company_partner_4 where comp_id in (1201,1202,1203);
+SELECT MAX(partner_id),comp_id from baseinfo_company_partner_5 where comp_id in (1201,1202,1203);
+SELECT MAX(partner_id),comp_id from baseinfo_company_partner_6 where comp_id in (1201,1202,1203);
+
+SELECT MAX(role_id),comp_id from baseinfo_company_role_1 where comp_id in (1201,1202,1203);
+SELECT MAX(role_id),comp_id from baseinfo_company_role_2 where comp_id in (1201,1202,1203);
+SELECT MAX(role_id),comp_id from baseinfo_company_role_3 where comp_id in (1201,1202,1203);
+
+SELECT MAX(stock_id),comp_id from baseinfo_company_stock where comp_id in (1201,1202,1203) GROUP BY comp_id;
+
+对应数据库：172.16.1.125/comp_central
+
+
+
+  一批老板    17544474941
+
+compId :1201
+
+store_id:356791201
+partner_id:71806801201
+role_id:71287191201
+stock_id:355251201
+表：
+
+baseinfo_company_store
+
+baseinfo_company_partner_4
+
+baseinfo_company_role_1
+
+baseinfo_company_stock
+
+  二批老板    15542125613
+
+compId :1202
+
+store_id:356811202
+partner_id:71806501202
+role_id:71287231202
+stock_id:355261202
+表：
+
+baseinfo_company_store
+
+baseinfo_company_partner_5
+
+baseinfo_company_role_2
+
+baseinfo_company_stock
+
+  零售老板    13579722183
+
+compId :1203
+
+store_id:356831203
+partner_id:71811771203
+role_id:71287271203
+stock_id:355271203
+表：
+
+baseinfo_company_store
+
+baseinfo_company_partner_6
+
+baseinfo_company_role_3
+
+baseinfo_company_stock

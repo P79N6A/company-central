@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       		http://code.alibabatech.com/schema/dubbo
+       		http://code.alibabatech.com/schema/dubbo/dubbo.xsd" default-autowire="byName">
+
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="company-web"  />
+
+    <dubbo:consumer  check="false" retries="0"/>
+
+    <!-- 使用zookeeper广播注册中心暴露服务地址 -->
+    <!--<dubbo:registry protocol="zookeeper" address="${switch.zkHosts}" />-->
+    <dubbo:registry address="${dubbo-zookeeper-host}" file="${user.home}/comp-central-web/dubbo.cache"/>
+
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="${rpc.port}" threads="400"/>
+
+    <!---->
+    <bean id="iCallDefaultRpcService" class="com.ihappy.gateway.service.impl.ICallDefaultRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.gateway.service.ICallRpcService"
+                   ref="iCallDefaultRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--企业查询RPC-->
+    <bean id="companyReadRpcService" class="com.ihappy.company.interfaces.CompanyReadRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyReadRpcService"
+                   ref="companyReadRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--企业修改RPC-->
+    <bean id="companyWriteRpcService" class="com.ihappy.company.interfaces.CompanyWriteRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyWriteRpcService"
+                   ref="companyWriteRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--伙伴企业查询RPC-->
+    <bean id="partnerReadRpcService" class="com.ihappy.partner.interfaces.PartnerReadRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.partner.infrastructure.service.PartnerReadRpcService"
+                   ref="partnerReadRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+    <bean id="partnerReadGatewayService" class="com.ihappy.partner.interfaces.PartnerReadGatewayServiceImpl"/>
+    <dubbo:service interface="com.ihappy.partner.infrastructure.service.PartnerReadGatewayService"
+                   ref="partnerReadGatewayService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+
+    <!--伙伴企业修改RPC-->
+    <bean id="partnerWriteRpcService" class="com.ihappy.partner.interfaces.PartnerWriteRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.partner.infrastructure.service.PartnerWriteRpcService"
+                   ref="partnerWriteRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+    <bean id="partnerWriteGatewayService" class="com.ihappy.partner.interfaces.PartnerWriteGatewayServiceImpl"/>
+    <dubbo:service interface="com.ihappy.partner.infrastructure.service.PartnerWriteGatewayService"
+                   ref="partnerWriteGatewayService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+
+    <!--补全企业数据RPC-->
+    <bean id="companyCompletionInfoWriteRpcService" class="com.ihappy.company.interfaces.CompanyCompletionInfoWriteRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyCompletionInfoWriteRpcService"
+                   ref="companyCompletionInfoWriteRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--企业品牌查询RPC-->
+    <bean id="companyBrandReadRpcService" class="com.ihappy.company.interfaces.CompanyBrandReadRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyBrandReadRpcService"
+                   ref="companyBrandReadRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--企业品牌修改RPC-->
+    <bean id="companyBrandWriteRpcService" class="com.ihappy.company.interfaces.CompanyBrandWriteRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyBrandWriteRpcService"
+                   ref="companyBrandWriteRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--门店查询新增RPC-->
+    <bean id="companyStoreReadRpcService" class="com.ihappy.store.interfaces.CompanyStoreReadRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.store.infrastructure.service.CompanyStoreReadRpcService"
+                   ref="companyStoreReadRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--企业角色查询RPC-->
+    <bean id="companyRoleReadService" class="com.ihappy.role.interfaces.company.CompanyRoleReadServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.CompanyRoleReadService"
+                   ref="companyRoleReadService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+    <!--企业角色添加RPC-->
+    <bean id="companyRoleWriteService" class="com.ihappy.role.interfaces.company.CompanyRoleWriteServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.CompanyRoleWriteService"
+                   ref="companyRoleWriteService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--企业角色查询RPC sysdb-->
+    <bean id="sysCompanyRoleReadService" class="com.ihappy.role.interfaces.sys.SysCompanyRoleReadServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.SysCompanyRoleReadService"
+                   ref="sysCompanyRoleReadService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--运营平台角色查询RPC sysdb.sys_role-->
+    <bean id="sysRoleReadService" class="com.ihappy.role.interfaces.sys.SysRoleReadServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.SysRoleReadService"
+                   ref="sysRoleReadService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+    <!--运营平台角色写入RPC sysdb.sys_role-->
+    <bean id="sysRoleWriteService" class="com.ihappy.role.interfaces.sys.SysRoleWriteServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.SysRoleWriteService"
+                   ref="sysRoleWriteService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+    <!--系统公司类型读取RPC sysdb.sys_company_type -->
+    <bean id="sysCompanyTypeReadService" class="com.ihappy.company.interfaces.SysCompanyTypeReadServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.SysCompanyTypeReadService"
+                   ref="sysCompanyTypeReadService"  version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+    <!--系统公司角色写入RPC sysdb.sys_company_role-->
+    <bean id="sysCompanyRoleWriteService" class="com.ihappy.role.interfaces.sys.SysCompanyRoleWriteServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.SysCompanyRoleWriteService"
+                   ref="sysCompanyRoleWriteService"   version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--企业门店查询RPC-->
+    <bean id="companyStoreReadService" class="com.ihappy.store.interfaces.CompanyStoreReadServiceImpl"/>
+    <dubbo:service interface="com.ihappy.store.infrastructure.service.CompanyStoreReadService"
+                   ref="companyStoreReadService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--企业门店修改RPC-->
+    <bean id="companyStoreWriteRpcService" class="com.ihappy.store.interfaces.CompanyStoreWriteRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.store.infrastructure.service.CompanyStoreWriteRpcService"
+                   ref="companyStoreWriteRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--企业门店修改RPC-->
+    <bean id="companyStoreWriteService" class="com.ihappy.store.interfaces.CompanyStoreWriteServiceImpl"/>
+    <dubbo:service interface="com.ihappy.store.infrastructure.service.CompanyStoreWriteService"
+                   ref="companyStoreWriteService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--仓库查询RPC-->
+    <bean id="stockReadRpcService" class="com.ihappy.stock.interfaces.StockReadRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.stock.infrastructure.service.StockReadRpcService"
+                   ref="stockReadRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--仓库修改RPC-->
+    <bean id="stockWriteRpcService" class="com.ihappy.stock.interfaces.StockWriteRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.stock.infrastructure.service.StockWriteRpcService"
+                   ref="stockWriteRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--添加Partner欠款RPC-->
+    <bean id="partnerArrearsOrderWriteRpcService" class="com.ihappy.partner.interfaces.PartnerArrearsOrderWriteRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.partner.infrastructure.service.PartnerArrearsOrderWriteRpcService"
+                   ref="partnerArrearsOrderWriteRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--更新Partner往来时间RPC-->
+    <bean id="partnerWriteInsideRpcService" class="com.ihappy.partner.interfaces.PartnerWriteInsideRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.partner.infrastructure.service.PartnerWriteInsideRpcService"
+                   ref="partnerWriteInsideRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--查询会员等级RPC-->
+    <bean id="partnerLevelReadRpcService" class="com.ihappy.partner.interfaces.PartnerLevelReadRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.partner.infrastructure.service.PartnerLevelReadRpcService"
+                   ref="partnerLevelReadRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--修改会员等级RPC-->
+    <bean id="partnerLevelWriteRpcService" class="com.ihappy.partner.interfaces.PartnerLevelWriteRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.partner.infrastructure.service.PartnerLevelWriteRpcService"
+                   ref="partnerLevelWriteRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--会员等级内部调用RPC-->
+    <bean id="partnerLevelInsideRpcService" class="com.ihappy.partner.interfaces.PartnerLevelInsideRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.partner.infrastructure.service.PartnerLevelInsideRpcService"
+                   ref="partnerLevelInsideRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--零售会员查询Rpc-->
+    <bean id="retailCustomerReadRpcService" class="com.ihappy.partner.interfaces.RetailCustomerReadRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.partner.infrastructure.service.RetailCustomerReadRpcService"
+                   ref="retailCustomerReadRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--零售会员修改Rpc-->
+    <bean id="retailCustomerWriteRpcService" class="com.ihappy.partner.interfaces.RetailCustomerWriteRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.partner.infrastructure.service.RetailCustomerWriteRpcService"
+                   ref="retailCustomerWriteRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <bean id="sysCompanyTypeRpcService" class="com.ihappy.company.interfaces.SysCompanyTypeRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.SysCompanyTypeRpcService"
+                   ref="sysCompanyTypeRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--库存查询内部调用Rpc-->
+    <bean id="stockReadInsideRpcService" class="com.ihappy.stock.interfaces.StockReadInsideRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.stock.infrastructure.service.StockReadInsideRpcService"
+                   ref="stockReadInsideRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--给所有企业生成默认信息-->
+    <bean id="companyDefaultInformationCheckAndSetService" class="com.ihappy.company.interfaces.CompanyDefaultInformationCheckAndSetServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyDefaultInformationCheckAndSetService"
+                   ref="companyDefaultInformationCheckAndSetService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+    <!--系统公司职能信息-->
+    <bean id="sysCompanyFuncReadRpcService" class="com.ihappy.role.interfaces.sys.SysCompanyFuncReadRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.SysCompanyFuncReadRpcService"
+                   ref="sysCompanyFuncReadRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+    <bean id="companyRedisServiceRpcService" class="com.ihappy.company.interfaces.CompanyRedisServiceRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyRedisServiceRpcService"
+                   ref="companyRedisServiceRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+
+    <!--打印配置相关接口-->
+    <bean id="companyPrintConfigReadService" class="com.ihappy.company.interfaces.CompanyPrintConfigReadServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyPrintConfigReadService"
+                   ref="companyPrintConfigReadService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <bean id="companyPrintConfigWriteService" class="com.ihappy.company.interfaces.CompanyPrintConfigWriteServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyPrintConfigWriteService"
+                   ref="companyPrintConfigWriteService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--微商铺访问量相关接口-->
+    <bean id="weshopVisitCollectionNumWriteService" class="com.ihappy.store.interfaces.WeshopVisitCollectionNumWriteServiceImpl"/>
+    <dubbo:service interface="com.ihappy.store.infrastructure.service.WeshopVisitCollectionNumWriteService"
+                   ref="weshopVisitCollectionNumWriteService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--PC端企业认证相关接口-->
+    <bean id="companyVerifyReadRpcService" class="com.ihappy.company.interfaces.CompanyVerifyReadRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyVerifyReadRpcService"
+                   ref="companyVerifyReadRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <bean id="companyVerifyWriteRpcService" class="com.ihappy.company.interfaces.CompanyVerifyWriteRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyVerifyWriteRpcService"
+                   ref="companyVerifyWriteRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <bean id="sysOrgReadRpcService" class="com.ihappy.company.interfaces.SysOrgReadRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.SysOrgReadRpcService"
+                   ref="sysOrgReadRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--公司服务到期时间延长接口 Rpc-->
+    <bean id="companyExtendServiceWriteRpcService" class="com.ihappy.company.interfaces.CompanyExtendServiceWriteRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyExtendServiceWriteRpcService"
+                   ref="companyExtendServiceWriteRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+    <!--运营后台菜单写入-->
+    <bean id="sysCompanyFuncReadService" class="com.ihappy.role.interfaces.sys.SysCompanyFuncReadServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.SysCompanyFuncReadService"
+                   ref="sysCompanyFuncReadService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+
+    </dubbo:service>
+    <bean id="sysFuncReadService" class="com.ihappy.role.interfaces.sys.SysFuncReadServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.SysFuncReadService"
+                   ref="sysFuncReadService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+
+    </dubbo:service>
+    <bean id="sysFuncWriteService" class="com.ihappy.role.interfaces.sys.SysFuncWriteServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.SysFuncWriteService"
+                   ref="sysFuncWriteService"  version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+
+    </dubbo:service>
+    <bean id="sysCompanyFuncMenuReadService" class="com.ihappy.role.interfaces.sys.SysCompanyFuncMenuReadServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.SysCompanyFuncMenuReadService"
+                   ref="sysCompanyFuncMenuReadService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+
+    </dubbo:service>
+    <bean id="sysCompanyFuncMenuWriteService" class="com.ihappy.role.interfaces.sys.SysCompanyFuncMenuWriteServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.SysCompanyFuncMenuWriteService"
+                   ref="sysCompanyFuncMenuWriteService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+
+    </dubbo:service>
+
+    <bean id="orderCompanyJournalWriteRpcService" class="com.ihappy.company.interfaces.OrderCompanyJournalWriteRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.OrderCompanyJournalWriteRpcService"
+                   ref="orderCompanyJournalWriteRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+    <bean id="orderCompanyJournalReadRpcService" class="com.ihappy.company.interfaces.OrderCompanyJournalReadRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.OrderCompanyJournalReadRpcService"
+                   ref="orderCompanyJournalReadRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--后门-->
+    <bean id="backdoorRpcService" class="com.ihappy.company.interfaces.BackdoorRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.BackdoorRpcService"
+                   ref="backdoorRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--门店查询接口-网关-->
+    <bean id="companyStoreReadGatewayService" class="com.ihappy.store.interfaces.CompanyStoreReadGatewayServiceImpl"/>
+    <dubbo:service interface="com.ihappy.store.infrastructure.service.CompanyStoreReadGatewayService"
+                   ref="companyStoreReadGatewayService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--门店修改接口-网关-->
+    <bean id="companyStoreWriteGatewayService" class="com.ihappy.store.interfaces.CompanyStoreWriteGatewayServiceImpl"/>
+    <dubbo:service interface="com.ihappy.store.infrastructure.service.CompanyStoreWriteGatewayService"
+                   ref="companyStoreWriteGatewayService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--企业修改接口-网关-->
+    <bean id="companyWriteGatewayService" class="com.ihappy.company.interfaces.CompanyWriteGatewayServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyWriteGatewayService"
+                   ref="companyWriteGatewayService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--企业查询接口-网关-->
+    <bean id="companyReadGatewayService" class="com.ihappy.company.interfaces.CompanyReadGatewayServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyReadGatewayService"
+                   ref="companyReadGatewayService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--企业角色修改接口-网关-->
+    <bean id="companyRoleWriteGatewayService" class="com.ihappy.role.interfaces.company.CompanyRoleWriteGatewayServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.CompanyRoleWriteGatewayService"
+                   ref="companyRoleWriteGatewayService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--企业角色修改接口-RPC-->
+    <bean id="companyRoleWriteRpcService" class="com.ihappy.role.interfaces.company.CompanyRoleWriteRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.CompanyRoleWriteRpcService"
+                   ref="companyRoleWriteRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--运营平台角色查询接口-网关-->
+    <bean id="sysRoleReadGatewayService" class="com.ihappy.role.interfaces.sys.SysRoleReadGatewayServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.SysRoleReadGatewayService"
+                   ref="sysRoleReadGatewayService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--运营平台角色查询接口-RPC-->
+    <bean id="sysRoleReadRpcService" class="com.ihappy.role.interfaces.sys.SysRoleReadRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.SysRoleReadRpcService"
+                   ref="sysRoleReadRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--运营平台角色查询接口-RPC-->
+    <bean id="sysRoleWriteGatewayService" class="com.ihappy.role.interfaces.sys.SysRoleWriteGatewayServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.SysRoleWriteGatewayService"
+                   ref="sysRoleWriteGatewayService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--运营平台角色修改接口-RPC-->
+    <bean id="sysRoleWriteRpcService" class="com.ihappy.role.interfaces.sys.SysRoleWriteRpcServiceImpl"/>
+    <dubbo:service interface="com.ihappy.role.infrastructure.service.SysRoleWriteRpcService"
+                   ref="sysRoleWriteRpcService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--仓库查询接口-网关-->
+    <bean id="stockReadGatewayService" class="com.ihappy.stock.interfaces.StockReadGatewayServiceImpl"/>
+    <dubbo:service interface="com.ihappy.stock.infrastructure.service.StockReadGatewayService"
+                   ref="stockReadGatewayService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+    <!--仓库查询接口-RPC-->
+    <bean id="stockWriteGatewayService" class="com.ihappy.stock.interfaces.StockWriteGatewayServiceImpl"/>
+    <dubbo:service interface="com.ihappy.stock.infrastructure.service.StockWriteGatewayService"
+                   ref="stockWriteGatewayService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+    <!--企业中心读-->
+    <bean id="companyReadService" class="com.ihappy.company.interfaces.CompanyReadServiceImpl"/>
+    <dubbo:service interface="com.ihappy.company.infrastructure.service.CompanyReadService"
+                   ref="companyReadService" version="${rpc.provider.company.version}"
+                   group="${rpc.provider.company.group}"
+                   timeout="3000">
+    </dubbo:service>
+
+</beans>

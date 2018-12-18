@@ -1,0 +1,1993 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihappy.company.infrastructure.repo.mybatis.mapper.comp.BaseinfoCompanyMapper">
+    <resultMap id="BaseResultMap" type="com.ihappy.company.domain.dbdo.BaseinfoCompany">
+        <id column="comp_id" jdbcType="INTEGER" property="compId"/>
+        <result column="comp_name" jdbcType="VARCHAR" property="compName"/>
+        <result column="comp_short_name" jdbcType="VARCHAR" property="compShortName"/>
+        <result column="region_id" jdbcType="INTEGER" property="regionId"/>
+        <result column="region_name" jdbcType="VARCHAR" property="regionName"/>
+        <result column="area_id" jdbcType="INTEGER" property="areaId"/>
+        <result column="province" jdbcType="VARCHAR" property="province"/>
+        <result column="city" jdbcType="VARCHAR" property="city"/>
+        <result column="zone" jdbcType="VARCHAR" property="zone"/>
+        <result column="comp_address" jdbcType="VARCHAR" property="compAddress"/>
+        <result column="comp_zip" jdbcType="VARCHAR" property="compZip"/>
+        <result column="license" jdbcType="VARCHAR" property="license"/>
+        <result column="license_picurl" jdbcType="VARCHAR" property="licensePicurl"/>
+        <result column="comp_linkman" jdbcType="VARCHAR" property="compLinkman"/>
+        <result column="comp_linkman_tel" jdbcType="VARCHAR" property="compLinkmanTel"/>
+        <result column="comp_sort" jdbcType="INTEGER" property="compSort"/>
+        <result column="nature" jdbcType="BIT" property="nature"/>
+        <result column="is_platform" jdbcType="BIT" property="isPlatform"/>
+        <result column="is_verified" jdbcType="BIT" property="isVerified"/>
+        <result column="verified_reason" jdbcType="VARCHAR" property="verifiedReason"/>
+        <result column="verified_time" jdbcType="INTEGER" property="verifiedTime"/>
+        <result column="status" jdbcType="BIT" property="status"/>
+        <result column="admin_person_id" property="adminPersonId"/>
+        <result column="admin_person_name" jdbcType="VARCHAR" property="adminPersonName"/>
+        <result column="admin_person_mobile" jdbcType="VARCHAR" property="adminPersonMobile"/>
+        <result column="tel" jdbcType="VARCHAR" property="tel"/>
+        <result column="fax" jdbcType="VARCHAR" property="fax"/>
+        <result column="mail" jdbcType="VARCHAR" property="mail"/>
+        <result column="website" jdbcType="VARCHAR" property="website"/>
+        <result column="memo" jdbcType="VARCHAR" property="memo"/>
+        <result column="comp_chit" jdbcType="INTEGER" property="compChit"/>
+        <result column="comp_balance" jdbcType="INTEGER" property="compBalance"/>
+        <result column="business_category" jdbcType="VARCHAR" property="businessCategory"/>
+        <result column="created_at" jdbcType="BIGINT" property="createdAt"/>
+        <result column="updated_at" jdbcType="BIGINT" property="updatedAt"/>
+        <result column="created_person_id" jdbcType="BIGINT" property="createdPersonId"/>
+        <result column="updated_person_id" jdbcType="BIGINT" property="updatedPersonId"/>
+        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
+        <result column="ct_names" jdbcType="VARCHAR" property="ctNames"/>
+        <result column="ct_ids" jdbcType="VARCHAR" property="ctIds"/>
+        <result column="bank_name" property="bankName"/>
+        <result column="bank_account_name" property="bankAccountName"/>
+        <result column="bank_account_number" property="bankAccountNumber"/>
+        <result column="alipay_account_name" property="alipayAccountName"/>
+        <result column="wechat_account_name" property="wechatAccountName"/>
+        <result column="print_size" property="printSize"/>
+        <result column="bill_name" property="billName"/>
+        <result column="wechat_account_qrcode" property="wechatAccountQrcode"/>
+        <result column="wechat_account_qrcode_content" property="wechatAccountQrcodeContent"/>
+        <result column="wechat_receipt_qrcode" property="wechatReceiptQrcode"/>
+        <result column="wechat_receipt_qrcode_content" property="wechatReceiptQrcodeContent"/>
+        <result column="alipay_account_qrcode" property="alipayAccountQrcode"/>
+        <result column="alipay_account_qrcode_content" property="alipayAccountQrcodeContent"/>
+        <result column="alipay_receipt_qrcode" property="alipayReceiptQrcode"/>
+        <result column="alipay_receipt_qrcode_content" property="alipayReceiptQrcodeContent"/>
+        <result column="print_bill" property="printBill"/>
+        <result column="print_warn" property="printWarn"/>
+        <result column="allow_negative_on_hand_sell" property="allowNegativeOnHandSell"/>
+        <result column="legal_man" property="legalMan"/>
+        <result column="card_front_url" property="cardFrontUrl"/>
+        <result column="card_back_url" property="cardBackUrl"/>
+        <result column="expire_date" property="expireDate"/>
+        <result column="version" property="version"/>
+        <result column="pay_remark" property="payRemark"/>
+        <result column="pay_remark_user_name" property="payRemarkUserName"/>
+        <result column="pay_remark_user_id" property="payRemarkUserId"/>
+        <result column="pay_remark_time" property="payRemarkTime"/>
+        <result column="expire_status" property="expireStatus"/>
+        <result column="attributes" property="attributes"/>
+        <result column="company_head" property="companyHead"/>
+        <result column="print_mode" property="printMode"/>
+        <result column="order_seller_notify" property="orderSellerNotify"/>
+        <result column="order_buyer_notify" property="orderBuyerNotify"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ihappy.company.domain.dbdo.BaseinfoCompany">
+        <result column="comp_memo" jdbcType="LONGVARCHAR" property="compMemo"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    comp_id, comp_name, comp_short_name, region_id, region_name, area_id, province, city, 
+    zone, comp_address, comp_zip, license, license_picurl, comp_linkman, comp_linkman_tel, 
+    comp_sort, nature, is_platform, is_verified, verified_reason, verified_time, status, 
+    admin_person_id, admin_person_name, admin_person_mobile, tel, fax, mail, website, 
+    memo, comp_chit, comp_balance, business_category, created_at, updated_at, created_person_id, 
+    updated_person_id, is_deleted,ct_ids,ct_names,bank_name,bank_account_name,bank_account_number,
+    alipay_account_name,wechat_account_name,print_size,bill_name,
+    wechat_account_qrcode,wechat_account_qrcode_content,wechat_receipt_qrcode,
+    wechat_receipt_qrcode_content,alipay_account_qrcode,alipay_account_qrcode_content,
+    alipay_receipt_qrcode,alipay_receipt_qrcode_content,print_bill,print_warn,allow_negative_on_hand_sell,
+    legal_man,card_front_url,card_back_url,expire_date,version,pay_remark,pay_remark_user_name,pay_remark_user_id,
+    pay_remark_time,expire_status,attributes,company_head,online_or_test,print_mode,order_seller_notify,order_buyer_notify
+  </sql>
+    <sql id="Blob_Column_List">
+    comp_memo
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company
+        where comp_id = #{compId,jdbcType=INTEGER} and is_deleted = 0
+    </select>
+
+    <select id="selectByBaseinfoCompanyReqDTO" parameterType="com.ihappy.company.domain.bo.BaseinfoCompanyBO"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company where is_deleted = 0
+        <if test="nature != null">
+            and nature = #{nature}
+        </if>
+        <if test="isVerified != null">
+            and is_verified = #{isVerified}
+        </if>
+        <if test="compId != null">
+            and comp_id = #{compId}
+        </if>
+        <if test="ctIds != null">
+            and FIND_IN_SET(#{ctIds},ct_ids)
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        <if test="compShortName != null and compShortName != ''">
+            and (comp_id = #{compShortName} or comp_short_name like CONCAT('%',#{compShortName},'%') )
+        </if>
+        <if test="bossMobile != null and bossMobile != ''">
+            and ( admin_person_name like CONCAT(#{bossMobile},'%') or admin_person_mobile like CONCAT(#{bossMobile},'%')
+            )
+        </if>
+        <if test="registerStartTime != null">
+            and created_at &gt; #{registerStartTime}
+        </if>
+        <if test="registerEndTime != null">
+            and created_at &lt; #{registerEndTime}
+        </if>
+        <if test="adminPersonMobile != null and adminPersonMobile != ''">
+            and admin_person_mobile = #{adminPersonMobile}
+        </if>
+        <if test="startValidTime != null">
+            and expire_date &gt; #{startValidTime}
+        </if>
+        <if test="endValidTime != null">
+            and expire_date &lt; #{endValidTime}
+        </if>
+        <if test="expireStatus != null">
+            and expire_status = #{expireStatus}
+        </if>
+        <if test="payRemarkUserName != null and payRemarkUserName != ''">
+            and pay_remark_user_name = #{payRemarkUserName}
+        </if>
+        <if test="payRemarkUserId != null">
+            and pay_remark_user_id > #{payRemarkUserId}
+        </if>
+        <if test="maxCompId != null">
+            and comp_id > #{maxCompId} order by comp_id limit #{limit}
+        </if>
+        <if test="maxCompId == null">
+            order by created_at desc limit #{limit} offset #{offset}
+        </if>
+
+    </select>
+
+    <select id="selectByBaseinfoCompanyReqDTOCount" parameterType="com.ihappy.company.domain.bo.BaseinfoCompanyBO"
+            resultType="java.lang.Integer">
+        select count(*) from (
+        select
+        comp_id,comp_name,comp_short_name,nature,ct_names,ct_ids,admin_person_mobile,status,is_verified,admin_person_id,admin_person_name
+        from baseinfo_company where is_deleted = 0
+        <if test="nature != null">
+            and nature = #{nature}
+        </if>
+        <if test="ctIds != null">
+            and FIND_IN_SET(#{ctIds},ct_ids)
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        <if test="compId != null">
+            and comp_id = #{compId}
+        </if>
+        <if test="compShortName != null and compShortName != ''">
+            and (comp_id = #{compShortName} or comp_short_name like CONCAT('%',#{compShortName},'%') )
+        </if>
+        <if test="registerStartTime != null">
+            and created_at &gt; #{registerStartTime}
+        </if>
+        <if test="registerEndTime != null">
+            and created_at &lt; #{registerEndTime}
+        </if>
+        <if test="adminPersonMobile != null and adminPersonMobile != ''">
+            and admin_person_mobile = #{adminPersonMobile}
+        </if>
+        <if test="startValidTime != null">
+            and expire_date &gt; #{startValidTime}
+        </if>
+        <if test="endValidTime != null">
+            and expire_date &lt; #{endValidTime}
+        </if>
+        <if test="expireStatus != null">
+            and expire_status = #{expireStatus}
+        </if>
+        <if test="payRemarkUserName != null and payRemarkUserName != ''">
+            and pay_remark_user_name = #{payRemarkUserName}
+        </if>
+        <if test="payRemarkUserId != null">
+            and pay_remark_user_id = #{payRemarkUserId}
+        </if>
+        ) bc
+    </select>
+
+    <update id="updateCompanyStatus" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompany">
+    update baseinfo_company set status = #{status},updated_at = #{updatedAt}, updated_person_id = #{updatedPersonId} where comp_id = #{compId,jdbcType=INTEGER} and is_deleted = 0
+  </update>
+
+    <select id="selectCompanyInfo" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompany"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company where comp_id = #{compId,jdbcType=INTEGER} and is_deleted = 0
+    </select>
+    <select id="selectCompanyInfoByCompIdAndCtIds" parameterType="com.ihappy.company.domain.bo.BaseinfoCompanyBO"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company where comp_id = #{compId,jdbcType=INTEGER} and ct_ids = #{ctIds} and is_deleted = 0
+    </select>
+
+    <update id="updateCompanyInfoAttributes" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompany">
+    update baseinfo_company set attributes=#{attributes} where comp_id=#{compId}
+  </update>
+
+    <update id="updateCompanyInfo" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompany">
+        update baseinfo_company
+        <set>
+            <if test="compName != null">
+                comp_name = #{compName},
+            </if>
+            <if test="compShortName != null">
+                comp_short_name = #{compShortName},
+            </if>
+            <if test="compMemo != null">
+                comp_memo = #{compMemo},
+            </if>
+            <if test="regionId != null">
+                region_id = #{regionId},
+            </if>
+            <if test="regionName != null">
+                region_name = #{regionName},
+            </if>
+            <if test="areaId != null">
+                area_id = #{areaId},
+            </if>
+            <if test="province != null">
+                province = #{province},
+            </if>
+            <if test="provinceId != null">
+                province_id = #{provinceId},
+            </if>
+            <if test="ctIds != null">
+                ct_ids = #{ctIds},
+            </if>
+            <if test="ctNames != null">
+                ct_names = #{ctNames},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId},
+            </if>
+            <if test="city != null">
+                city = #{city},
+            </if>
+            <if test="zone != null">
+                zone = #{zone},
+            </if>
+            <if test="legalMan != null">
+                legal_man = #{legalMan},
+            </if>
+            <if test="cardFrontUrl != null">
+                card_front_url = #{cardFrontUrl},
+            </if>
+            <if test="cardBackUrl != null">
+                card_back_url = #{cardBackUrl},
+            </if>
+            <if test="compAddress != null">
+                comp_address = #{compAddress},
+            </if>
+            <if test="compZip != null">
+                comp_zip = #{compZip},
+            </if>
+            <if test="license != null">
+                license = #{license},
+            </if>
+            <if test="licensePicurl != null">
+                license_picurl = #{licensePicurl},
+            </if>
+            <if test="compLinkman != null">
+                comp_linkman = #{compLinkman},
+            </if>
+            <if test="compLinkmanTel != null">
+                comp_linkman_tel = #{compLinkmanTel},
+            </if>
+            <if test="compSort != null">
+                comp_sort = #{compSort},
+            </if>
+            <if test="nature != null">
+                nature = #{nature},
+            </if>
+            <if test="isPlatform != null">
+                is_platform = #{isPlatform},
+            </if>
+            <if test="isVerified != null">
+                is_verified = #{isVerified},
+            </if>
+            <if test="verifiedReason != null">
+                verified_reason = #{verifiedReason},
+            </if>
+            <if test="verifiedTime != null">
+                verified_time = #{verifiedTime},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="adminPersonId != null">
+                admin_person_id = #{adminPersonId},
+            </if>
+            <if test="adminPersonName != null">
+                admin_person_name = #{adminPersonName},
+            </if>
+            <if test="adminPersonMobile != null">
+                admin_person_mobile = #{adminPersonMobile},
+            </if>
+            <if test="tel != null">
+                tel = #{tel},
+            </if>
+            <if test="fax != null">
+                fax = #{fax},
+            </if>
+            <if test="mail != null">
+                mail = #{mail},
+            </if>
+            <if test="memo != null">
+                memo = #{memo},
+            </if>
+            <if test="compChit != null">
+                comp_chit = #{compChit},
+            </if>
+            <if test="compBalance != null">
+                comp_balance = #{compBalance},
+            </if>
+            <if test="businessCategory != null">
+                business_category = #{businessCategory},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt},
+            </if>
+            <if test="createdPersonId != null">
+                created_person_id = #{createdPersonId},
+            </if>
+            <if test="updatedPersonId != null">
+                updated_person_id = #{updatedPersonId},
+            </if>
+            <if test="bankName != null">
+                bank_name = #{bankName},
+            </if>
+            <if test="bankAccountName != null">
+                bank_account_name = #{bankAccountName},
+            </if>
+            <if test="bankAccountNumber != null">
+                bank_account_number = #{bankAccountNumber},
+            </if>
+            <if test="alipayAccountName != null">
+                alipay_account_name = #{alipayAccountName},
+            </if>
+            <if test="wechatAccountName != null">
+                wechat_account_name = #{wechatAccountName},
+            </if>
+            <if test="printSize != null">
+                print_size = #{printSize},
+            </if>
+            <if test="billName != null">
+                bill_name = #{billName},
+            </if>
+            <if test="wechatAccountQrcode != null">
+                wechat_account_qrcode = #{wechatAccountQrcode},
+            </if>
+            <if test="wechatAccountQrcodeContent != null">
+                wechat_account_qrcode_content = #{wechatAccountQrcodeContent},
+            </if>
+            <if test="wechatReceiptQrcode != null">
+                wechat_receipt_qrcode = #{wechatReceiptQrcode},
+            </if>
+            <if test="wechatReceiptQrcodeContent != null">
+                wechat_receipt_qrcode_content = #{wechatReceiptQrcodeContent},
+            </if>
+            <if test="alipayAccountQrcode != null">
+                alipay_account_qrcode = #{alipayAccountQrcode},
+            </if>
+            <if test="alipayAccountQrcodeContent != null">
+                alipay_account_qrcode_content = #{alipayAccountQrcodeContent},
+            </if>
+            <if test="alipayReceiptQrcode != null">
+                alipay_receipt_qrcode = #{alipayReceiptQrcode},
+            </if>
+            <if test="alipayReceiptQrcodeContent != null">
+                alipay_receipt_qrcode_content = #{alipayReceiptQrcodeContent},
+            </if>
+            <if test="printBill != null">
+                print_bill = #{printBill},
+            </if>
+            <if test="printWarn != null">
+                print_warn = #{printWarn},
+            </if>
+            <if test="allowNegativeOnHandSell != null">
+                allow_negative_on_hand_sell = #{allowNegativeOnHandSell},
+            </if>
+            <if test="expireDate != null">
+                expire_date = #{expireDate},
+            </if>
+            <if test="version != null">
+                version = #{version},
+            </if>
+            <if test="payRemark != null">
+                pay_remark = #{payRemark},
+            </if>
+            <if test="payRemarkUserName != null">
+                pay_remark_user_name = #{payRemarkUserName},
+            </if>
+            <if test="payRemarkUserId != null">
+                pay_remark_user_id = #{payRemarkUserId},
+            </if>
+            <if test="payRemarkTime != null">
+                pay_remark_time = #{payRemarkTime},
+            </if>
+            <if test="attributes!=null">
+                attributes = #{attributes},
+            </if>
+            <if test="companyHead != null">
+                company_head=#{companyHead},
+            </if>
+            <if test="onlineOrTest != null">
+                online_or_test=#{onlineOrTest},
+            </if>
+            <if test="orderSellerNotify != null">
+                order_seller_notify=#{orderSellerNotify},
+            </if>
+            <if test="orderBuyerNotify != null">
+                order_buyer_notify=#{orderBuyerNotify},
+            </if>
+        </set>
+        where comp_id = #{compId,jdbcType=INTEGER} and is_deleted = 0
+    </update>
+
+    <update id="updateCompanyInfoSelective" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompany">
+        update baseinfo_company
+        <set>
+            <if test="compName != null">
+                comp_name = #{compName},
+            </if>
+            <if test="compShortName != null">
+                comp_short_name = #{compShortName},
+            </if>
+            <if test="compMemo != null">
+                comp_memo = #{compMemo},
+            </if>
+            <if test="regionId != null">
+                region_id = #{regionId},
+            </if>
+            <if test="regionName != null">
+                region_name = #{regionName},
+            </if>
+            <if test="areaId != null">
+                area_id = #{areaId},
+            </if>
+            <if test="province != null">
+                province = #{province},
+            </if>
+            <if test="provinceId != null">
+                province_id = #{provinceId},
+            </if>
+            <if test="ctIds != null">
+                ct_ids = #{ctIds},
+            </if>
+            <if test="ctNames != null">
+                ct_names = #{ctNames},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId},
+            </if>
+            <if test="city != null">
+                city = #{city},
+            </if>
+            <if test="zone != null">
+                zone = #{zone},
+            </if>
+            <if test="legalMan != null">
+                legal_man = #{legalMan},
+            </if>
+            <if test="cardFrontUrl != null">
+                card_front_url = #{cardFrontUrl},
+            </if>
+            <if test="cardBackUrl != null">
+                card_back_url = #{cardBackUrl},
+            </if>
+            <if test="compAddress != null">
+                comp_address = #{compAddress},
+            </if>
+            <if test="compZip != null">
+                comp_zip = #{compZip},
+            </if>
+            <if test="license != null">
+                license = #{license},
+            </if>
+            <if test="licensePicurl != null">
+                license_picurl = #{licensePicurl},
+            </if>
+            <if test="compLinkman != null">
+                comp_linkman = #{compLinkman},
+            </if>
+            <if test="compLinkmanTel != null">
+                comp_linkman_tel = #{compLinkmanTel},
+            </if>
+            <if test="compSort != null">
+                comp_sort = #{compSort},
+            </if>
+            <if test="nature != null">
+                nature = #{nature},
+            </if>
+            <if test="isPlatform != null">
+                is_platform = #{isPlatform},
+            </if>
+            <if test="isVerified != null">
+                is_verified = #{isVerified},
+            </if>
+            <if test="verifiedReason != null">
+                verified_reason = #{verifiedReason},
+            </if>
+            <if test="verifiedTime != null">
+                verified_time = #{verifiedTime},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="adminPersonId != null">
+                admin_person_id = #{adminPersonId},
+            </if>
+            <if test="adminPersonName != null">
+                admin_person_name = #{adminPersonName},
+            </if>
+            <if test="adminPersonMobile != null">
+                admin_person_mobile = #{adminPersonMobile},
+            </if>
+            <if test="tel != null">
+                tel = #{tel},
+            </if>
+            <if test="fax != null">
+                fax = #{fax},
+            </if>
+            <if test="mail != null">
+                mail = #{mail},
+            </if>
+            <if test="memo != null">
+                memo = #{memo},
+            </if>
+            <if test="compChit != null">
+                comp_chit = #{compChit},
+            </if>
+            <if test="compBalance != null">
+                comp_balance = #{compBalance},
+            </if>
+            <if test="businessCategory != null">
+                business_category = #{businessCategory},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt},
+            </if>
+            <if test="createdPersonId != null">
+                created_person_id = #{createdPersonId},
+            </if>
+            <if test="updatedPersonId != null">
+                updated_person_id = #{updatedPersonId},
+            </if>
+            <if test="bankName != null">
+                bank_name = #{bankName},
+            </if>
+            <if test="bankAccountName != null">
+                bank_account_name = #{bankAccountName},
+            </if>
+            <if test="bankAccountNumber != null">
+                bank_account_number = #{bankAccountNumber},
+            </if>
+            <if test="alipayAccountName != null">
+                alipay_account_name = #{alipayAccountName},
+            </if>
+            <if test="wechatAccountName != null">
+                wechat_account_name = #{wechatAccountName},
+            </if>
+            <if test="printSize != null">
+                print_size = #{printSize},
+            </if>
+            <if test="billName != null">
+                bill_name = #{billName},
+            </if>
+            <if test="wechatAccountQrcode != null">
+                wechat_account_qrcode = #{wechatAccountQrcode},
+            </if>
+            <if test="wechatAccountQrcodeContent != null">
+                wechat_account_qrcode_content = #{wechatAccountQrcodeContent},
+            </if>
+            <if test="wechatReceiptQrcode != null">
+                wechat_receipt_qrcode = #{wechatReceiptQrcode},
+            </if>
+            <if test="wechatReceiptQrcodeContent != null">
+                wechat_receipt_qrcode_content = #{wechatReceiptQrcodeContent},
+            </if>
+            <if test="alipayAccountQrcode != null">
+                alipay_account_qrcode = #{alipayAccountQrcode},
+            </if>
+            <if test="alipayAccountQrcodeContent != null">
+                alipay_account_qrcode_content = #{alipayAccountQrcodeContent},
+            </if>
+            <if test="alipayReceiptQrcode != null">
+                alipay_receipt_qrcode = #{alipayReceiptQrcode},
+            </if>
+            <if test="alipayReceiptQrcodeContent != null">
+                alipay_receipt_qrcode_content = #{alipayReceiptQrcodeContent},
+            </if>
+            <if test="printBill != null">
+                print_bill = #{printBill},
+            </if>
+            <if test="printWarn != null">
+                print_warn = #{printWarn},
+            </if>
+            <if test="allowNegativeOnHandSell != null">
+                allow_negative_on_hand_sell = #{allowNegativeOnHandSell},
+            </if>
+            <if test="expireDate != null">
+                expire_date = #{expireDate},
+            </if>
+            <if test="version != null">
+                version = #{version},
+            </if>
+            <if test="payRemark != null">
+                pay_remark = #{payRemark},
+            </if>
+            <if test="payRemarkUserName != null">
+                pay_remark_user_name = #{payRemarkUserName},
+            </if>
+            <if test="payRemarkUserId != null">
+                pay_remark_user_id = #{payRemarkUserId},
+            </if>
+            <if test="payRemarkTime != null">
+                pay_remark_time = #{payRemarkTime},
+            </if>
+            <if test="attributes!=null">
+                attributes = #{attributes},
+            </if>
+            <if test="companyHead != null">
+                company_head=#{companyHead}
+            </if>
+        </set>
+        where comp_id = #{compId,jdbcType=INTEGER} and is_deleted = 0
+    </update>
+
+    <select id="selectCompanyServiceStatus" parameterType="com.ihappy.company.domain.bo.CompanyInfoBO"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company where is_deleted = 0 and expire_date > 0
+        <if test="registerStartTime != null">
+            and created_at &gt; #{registerStartTime}
+        </if>
+        <if test="registerEndTime != null">
+            and created_at &lt; #{registerEndTime}
+        </if>
+        <if test="adminPersonMobile != null and adminPersonMobile != ''">
+            and admin_person_mobile like CONCAT(#{adminPersonMobile},'%')
+        </if>
+        <if test="startValidTime != null">
+            and expire_date &gt; #{startValidTime}
+        </if>
+        <if test="status != null and status = 0">
+            and status = #{status}
+        </if>
+        <if test="status != null and status > 0">
+            and status > 0
+        </if>
+        <if test="expireStatus != null">
+            and expire_status = #{expireStatus}
+        </if>
+        <if test="endValidTime != null">
+            and expire_date &lt; #{endValidTime}
+        </if>
+        <if test="payRemarkUserName != null and payRemarkUserName != ''">
+            and pay_remark_user_name = #{payRemarkUserName}
+        </if>
+        <if test="payRemarkUserId != null">
+            and pay_remark_user_id = #{payRemarkUserId}
+        </if>
+        <if test="ctId != null and ctId != ''">
+            and find_in_set(#{ctId},ct_ids)
+        </if>
+        ORDER BY expire_date limit #{limit} offset #{offset}
+    </select>
+
+    <select id="selectCompanyServiceStatusCount" parameterType="com.ihappy.company.domain.bo.CompanyInfoBO"
+            resultType="java.lang.Integer">
+        SELECT COUNT(*) from
+        (
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company where is_deleted = 0 and expire_date > 0
+        <if test="registerStartTime != null">
+            and created_at &gt; #{registerStartTime}
+        </if>
+        <if test="registerEndTime != null">
+            and created_at &lt; #{registerEndTime}
+        </if>
+        <if test="adminPersonMobile != null and adminPersonMobile != ''">
+            and admin_person_mobile like CONCAT(#{adminPersonMobile},'%')
+        </if>
+        <if test="startValidTime != null">
+            and expire_date &gt; #{startValidTime}
+        </if>
+        <if test="endValidTime != null">
+            and expire_date &lt; #{endValidTime}
+        </if>
+        <if test="payRemarkUserName != null and payRemarkUserName != ''">
+            and pay_remark_user_name = #{payRemarkUserName}
+        </if>
+        <if test="payRemarkUserId != null">
+            and pay_remark_user_id = #{payRemarkUserId}
+        </if>
+        <if test="status != null and status = 0">
+            and status = #{status}
+        </if>
+        <if test="status != null and status > 0">
+            and status > 0
+        </if>
+        <if test="expireStatus != null">
+            and expire_status = #{expireStatus}
+        </if>
+        <if test="ctId != null and ctId != ''">
+            and find_in_set(#{ctId},ct_ids)
+        </if>
+        ) t
+    </select>
+
+    <select id="selectCompanyInfoListByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company
+        where is_deleted = 0
+        <if test="list != null and list.size > 0">
+            and comp_id in
+            <foreach collection="list" index="compIds" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="selectByCompName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company
+        where is_deleted = 0 and comp_name = #{compName}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from baseinfo_company
+    where comp_id = #{compId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompany">
+    insert into baseinfo_company (comp_id, comp_name, comp_short_name, 
+      region_id, region_name, area_id, 
+      province, city, zone, 
+      comp_address, comp_zip, license, 
+      license_picurl, comp_linkman, comp_linkman_tel, 
+      comp_sort, nature, is_platform, 
+      is_verified, verified_reason, verified_time, 
+      status, admin_person_id, admin_person_name, 
+      admin_person_mobile, tel, fax, 
+      mail, website, memo, 
+      comp_chit, comp_balance, business_category, 
+      created_at, updated_at, created_person_id, 
+      updated_person_id, is_deleted, comp_memo,ct_ids,ct_names
+      )
+    values (#{compId,jdbcType=INTEGER}, #{compName}, #{compShortName}, 
+      #{regionId,jdbcType=INTEGER}, #{regionName}, #{areaId,jdbcType=INTEGER}, 
+      #{province}, #{city}, #{zone}, 
+      #{compAddress}, #{compZip}, #{license}, 
+      #{licensePicurl}, #{compLinkman}, #{compLinkmanTel}, 
+      #{compSort,jdbcType=INTEGER}, #{nature}, #{isPlatform}, 
+      #{isVerified}, #{verifiedReason}, #{verifiedTime,jdbcType=INTEGER}, 
+      #{status}, #{adminPersonId}, #{adminPersonName},
+      #{adminPersonMobile}, #{tel}, #{fax}, 
+      #{mail}, #{website}, #{memo}, 
+      #{compChit,jdbcType=INTEGER}, #{compBalance,jdbcType=INTEGER}, #{businessCategory}, 
+      #{createdAt,jdbcType=BIGINT}, #{updatedAt,jdbcType=BIGINT}, #{createdPersonId,jdbcType=BIGINT}, 
+      #{updatedPersonId,jdbcType=BIGINT}, #{isDeleted,jdbcType=TINYINT}, #{compMemo,jdbcType=LONGVARCHAR},#{ctIds},#{ctNames}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompany">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="compId">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into baseinfo_company
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="compName != null">
+                comp_name,
+            </if>
+            <if test="compShortName != null">
+                comp_short_name,
+            </if>
+            <if test="regionId != null">
+                region_id,
+            </if>
+            <if test="regionName != null">
+                region_name,
+            </if>
+            <if test="areaId != null">
+                area_id,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="zone != null">
+                zone,
+            </if>
+            <if test="compAddress != null">
+                comp_address,
+            </if>
+            <if test="compZip != null">
+                comp_zip,
+            </if>
+            <if test="license != null">
+                license,
+            </if>
+            <if test="licensePicurl != null">
+                license_picurl,
+            </if>
+            <if test="compLinkman != null">
+                comp_linkman,
+            </if>
+            <if test="compLinkmanTel != null">
+                comp_linkman_tel,
+            </if>
+            <if test="compSort != null">
+                comp_sort,
+            </if>
+            <if test="nature != null">
+                nature,
+            </if>
+            <if test="isPlatform != null">
+                is_platform,
+            </if>
+            <if test="isVerified != null">
+                is_verified,
+            </if>
+            <if test="verifiedReason != null">
+                verified_reason,
+            </if>
+            <if test="verifiedTime != null">
+                verified_time,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="adminPersonId != null">
+                admin_person_id,
+            </if>
+            <if test="adminPersonName != null">
+                admin_person_name,
+            </if>
+            <if test="adminPersonMobile != null">
+                admin_person_mobile,
+            </if>
+            <if test="tel != null">
+                tel,
+            </if>
+            <if test="fax != null">
+                fax,
+            </if>
+            <if test="mail != null">
+                mail,
+            </if>
+            <if test="website != null">
+                website,
+            </if>
+            <if test="memo != null">
+                memo,
+            </if>
+            <if test="compChit != null">
+                comp_chit,
+            </if>
+            <if test="compBalance != null">
+                comp_balance,
+            </if>
+            <if test="businessCategory != null">
+                business_category,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="createdPersonId != null">
+                created_person_id,
+            </if>
+            <if test="updatedPersonId != null">
+                updated_person_id,
+            </if>
+            <if test="isDeleted != null">
+                is_deleted,
+            </if>
+            <if test="compMemo != null">
+                comp_memo,
+            </if>
+            <if test="ctIds != null">
+                ct_ids,
+            </if>
+            <if test="ctNames != null">
+                ct_names,
+            </if>
+            <if test="bankName != null">
+                bank_name,
+            </if>
+            <if test="bankAccountName != null">
+                bank_account_name,
+            </if>
+            <if test="bankAccountNumber != null">
+                bank_account_number,
+            </if>
+            <if test="alipayAccountName != null">
+                alipay_account_name,
+            </if>
+            <if test="wechatAccountName != null">
+                wechat_account_name,
+            </if>
+            <if test="printSize != null">
+                print_size,
+            </if>
+            <if test="billName != null">
+                bill_name,
+            </if>
+            <if test="wechatAccountQrcode != null">
+                wechat_account_qrcode,
+            </if>
+            <if test="wechatAccountQrcodeContent != null">
+                wechat_account_qrcode_content,
+            </if>
+            <if test="wechatReceiptQrcode != null">
+                wechat_receipt_qrcode,
+            </if>
+            <if test="wechatReceiptQrcodeContent != null">
+                wechat_receipt_qrcode_content,
+            </if>
+            <if test="alipayAccountQrcode != null">
+                alipay_account_qrcode,
+            </if>
+            <if test="alipayAccountQrcodeContent != null">
+                alipay_account_qrcode_content,
+            </if>
+            <if test="alipayReceiptQrcode != null">
+                alipay_receipt_qrcode,
+            </if>
+            <if test="alipayReceiptQrcodeContent != null">
+                alipay_receipt_qrcode_content,
+            </if>
+            <if test="printBill != null">
+                print_bill,
+            </if>
+            <if test="printWarn != null">
+                print_warn,
+            </if>
+            <if test="allowNegativeOnHandSell != null">
+                allow_negative_on_hand_sell,
+            </if>
+            <if test="expireDate != null">
+                expire_date,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="payRemark != null">
+                pay_remark,
+            </if>
+            <if test="payRemarkUserName != null">
+                pay_remark_user_name,
+            </if>
+            <if test="payRemarkUserId != null">
+                pay_remark_user_id,
+            </if>
+            <if test="payRemarkTime != null">
+                pay_remark_time,
+            </if>
+            <if test="attributes!=null">
+                attributes ,
+            </if>
+            <if test="companyHead != null">
+                company_head
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="compName != null">
+                #{compName},
+            </if>
+            <if test="compShortName != null">
+                #{compShortName},
+            </if>
+            <if test="regionId != null">
+                #{regionId,jdbcType=INTEGER},
+            </if>
+            <if test="regionName != null">
+                #{regionName},
+            </if>
+            <if test="areaId != null">
+                #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="province != null">
+                #{province},
+            </if>
+            <if test="city != null">
+                #{city},
+            </if>
+            <if test="zone != null">
+                #{zone},
+            </if>
+            <if test="compAddress != null">
+                #{compAddress},
+            </if>
+            <if test="compZip != null">
+                #{compZip},
+            </if>
+            <if test="license != null">
+                #{license},
+            </if>
+            <if test="licensePicurl != null">
+                #{licensePicurl},
+            </if>
+            <if test="compLinkman != null">
+                #{compLinkman},
+            </if>
+            <if test="compLinkmanTel != null">
+                #{compLinkmanTel},
+            </if>
+            <if test="compSort != null">
+                #{compSort,jdbcType=INTEGER},
+            </if>
+            <if test="nature != null">
+                #{nature},
+            </if>
+            <if test="isPlatform != null">
+                #{isPlatform},
+            </if>
+            <if test="isVerified != null">
+                #{isVerified},
+            </if>
+            <if test="verifiedReason != null">
+                #{verifiedReason},
+            </if>
+            <if test="verifiedTime != null">
+                #{verifiedTime,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="adminPersonId != null">
+                #{adminPersonId},
+            </if>
+            <if test="adminPersonName != null">
+                #{adminPersonName},
+            </if>
+            <if test="adminPersonMobile != null">
+                #{adminPersonMobile},
+            </if>
+            <if test="tel != null">
+                #{tel},
+            </if>
+            <if test="fax != null">
+                #{fax},
+            </if>
+            <if test="mail != null">
+                #{mail},
+            </if>
+            <if test="website != null">
+                #{website},
+            </if>
+            <if test="memo != null">
+                #{memo},
+            </if>
+            <if test="compChit != null">
+                #{compChit,jdbcType=INTEGER},
+            </if>
+            <if test="compBalance != null">
+                #{compBalance,jdbcType=INTEGER},
+            </if>
+            <if test="businessCategory != null">
+                #{businessCategory},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=BIGINT},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=BIGINT},
+            </if>
+            <if test="createdPersonId != null">
+                #{createdPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="updatedPersonId != null">
+                #{updatedPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="isDeleted != null">
+                #{isDeleted,jdbcType=TINYINT},
+            </if>
+            <if test="compMemo != null">
+                #{compMemo,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="ctIds != null">
+                #{ctIds},
+            </if>
+            <if test="ctNames != null">
+                #{ctNames},
+            </if>
+            <if test="bankName != null">
+                #{bankName},
+            </if>
+            <if test="bankAccountName != null">
+                #{bankAccountName},
+            </if>
+            <if test="bankAccountNumber != null">
+                #{bankAccountNumber},
+            </if>
+            <if test="alipayAccountName != null">
+                #{alipayAccountName},
+            </if>
+            <if test="wechatAccountName != null">
+                #{wechatAccountName},
+            </if>
+            <if test="printSize != null">
+                #{printSize},
+            </if>
+            <if test="billName != null">
+                #{billName},
+            </if>
+            <if test="wechatAccountQrcode != null">
+                #{wechatAccountQrcode},
+            </if>
+            <if test="wechatAccountQrcodeContent != null">
+                #{wechatAccountQrcodeContent},
+            </if>
+            <if test="wechatReceiptQrcode != null">
+                #{wechatReceiptQrcode},
+            </if>
+            <if test="wechatReceiptQrcodeContent != null">
+                #{wechatReceiptQrcodeContent},
+            </if>
+            <if test="alipayAccountQrcode != null">
+                #{alipayAccountQrcode},
+            </if>
+            <if test="alipayAccountQrcodeContent != null">
+                #{alipayAccountQrcodeContent},
+            </if>
+            <if test="alipayReceiptQrcode != null">
+                #{alipayReceiptQrcode},
+            </if>
+            <if test="alipayReceiptQrcodeContent != null">
+                #{alipayReceiptQrcodeContent},
+            </if>
+            <if test="printBill != null">
+                #{printBill},
+            </if>
+            <if test="printWarn != null">
+                #{printWarn},
+            </if>
+            <if test="allowNegativeOnHandSell != null">
+                #{allowNegativeOnHandSell},
+            </if>
+            <if test="expireDate != null">
+                #{expireDate},
+            </if>
+            <if test="version != null">
+                #{version},
+            </if>
+            <if test="payRemark != null">
+                #{payRemark},
+            </if>
+            <if test="payRemarkUserName != null">
+                #{payRemarkUserName},
+            </if>
+            <if test="payRemarkUserId != null">
+                #{payRemarkUserId},
+            </if>
+            <if test="payRemarkTime != null">
+                #{payRemarkTime},
+            </if>
+            <if test="attributes!=null">
+                #{attributes},
+            </if>
+            <if test="companyHead != null">
+                #{companyHead}
+            </if>
+        </trim>
+    </insert>
+    <select id="selectByCondition" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompany"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from baseinfo_company
+        WHERE 1=1
+        <if test="compId != null">
+            and comp_id = #{compId}
+        </if>
+        <if test="compName != null">
+            and comp_name = #{compName}
+        </if>
+        <if test="compShortName != null">
+            and comp_short_name = #{compShortName}
+        </if>
+        <if test="compMemo != null">
+            and comp_memo = #{compMemo}
+        </if>
+        <if test="regionId != null">
+            and region_id = #{regionId}
+        </if>
+        <if test="regionName != null">
+            and region_name = #{regionName}
+        </if>
+        <if test="areaId != null">
+            and area_id = #{areaId}
+        </if>
+        <if test="province != null">
+            and province = #{province}
+        </if>
+        <if test="provinceId != null">
+            and province_id = #{provinceId}
+        </if>
+        <if test="ctIds != null">
+            and ct_ids = #{ctIds}
+        </if>
+        <if test="ctNames != null">
+            and ct_names = #{ctNames}
+        </if>
+        <if test="cityId != null">
+            and city_id = #{cityId}
+        </if>
+        <if test="city != null">
+            and city = #{city}
+        </if>
+        <if test="zone != null">
+            and zone = #{zone}
+        </if>
+        <if test="legalMan != null">
+            and legal_man = #{legalMan}
+        </if>
+        <if test="cardFrontUrl != null">
+            and card_front_url = #{cardFrontUrl}
+        </if>
+        <if test="cardBackUrl != null">
+            and card_back_url = #{cardBackUrl}
+        </if>
+        <if test="compAddress != null">
+            and comp_address = #{compAddress}
+        </if>
+        <if test="compZip != null">
+            and comp_zip = #{compZip}
+        </if>
+        <if test="license != null">
+            and license = #{license}
+        </if>
+        <if test="licensePicurl != null">
+            and license_picurl = #{licensePicurl}
+        </if>
+        <if test="compLinkman != null">
+            and comp_linkman = #{compLinkman}
+        </if>
+        <if test="compLinkmanTel != null">
+            and comp_linkman_tel = #{compLinkmanTel}
+        </if>
+        <if test="compSort != null">
+            and comp_sort = #{compSort}
+        </if>
+        <if test="nature != null">
+            and nature = #{nature}
+        </if>
+        <if test="isPlatform != null">
+            and is_platform = #{isPlatform}
+        </if>
+        <if test="isVerified != null">
+            and is_verified = #{isVerified}
+        </if>
+        <if test="verifiedReason != null">
+            and verified_reason = #{verifiedReason}
+        </if>
+        <if test="verifiedTime != null">
+            and verified_time = #{verifiedTime}
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        <if test="adminPersonId != null">
+            and admin_person_id = #{adminPersonId}
+        </if>
+        <if test="adminPersonName != null">
+            and admin_person_name = #{adminPersonName}
+        </if>
+        <if test="adminPersonMobile != null">
+            and admin_person_mobile = #{adminPersonMobile}
+        </if>
+        <if test="tel != null">
+            and tel = #{tel}
+        </if>
+        <if test="fax != null">
+            and fax = #{fax}
+        </if>
+        <if test="mail != null">
+            and mail = #{mail}
+        </if>
+        <if test="memo != null">
+            and memo = #{memo}
+        </if>
+        <if test="compChit != null">
+            and comp_chit = #{compChit}
+        </if>
+        <if test="compBalance != null">
+            and comp_balance = #{compBalance}
+        </if>
+        <if test="businessCategory != null">
+            and business_category = #{businessCategory}
+        </if>
+        <if test="createdAt != null">
+            and created_at = #{createdAt}
+        </if>
+        <if test="updatedAt != null">
+            and updated_at = #{updatedAt}
+        </if>
+        <if test="createdPersonId != null">
+            and created_person_id = #{createdPersonId}
+        </if>
+        <if test="updatedPersonId != null">
+            and updated_person_id = #{updatedPersonId}
+        </if>
+        <if test="bankName != null">
+            and bank_name = #{bankName}
+        </if>
+        <if test="bankAccountName != null">
+            and bank_account_name = #{bankAccountName}
+        </if>
+        <if test="bankAccountNumber != null">
+            and bank_account_number = #{bankAccountNumber}
+        </if>
+        <if test="alipayAccountName != null">
+            and alipay_account_name = #{alipayAccountName}
+        </if>
+        <if test="wechatAccountName != null">
+            and wechat_account_name = #{wechatAccountName}
+        </if>
+        <if test="printSize != null">
+            and print_size = #{printSize}
+        </if>
+        <if test="billName != null">
+            and bill_name = #{billName}
+        </if>
+        <if test="wechatAccountQrcode != null">
+            and wechat_account_qrcode = #{wechatAccountQrcode}
+        </if>
+        <if test="wechatAccountQrcodeContent != null">
+            and wechat_account_qrcode_content = #{wechatAccountQrcodeContent}
+        </if>
+        <if test="wechatReceiptQrcode != null">
+            and wechat_receipt_qrcode = #{wechatReceiptQrcode}
+        </if>
+        <if test="wechatReceiptQrcodeContent != null">
+            and wechat_receipt_qrcode_content = #{wechatReceiptQrcodeContent}
+        </if>
+        <if test="alipayAccountQrcode != null">
+            and alipay_account_qrcode = #{alipayAccountQrcode}
+        </if>
+        <if test="alipayAccountQrcodeContent != null">
+            and alipay_account_qrcode_content = #{alipayAccountQrcodeContent}
+        </if>
+        <if test="alipayReceiptQrcode != null">
+            and alipay_receipt_qrcode = #{alipayReceiptQrcode}
+        </if>
+        <if test="alipayReceiptQrcodeContent != null">
+            and alipay_receipt_qrcode_content = #{alipayReceiptQrcodeContent}
+        </if>
+        <if test="printBill != null">
+            and print_bill = #{printBill}
+        </if>
+        <if test="printWarn != null">
+            and print_warn = #{printWarn}
+        </if>
+        <if test="allowNegativeOnHandSell != null">
+            and allow_negative_on_hand_sell = #{allowNegativeOnHandSell}
+        </if>
+        <if test="isDeleted != null">
+            and is_deleted = #{isDeleted}
+        </if>
+        <if test="expireDate != null">
+            and expire_date = #{expireDate}
+        </if>
+        <if test="version != null">
+            and version = #{version}
+        </if>
+        <if test="payRemark != null">
+            and pay_remark = #{payRemark}
+        </if>
+        <if test="payRemarkUserName != null">
+            and pay_remark_user_name = #{payRemarkUserName}
+        </if>
+        <if test="payRemarkUserId != null">
+            and pay_remark_user_id = #{payRemarkUserId}
+        </if>
+        <if test="payRemarkTime != null">
+            and pay_remark_time = #{payRemarkTime}
+        </if>
+        <if test="attributes!=null">
+            and attributes = #{attributes}
+        </if>
+        <if test="companyHead != null">
+            and company_head=#{companyHead}
+        </if>
+    </select>
+    <update id="updateByPrimaryKeySelectiveWithVersion" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompany">
+        update baseinfo_company
+        <set>
+            version = version + 1,
+            <if test="compName != null">
+                comp_name = #{compName},
+            </if>
+            <if test="compShortName != null">
+                comp_short_name = #{compShortName},
+            </if>
+            <if test="regionId != null">
+                region_id = #{regionId,jdbcType=INTEGER},
+            </if>
+            <if test="regionName != null">
+                region_name = #{regionName},
+            </if>
+            <if test="areaId != null">
+                area_id = #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="province != null">
+                province = #{province},
+            </if>
+            <if test="city != null">
+                city = #{city},
+            </if>
+            <if test="zone != null">
+                zone = #{zone},
+            </if>
+            <if test="compAddress != null">
+                comp_address = #{compAddress},
+            </if>
+            <if test="compZip != null">
+                comp_zip = #{compZip},
+            </if>
+            <if test="license != null">
+                license = #{license},
+            </if>
+            <if test="licensePicurl != null">
+                license_picurl = #{licensePicurl},
+            </if>
+            <if test="compLinkman != null">
+                comp_linkman = #{compLinkman},
+            </if>
+            <if test="compLinkmanTel != null">
+                comp_linkman_tel = #{compLinkmanTel},
+            </if>
+            <if test="compSort != null">
+                comp_sort = #{compSort,jdbcType=INTEGER},
+            </if>
+            <if test="nature != null">
+                nature = #{nature},
+            </if>
+            <if test="isPlatform != null">
+                is_platform = #{isPlatform},
+            </if>
+            <if test="isVerified != null">
+                is_verified = #{isVerified},
+            </if>
+            <if test="verifiedReason != null">
+                verified_reason = #{verifiedReason},
+            </if>
+            <if test="verifiedTime != null">
+                verified_time = #{verifiedTime,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="adminPersonId != null">
+                admin_person_id = #{adminPersonId},
+            </if>
+            <if test="adminPersonName != null">
+                admin_person_name = #{adminPersonName},
+            </if>
+            <if test="adminPersonMobile != null">
+                admin_person_mobile = #{adminPersonMobile},
+            </if>
+            <if test="tel != null">
+                tel = #{tel},
+            </if>
+            <if test="fax != null">
+                fax = #{fax},
+            </if>
+            <if test="mail != null">
+                mail = #{mail},
+            </if>
+            <if test="website != null">
+                website = #{website},
+            </if>
+            <if test="memo != null">
+                memo = #{memo},
+            </if>
+            <if test="compChit != null">
+                comp_chit = #{compChit,jdbcType=INTEGER},
+            </if>
+            <if test="compBalance != null">
+                comp_balance = #{compBalance,jdbcType=INTEGER},
+            </if>
+            <if test="businessCategory != null">
+                business_category = #{businessCategory},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=BIGINT},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=BIGINT},
+            </if>
+            <if test="createdPersonId != null">
+                created_person_id = #{createdPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="updatedPersonId != null">
+                updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=TINYINT},
+            </if>
+            <if test="compMemo != null">
+                comp_memo = #{compMemo,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="ctIds != null">
+                ct_ids = #{ctIds},
+            </if>
+            <if test="ctNames != null">
+                ct_names = #{ctNames},
+            </if>
+            <if test="bankName != null">
+                bank_name = #{bankName},
+            </if>
+            <if test="bankAccountName != null">
+                bank_account_name = #{bankAccountName},
+            </if>
+            <if test="bankAccountNumber != null">
+                bank_account_number = #{bankAccountNumber},
+            </if>
+            <if test="alipayAccountName != null">
+                alipay_account_name = #{alipayAccountName},
+            </if>
+            <if test="wechatAccountName != null">
+                wechat_account_name = #{wechatAccountName},
+            </if>
+            <if test="printSize != null">
+                print_size = #{printSize},
+            </if>
+            <if test="billName != null">
+                bill_name = #{billName},
+            </if>
+            <if test="wechatAccountQrcode != null">
+                wechat_account_qrcode = #{wechatAccountQrcode},
+            </if>
+            <if test="wechatAccountQrcodeContent != null">
+                wechat_account_qrcode_content = #{wechatAccountQrcodeContent},
+            </if>
+            <if test="wechatReceiptQrcode != null">
+                wechat_receipt_qrcode = #{wechatReceiptQrcode},
+            </if>
+            <if test="wechatReceiptQrcodeContent != null">
+                wechat_receipt_qrcode_content = #{wechatReceiptQrcodeContent},
+            </if>
+            <if test="alipayAccountQrcode != null">
+                alipay_account_qrcode = #{alipayAccountQrcode},
+            </if>
+            <if test="alipayAccountQrcodeContent != null">
+                alipay_account_qrcode_content = #{alipayAccountQrcodeContent},
+            </if>
+            <if test="alipayReceiptQrcode != null">
+                alipay_receipt_qrcode = #{alipayReceiptQrcode},
+            </if>
+            <if test="alipayReceiptQrcodeContent != null">
+                alipay_receipt_qrcode_content = #{alipayReceiptQrcodeContent},
+            </if>
+            <if test="printBill != null">
+                print_bill = #{printBill},
+            </if>
+            <if test="printWarn != null">
+                print_warn = #{printWarn},
+            </if>
+            <if test="allowNegativeOnHandSell != null">
+                allow_negative_on_hand_sell = #{allowNegativeOnHandSell},
+            </if>
+            <if test="expireDate != null">
+                expire_date = #{expireDate},
+            </if>
+            <if test="payRemark != null">
+                pay_remark = #{payRemark},
+            </if>
+            <if test="payRemarkUserName != null">
+                pay_remark_user_name = #{payRemarkUserName},
+            </if>
+            <if test="payRemarkUserId != null">
+                pay_remark_user_id = #{payRemarkUserId},
+            </if>
+            <if test="payRemarkTime != null">
+                pay_remark_time = #{payRemarkTime},
+            </if>
+            <if test="expireStatus != null">
+                expire_status = #{expireStatus},
+            </if>
+            <if test="attributes!=null">
+                attributes = #{attributes},
+            </if>
+            <if test="companyHead != null">
+                company_head=#{companyHead}
+            </if>
+        </set>
+        where comp_id = #{compId,jdbcType=INTEGER} and is_deleted = 0 and version=#{version}
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompany">
+        update baseinfo_company
+        <set>
+            <if test="compName != null">
+                comp_name = #{compName},
+            </if>
+            <if test="compShortName != null">
+                comp_short_name = #{compShortName},
+            </if>
+            <if test="regionId != null">
+                region_id = #{regionId,jdbcType=INTEGER},
+            </if>
+            <if test="regionName != null">
+                region_name = #{regionName},
+            </if>
+            <if test="areaId != null">
+                area_id = #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="province != null">
+                province = #{province},
+            </if>
+            <if test="city != null">
+                city = #{city},
+            </if>
+            <if test="zone != null">
+                zone = #{zone},
+            </if>
+            <if test="compAddress != null">
+                comp_address = #{compAddress},
+            </if>
+            <if test="compZip != null">
+                comp_zip = #{compZip},
+            </if>
+            <if test="license != null">
+                license = #{license},
+            </if>
+            <if test="licensePicurl != null">
+                license_picurl = #{licensePicurl},
+            </if>
+            <if test="compLinkman != null">
+                comp_linkman = #{compLinkman},
+            </if>
+            <if test="compLinkmanTel != null">
+                comp_linkman_tel = #{compLinkmanTel},
+            </if>
+            <if test="compSort != null">
+                comp_sort = #{compSort,jdbcType=INTEGER},
+            </if>
+            <if test="nature != null">
+                nature = #{nature},
+            </if>
+            <if test="isPlatform != null">
+                is_platform = #{isPlatform},
+            </if>
+            <if test="isVerified != null">
+                is_verified = #{isVerified},
+            </if>
+            <if test="verifiedReason != null">
+                verified_reason = #{verifiedReason},
+            </if>
+            <if test="verifiedTime != null">
+                verified_time = #{verifiedTime,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="adminPersonId != null">
+                admin_person_id = #{adminPersonId},
+            </if>
+            <if test="adminPersonName != null">
+                admin_person_name = #{adminPersonName},
+            </if>
+            <if test="adminPersonMobile != null">
+                admin_person_mobile = #{adminPersonMobile},
+            </if>
+            <if test="tel != null">
+                tel = #{tel},
+            </if>
+            <if test="fax != null">
+                fax = #{fax},
+            </if>
+            <if test="mail != null">
+                mail = #{mail},
+            </if>
+            <if test="website != null">
+                website = #{website},
+            </if>
+            <if test="memo != null">
+                memo = #{memo},
+            </if>
+            <if test="compChit != null">
+                comp_chit = #{compChit,jdbcType=INTEGER},
+            </if>
+            <if test="compBalance != null">
+                comp_balance = #{compBalance,jdbcType=INTEGER},
+            </if>
+            <if test="businessCategory != null">
+                business_category = #{businessCategory},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=BIGINT},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=BIGINT},
+            </if>
+            <if test="createdPersonId != null">
+                created_person_id = #{createdPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="updatedPersonId != null">
+                updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=TINYINT},
+            </if>
+            <if test="compMemo != null">
+                comp_memo = #{compMemo,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="ctIds != null">
+                ct_ids = #{ctIds},
+            </if>
+            <if test="ctNames != null">
+                ct_names = #{ctNames},
+            </if>
+            <if test="bankName != null">
+                bank_name = #{bankName},
+            </if>
+            <if test="bankAccountName != null">
+                bank_account_name = #{bankAccountName},
+            </if>
+            <if test="bankAccountNumber != null">
+                bank_account_number = #{bankAccountNumber},
+            </if>
+            <if test="alipayAccountName != null">
+                alipay_account_name = #{alipayAccountName},
+            </if>
+            <if test="wechatAccountName != null">
+                wechat_account_name = #{wechatAccountName},
+            </if>
+            <if test="printSize != null">
+                print_size = #{printSize},
+            </if>
+            <if test="billName != null">
+                bill_name = #{billName},
+            </if>
+            <if test="wechatAccountQrcode != null">
+                wechat_account_qrcode = #{wechatAccountQrcode},
+            </if>
+            <if test="wechatAccountQrcodeContent != null">
+                wechat_account_qrcode_content = #{wechatAccountQrcodeContent},
+            </if>
+            <if test="wechatReceiptQrcode != null">
+                wechat_receipt_qrcode = #{wechatReceiptQrcode},
+            </if>
+            <if test="wechatReceiptQrcodeContent != null">
+                wechat_receipt_qrcode_content = #{wechatReceiptQrcodeContent},
+            </if>
+            <if test="alipayAccountQrcode != null">
+                alipay_account_qrcode = #{alipayAccountQrcode},
+            </if>
+            <if test="alipayAccountQrcodeContent != null">
+                alipay_account_qrcode_content = #{alipayAccountQrcodeContent},
+            </if>
+            <if test="alipayReceiptQrcode != null">
+                alipay_receipt_qrcode = #{alipayReceiptQrcode},
+            </if>
+            <if test="alipayReceiptQrcodeContent != null">
+                alipay_receipt_qrcode_content = #{alipayReceiptQrcodeContent},
+            </if>
+            <if test="printBill != null">
+                print_bill = #{printBill},
+            </if>
+            <if test="printWarn != null">
+                print_warn = #{printWarn},
+            </if>
+            <if test="allowNegativeOnHandSell != null">
+                allow_negative_on_hand_sell = #{allowNegativeOnHandSell},
+            </if>
+            <if test="expireDate != null">
+                expire_date = #{expireDate},
+            </if>
+            <if test="version != null">
+                version = #{version},
+            </if>
+            <if test="payRemark != null">
+                pay_remark = #{payRemark},
+            </if>
+            <if test="payRemarkUserName != null">
+                pay_remark_user_name = #{payRemarkUserName},
+            </if>
+            <if test="payRemarkUserId != null">
+                pay_remark_user_id = #{payRemarkUserId},
+            </if>
+            <if test="payRemarkTime != null">
+                pay_remark_time = #{payRemarkTime},
+            </if>
+            <if test="attributes!=null">
+                attributes = #{attributes},
+            </if>
+            <if test="companyHead != null">
+                company_head=#{companyHead}
+            </if>
+        </set>
+        where comp_id = #{compId,jdbcType=INTEGER} and is_deleted = 0
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompany">
+    update baseinfo_company
+    set comp_name = #{compName},
+      comp_short_name = #{compShortName},
+      region_id = #{regionId,jdbcType=INTEGER},
+      region_name = #{regionName},
+      area_id = #{areaId,jdbcType=INTEGER},
+      province = #{province},
+      city = #{city},
+      zone = #{zone},
+      comp_address = #{compAddress},
+      comp_zip = #{compZip},
+      license = #{license},
+      license_picurl = #{licensePicurl},
+      comp_linkman = #{compLinkman},
+      comp_linkman_tel = #{compLinkmanTel},
+      comp_sort = #{compSort,jdbcType=INTEGER},
+      nature = #{nature},
+      is_platform = #{isPlatform},
+      is_verified = #{isVerified},
+      verified_reason = #{verifiedReason},
+      verified_time = #{verifiedTime,jdbcType=INTEGER},
+      status = #{status},
+      admin_person_id = #{adminPersonId},
+      admin_person_name = #{adminPersonName},
+      admin_person_mobile = #{adminPersonMobile},
+      tel = #{tel},
+      fax = #{fax},
+      mail = #{mail},
+      website = #{website},
+      memo = #{memo},
+      comp_chit = #{compChit,jdbcType=INTEGER},
+      comp_balance = #{compBalance,jdbcType=INTEGER},
+      business_category = #{businessCategory},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      updated_at = #{updatedAt,jdbcType=BIGINT},
+      created_person_id = #{createdPersonId,jdbcType=BIGINT},
+      updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      comp_memo = #{compMemo,jdbcType=LONGVARCHAR},
+      ct_ids = #{ctIds},
+      ct_names = #{ctNames},
+      expire_date = #{expireDate},
+      version = #{version},
+      pay_remark = #{payRemark},
+      pay_remark_user_name = #{payRemarkUserName},
+      pay_remark_user_id = #{payRemarkUserId},
+      pay_remark_time = #{payRemarkTime}
+    where comp_id = #{compId,jdbcType=INTEGER} and is_deleted = 0
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.ihappy.company.domain.dbdo.BaseinfoCompany">
+    update baseinfo_company
+    set comp_name = #{compName},
+      comp_short_name = #{compShortName},
+      region_id = #{regionId,jdbcType=INTEGER},
+      region_name = #{regionName},
+      area_id = #{areaId,jdbcType=INTEGER},
+      province = #{province},
+      city = #{city},
+      zone = #{zone},
+      comp_address = #{compAddress},
+      comp_zip = #{compZip},
+      license = #{license},
+      license_picurl = #{licensePicurl},
+      comp_linkman = #{compLinkman},
+      comp_linkman_tel = #{compLinkmanTel},
+      comp_sort = #{compSort,jdbcType=INTEGER},
+      nature = #{nature},
+      is_platform = #{isPlatform},
+      is_verified = #{isVerified},
+      verified_reason = #{verifiedReason},
+      verified_time = #{verifiedTime,jdbcType=INTEGER},
+      status = #{status},
+      admin_person_id = #{adminPersonId},
+      admin_person_name = #{adminPersonName},
+      admin_person_mobile = #{adminPersonMobile},
+      tel = #{tel},
+      fax = #{fax},
+      mail = #{mail},
+      website = #{website},
+      memo = #{memo},
+      comp_chit = #{compChit,jdbcType=INTEGER},
+      comp_balance = #{compBalance,jdbcType=INTEGER},
+      business_category = #{businessCategory},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      updated_at = #{updatedAt,jdbcType=BIGINT},
+      created_person_id = #{createdPersonId,jdbcType=BIGINT},
+      updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      ct_ids = #{ctIds},
+      ct_names = #{ctNames},
+      expire_date = #{expireDate},
+      version = #{version},
+      pay_remark = #{payRemark},
+      pay_remark_user_name = #{payRemarkUserName},
+      pay_remark_user_id = #{payRemarkUserId},
+      pay_remark_time = #{payRemarkTime}
+    where comp_id = #{compId,jdbcType=INTEGER} and is_deleted = 0
+  </update>
+    <update id="updateCompanyExpireStatus" parameterType="com.ihappy.company.domain.bo.CompanyExpireStatusBO">
+        update baseinfo_company
+        set status = #{status},
+        <if test="expireDate != null">
+            expire_date = #{expireDate},
+        </if>
+        <if test="memo != null and memo != ''">
+            memo = #{memo},
+        </if>
+        updated_at = #{updatedAt},
+        updated_person_id = #{updatedPersonId}
+        where comp_id = #{compId}
+    </update>
+
+    <select id="selectAllCompanyCount" resultType="int">
+    select count(1) from baseinfo_company
+  </select>
+
+    <select id="selectCompanyInfoByPage"
+            parameterType="com.ihappy.company.domain.dto.request.AllCompanyInfoPageQueryReqDTO"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company where is_deleted = 0
+        <if test="sort != null and sort != ''">
+            order by ${sort}
+        </if>
+        <if test="order != null and order == 'desc'">
+            desc
+        </if>
+        <if test="order != null and order == 'asc'">
+            asc
+        </if>
+        <if test="limit != null and limit != 0">
+            limit #{limit}
+        </if>
+        <if test="offset != null">
+            offset #{offset}
+        </if>
+    </select>
+    <!--修改打印模式-->
+    <update id="updateCompanyPrintMode" parameterType="com.ihappy.company.domain.bo.CompanyPrintModeBO">
+    update baseinfo_company
+    set
+    print_mode = #{printMode},
+    updated_at = #{updatedAt},
+    updated_person_id = #{updatedPersonId}
+    where comp_id = #{compId}
+  </update>
+</mapper>

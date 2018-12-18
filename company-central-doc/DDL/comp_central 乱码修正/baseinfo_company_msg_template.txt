@@ -1,0 +1,15 @@
+ALTER TABLE `baseinfo_company_msg_template_0`
+MODIFY COLUMN `comp_msg_template_id`  bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '企业x消息模板id' FIRST ,
+MODIFY COLUMN `msg_gate_id`  int(11) NOT NULL DEFAULT 0 COMMENT '消息网关id 不同的消息网关有不同的模板' AFTER `comp_msg_template_id`,
+MODIFY COLUMN `msg_template_id`  int(11) NOT NULL DEFAULT 0 COMMENT '消息网关模板id' AFTER `msg_gate_id`,
+MODIFY COLUMN `msg_title`  varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '消息标题' AFTER `msg_template_id`,
+MODIFY COLUMN `msg_content`  text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '消息内容' AFTER `msg_title`,
+MODIFY COLUMN `comp_id`  int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所在公司' AFTER `msg_content`,
+MODIFY COLUMN `store_id`  int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '门店id 如果是总公司的，store_id为0。如果是门店的，那么comp_id和store_id都有值。' AFTER `comp_id`,
+MODIFY COLUMN `created_at`  bigint(14) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间' AFTER `store_id`,
+MODIFY COLUMN `updated_at`  bigint(14) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间' AFTER `created_at`,
+MODIFY COLUMN `created_person_id`  bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建人' AFTER `updated_at`,
+MODIFY COLUMN `updated_person_id`  bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '修改人' AFTER `created_person_id`,
+MODIFY COLUMN `is_deleted`  tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否软删除 0 未删除，1已删除' AFTER `updated_person_id`,
+COMMENT='企业消息模板表';
+

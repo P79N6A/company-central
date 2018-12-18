@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihappy.stock.infrastructure.repo.mybatis.mapper.BaseinfoCompanyStockMapper">
+  <resultMap id="BaseResultMap" type="com.ihappy.stock.domain.dbdo.BaseinfoCompanyStock">
+    <id column="stock_id" jdbcType="BIGINT" property="stockId" />
+    <result column="stock_no" jdbcType="VARCHAR" property="stockNo" />
+    <result column="stock_name" jdbcType="VARCHAR" property="stockName" />
+    <result column="stock_acreage" jdbcType="INTEGER" property="stockAcreage" />
+    <result column="area_id" jdbcType="INTEGER" property="areaId" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="zone" jdbcType="VARCHAR" property="zone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="stock_tel" jdbcType="VARCHAR" property="stockTel" />
+    <result column="stock_linkman" jdbcType="VARCHAR" property="stockLinkman" />
+    <result column="comp_id" jdbcType="INTEGER" property="compId" />
+    <result column="store_id" property="storeId" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="created_at" jdbcType="BIGINT" property="createdAt" />
+    <result column="updated_at" jdbcType="BIGINT" property="updatedAt" />
+    <result column="created_person_id" jdbcType="BIGINT" property="createdPersonId" />
+    <result column="updated_person_id" jdbcType="BIGINT" property="updatedPersonId" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="forbidden" jdbcType="BIT" property="forbidden" />
+    <result column="is_public" jdbcType="BIT" property="isPublic" />
+    <result column="inventorying" property="inventorying" />
+    <result column="is_default" property="isDefault" />
+    <result column="store_name" property="storeName" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ihappy.stock.domain.dbdo.BaseinfoCompanyStock">
+    <result column="stock_memo" jdbcType="LONGVARCHAR" property="stockMemo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    stock_id, stock_no, stock_name, stock_acreage, area_id, province, city, zone, address, 
+    stock_tel, stock_linkman, comp_id, store_id, sort, created_at, updated_at, created_person_id, 
+    updated_person_id, is_deleted, forbidden, is_public,inventorying,is_default
+  </sql>
+  <sql id="Blob_Column_List">
+    stock_memo
+  </sql>
+
+  <select id="selectByConditionSelective" parameterType="com.ihappy.stock.domain.dbdo.BaseinfoCompanyStock" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from baseinfo_company_stock where is_deleted = 0 and comp_id = #{compId}
+    <if test="stockId != null">
+      and stock_id = #{stockId}
+    </if>
+    <if test="stockNo != null">
+      and stock_no = #{stockNo}
+    </if>
+    <if test="stockName != null">
+      and stock_name = #{stockName}
+    </if>
+    <if test="stockAcreage != null">
+      and stock_acreage = #{stockAcreage}
+    </if>
+    <if test="areaId != null">
+      and area_id = #{areaId}
+    </if>
+    <if test="province != null">
+      and province = #{province}
+    </if>
+    <if test="city != null">
+      and city = #{city}
+    </if>
+    <if test="zone != null">
+      and zone = #{zone}
+    </if>
+    <if test="address != null">
+      and address = #{address}
+    </if>
+    <if test="stockTel != null">
+      and stock_tel = #{stockTel}
+    </if>
+    <if test="stockLinkman != null">
+      and stock_linkman = #{stockLinkman}
+    </if>
+    <if test="storeId != null">
+      and store_id = #{storeId}
+    </if>
+    <if test="sort != null">
+      and sort = #{sort}
+    </if>
+    <if test="createdAt != null">
+      and created_at = #{createdAt}
+    </if>
+    <if test="updatedAt != null">
+      and updated_at = #{updatedAt}
+    </if>
+    <if test="createdPersonId != null">
+      and created_person_id = #{createdPersonId}
+    </if>
+    <if test="updatedPersonId != null">
+      and updated_person_id = #{updatedPersonId}
+    </if>
+    <if test="isDeleted != null">
+      and is_deleted = #{isDeleted}
+    </if>
+    <if test="forbidden != null">
+      and forbidden = #{forbidden}
+    </if>
+    <if test="isPublic != null">
+      and is_public = #{isPublic}
+    </if>
+    <if test="stockMemo != null">
+      and stock_memo = #{stockMemo}
+    </if>
+    <if test="isDefault != null">
+      and is_default = #{isDefault}
+    </if>
+  </select>
+
+  <select id="selectStockListByConditon" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from baseinfo_company_stock
+    where is_deleted = 0
+    <if test="compId != null">
+      and comp_id = #{compId}
+    </if>
+    <if test="forbidden != null">
+      and forbidden = #{forbidden}
+    </if>
+    <if test="isPublic != null">
+      and is_public = #{isPublic}
+    </if>
+    <if test="stockNo != null">
+      and stock_no = #{stockNo}
+    </if>
+    <if test="stockName != null">
+      and stock_name = #{stockName}
+    </if>
+    <if test="stockAcreage != null">
+      and stock_acreage = #{stockAcreage}
+    </if>
+    <if test="areaId != null">
+      and area_id = #{areaId}
+    </if>
+    <if test="province != null">
+      and province = #{province}
+    </if>
+    <if test="city != null">
+      and city = #{city}
+    </if>
+    <if test="zone != null">
+      and zone = #{zone}
+    </if>
+    <if test="address != null">
+      and address = #{address}
+    </if>
+    <if test="stockTel != null">
+      and stock_tel = #{stockTel}
+    </if>
+    <if test="stockLinkman != null">
+      and stock_linkman = #{stockLinkman}
+    </if>
+    <if test="storeId != null">
+      and store_id = #{storeId}
+    </if>
+    <if test="sort != null">
+      and sort = #{sort}
+    </if>
+    <if test="createdAt != null">
+      and created_at = #{createdAt}
+    </if>
+    <if test="updatedAt != null">
+      and updated_at = #{updatedAt}
+    </if>
+    <if test="createdPersonId != null">
+      and created_person_id = #{createdPersonId}
+    </if>
+    <if test="updatedPersonId != null">
+      and updated_person_id = #{updatedPersonId}
+    </if>
+    <if test="isDeleted != null">
+      and is_deleted = #{isDeleted}
+    </if>
+    <if test="stockMemo != null">
+      and stock_memo = #{stockMemo}
+    </if>
+    <if test="isDefault != null">
+      and is_default = #{isDefault}
+    </if>
+    <if test="storeIds != null and storeIds.size > 0">
+      and store_id in
+      <foreach collection="storeIds" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+    <if test="stockIds != null and stockIds.size > 0">
+      and stock_id in
+      <foreach collection="stockIds" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+  </select>
+
+  <select id="findStockListByConditonWithStoreInfo" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select stock.*,store.store_name from(
+    select
+    <include refid="Base_Column_List" />
+    from baseinfo_company_stock
+    where is_deleted = 0
+    <if test="stockId != null">
+      and stock_id = #{stockId}
+    </if>
+    <if test="compId != null">
+      and comp_id = #{compId}
+    </if>
+    <if test="forbidden != null">
+      and forbidden = #{forbidden}
+    </if>
+    <if test="isPublic != null">
+      and is_public = #{isPublic}
+    </if>
+    <if test="stockNo != null">
+      and stock_no = #{stockNo}
+    </if>
+    <if test="stockName != null">
+      and stock_name = #{stockName}
+    </if>
+    <if test="stockAcreage != null">
+      and stock_acreage = #{stockAcreage}
+    </if>
+    <if test="areaId != null">
+      and area_id = #{areaId}
+    </if>
+    <if test="province != null">
+      and province = #{province}
+    </if>
+    <if test="city != null">
+      and city = #{city}
+    </if>
+    <if test="zone != null">
+      and zone = #{zone}
+    </if>
+    <if test="address != null">
+      and address = #{address}
+    </if>
+    <if test="stockTel != null">
+      and stock_tel = #{stockTel}
+    </if>
+    <if test="stockLinkman != null">
+      and stock_linkman = #{stockLinkman}
+    </if>
+    <if test="storeId != null">
+      and store_id = #{storeId}
+    </if>
+    <if test="sort != null">
+      and sort = #{sort}
+    </if>
+    <if test="createdAt != null">
+      and created_at = #{createdAt}
+    </if>
+    <if test="updatedAt != null">
+      and updated_at = #{updatedAt}
+    </if>
+    <if test="createdPersonId != null">
+      and created_person_id = #{createdPersonId}
+    </if>
+    <if test="updatedPersonId != null">
+      and updated_person_id = #{updatedPersonId}
+    </if>
+    <if test="isDeleted != null">
+      and is_deleted = #{isDeleted}
+    </if>
+    <if test="stockMemo != null">
+      and stock_memo = #{stockMemo}
+    </if>
+    <if test="isDefault != null">
+      and is_default = #{isDefault}
+    </if>
+    <if test="storeIds != null and storeIds.size > 0">
+      and store_id in
+      <foreach collection="storeIds" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+    <if test="stockIds != null and stockIds.size > 0">
+      and stock_id in
+      <foreach collection="stockIds" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+    <if test="limit != null and limit > 0 and offset != null and offset >= 0">
+      limit #{limit} offset #{offset}
+    </if>
+    ) stock left join baseinfo_company_store store on stock.store_id = store.store_id
+  </select>
+
+  <select id="selectStockListByStoreIdList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from baseinfo_company_stock
+    where is_deleted = 0 and comp_id = #{compId}
+    <if test="isPublic != null">
+      and is_public = #{isPublic}
+    </if>
+    <if test="storeIds != null and storeIds.size > 0">
+      and store_id in
+      <foreach collection="storeIds" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+  </select>
+
+  <update id="updateStockInventorying" parameterType="java.util.Map">
+    update baseinfo_company_stock
+    <set>
+      inventorying = #{stockChangeId},
+      updated_at = #{updatedAt},
+    </set>
+    where is_deleted = 0
+    and stock_id in
+    <foreach collection="stockIds" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+  <update id="clearStockInventorying" parameterType="java.util.Map">
+    update baseinfo_company_stock
+    <set>
+      inventorying = 0,
+      updated_at = #{updatedAt},
+    </set>
+    where is_deleted = 0 and comp_id = #{compId}
+    <if test="stockIds != null and stockIds.size > 0">
+      and stock_id in
+      <foreach collection="stockIds" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+    <if test="stockChangeIds != null and stockChangeIds.size > 0">
+      and inventorying in
+      <foreach collection="stockChangeIds" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+  </update>
+  <update id="deleteStockByStoreId" parameterType="com.ihappy.stock.domain.bo.stock.DeleteStoreById">
+    update baseinfo_company_stock set
+      is_deleted = 1,
+      updated_person_id = #{updatedPersonId},
+      updated_at = #{updatedAt}
+    where is_deleted = 0
+    and comp_id = #{compId}
+    and store_id = #{storeId}
+  </update>
+  <select id="selectStockListByIds" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from baseinfo_company_stock
+    where is_deleted = 0
+    <if test="stockIds != null and stockIds.size > 0">
+      and stock_id in
+      <foreach collection="stockIds" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+  </select>
+
+  <select id="selectNotPublicStockListByCompIdAndStoreIds" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from baseinfo_company_stock
+    where comp_id = #{compId} and is_deleted = 0 and is_public = 0
+    <if test="forbidden != null">
+      and forbidden = #{forbidden}
+    </if>
+    <if test="stockName != null and stockName != ''">
+      and stock_name like CONCAT(#{stockName},'%')
+    </if>
+    <if test="storeIds != null and storeIds.size > 0">
+      and store_id in
+      <foreach collection="storeIds" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+    order by stock_name
+  </select>
+
+  <select id="selectNotPublicStockListByCompId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from baseinfo_company_stock
+    where comp_id = #{compId} and is_deleted = 0 and is_public = 0
+    <if test="forbidden != null">
+      and forbidden = #{forbidden}
+    </if>
+    <if test="stockName != null and stockName != ''">
+      and stock_name like CONCAT(#{stockName},'%')
+    </if>
+    order by stock_name
+  </select>
+
+  <select id="selectPublicStockListByCompId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from baseinfo_company_stock
+    where comp_id = #{compId} and is_deleted = 0 and is_public = 1
+    <if test="forbidden != null">
+      and forbidden = #{forbidden}
+    </if>
+    <if test="stockName != null and stockName != ''">
+      and stock_name like CONCAT(#{stockName},'%')
+    </if>
+    order by stock_name
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from baseinfo_company_stock
+    where stock_id = #{stockId} and is_deleted = 0
+  </select>
+
+  <select id="selectByPrimaryKeyAndCompId" parameterType="com.ihappy.stock.domain.dbdo.BaseinfoCompanyStock" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from baseinfo_company_stock
+    where stock_id = #{stockId} and comp_id = #{compId} and is_deleted = 0
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from baseinfo_company_stock
+    where stock_id = #{stockId}
+  </delete>
+  <insert id="insert" parameterType="com.ihappy.stock.domain.dbdo.BaseinfoCompanyStock">
+    insert into baseinfo_company_stock (stock_id, stock_no, stock_name, 
+      stock_acreage, area_id, province, 
+      city, zone, address, 
+      stock_tel, stock_linkman, comp_id, 
+      store_id, sort, created_at, 
+      updated_at, created_person_id, updated_person_id, 
+      is_deleted, forbidden, is_public, 
+      stock_memo)
+    values (#{stockId}, #{stockNo}, #{stockName},
+      #{stockAcreage}, #{areaId}, #{province},
+      #{city}, #{zone}, #{address},
+      #{stockTel}, #{stockLinkman}, #{compId},
+      #{storeId}, #{sort}, #{createdAt},
+      #{updatedAt}, #{createdPersonId}, #{updatedPersonId},
+      #{isDeleted}, #{forbidden}, #{isPublic},
+      #{stockMemo})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ihappy.stock.domain.dbdo.BaseinfoCompanyStock">
+    insert into baseinfo_company_stock
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stockId != null">
+        stock_id,
+      </if>
+      <if test="stockNo != null">
+        stock_no,
+      </if>
+      <if test="stockName != null">
+        stock_name,
+      </if>
+      <if test="stockAcreage != null">
+        stock_acreage,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="zone != null">
+        zone,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="stockTel != null">
+        stock_tel,
+      </if>
+      <if test="stockLinkman != null">
+        stock_linkman,
+      </if>
+      <if test="compId != null">
+        comp_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="createdPersonId != null">
+        created_person_id,
+      </if>
+      <if test="updatedPersonId != null">
+        updated_person_id,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="forbidden != null">
+        forbidden,
+      </if>
+      <if test="isPublic != null">
+        is_public,
+      </if>
+      <if test="stockMemo != null">
+        stock_memo,
+      </if>
+      <if test="isDefault != null">
+        is_default,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stockId != null">
+        #{stockId},
+      </if>
+      <if test="stockNo != null">
+        #{stockNo},
+      </if>
+      <if test="stockName != null">
+        #{stockName},
+      </if>
+      <if test="stockAcreage != null">
+        #{stockAcreage},
+      </if>
+      <if test="areaId != null">
+        #{areaId},
+      </if>
+      <if test="province != null">
+        #{province},
+      </if>
+      <if test="city != null">
+        #{city},
+      </if>
+      <if test="zone != null">
+        #{zone},
+      </if>
+      <if test="address != null">
+        #{address},
+      </if>
+      <if test="stockTel != null">
+        #{stockTel},
+      </if>
+      <if test="stockLinkman != null">
+        #{stockLinkman},
+      </if>
+      <if test="compId != null">
+        #{compId},
+      </if>
+      <if test="storeId != null">
+        #{storeId},
+      </if>
+      <if test="sort != null">
+        #{sort},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt},
+      </if>
+      <if test="createdPersonId != null">
+        #{createdPersonId},
+      </if>
+      <if test="updatedPersonId != null">
+        #{updatedPersonId},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted},
+      </if>
+      <if test="forbidden != null">
+        #{forbidden},
+      </if>
+      <if test="isPublic != null">
+        #{isPublic},
+      </if>
+      <if test="stockMemo != null">
+        #{stockMemo},
+      </if>
+      <if test="isDefault != null">
+        #{isDefault},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ihappy.stock.domain.dbdo.BaseinfoCompanyStock">
+    update baseinfo_company_stock
+    <set>
+      <if test="stockNo != null">
+        stock_no = #{stockNo},
+      </if>
+      <if test="stockName != null">
+        stock_name = #{stockName},
+      </if>
+      <if test="stockAcreage != null">
+        stock_acreage = #{stockAcreage},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId},
+      </if>
+      <if test="province != null">
+        province = #{province},
+      </if>
+      <if test="city != null">
+        city = #{city},
+      </if>
+      <if test="zone != null">
+        zone = #{zone},
+      </if>
+      <if test="address != null">
+        address = #{address},
+      </if>
+      <if test="stockTel != null">
+        stock_tel = #{stockTel},
+      </if>
+      <if test="stockLinkman != null">
+        stock_linkman = #{stockLinkman},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId},
+      </if>
+      <if test="sort != null">
+        sort = #{sort},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt},
+      </if>
+      <if test="createdPersonId != null">
+        created_person_id = #{createdPersonId},
+      </if>
+      <if test="updatedPersonId != null">
+        updated_person_id = #{updatedPersonId},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted},
+      </if>
+      <if test="forbidden != null">
+        forbidden = #{forbidden},
+      </if>
+      <if test="isPublic != null">
+        is_public = #{isPublic},
+      </if>
+      <if test="stockMemo != null">
+        stock_memo = #{stockMemo},
+      </if>
+      <if test="isDefault != null">
+        is_default = #{isDefault},
+      </if>
+    </set>
+    where stock_id = #{stockId} and comp_id = #{compId}  and is_deleted = 0
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ihappy.stock.domain.dbdo.BaseinfoCompanyStock">
+    update baseinfo_company_stock
+    set stock_no = #{stockNo},
+      stock_name = #{stockName},
+      stock_acreage = #{stockAcreage},
+      area_id = #{areaId},
+      province = #{province},
+      city = #{city},
+      zone = #{zone},
+      address = #{address},
+      stock_tel = #{stockTel},
+      stock_linkman = #{stockLinkman},
+      comp_id = #{compId},
+      store_id = #{storeId},
+      sort = #{sort},
+      created_at = #{createdAt},
+      updated_at = #{updatedAt},
+      created_person_id = #{createdPersonId},
+      updated_person_id = #{updatedPersonId},
+      is_deleted = #{isDeleted},
+      forbidden = #{forbidden},
+      is_public = #{isPublic},
+      stock_memo = #{stockMemo}
+    where stock_id = #{stockId}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ihappy.stock.domain.dbdo.BaseinfoCompanyStock">
+    update baseinfo_company_stock
+    set stock_no = #{stockNo},
+      stock_name = #{stockName},
+      stock_acreage = #{stockAcreage},
+      area_id = #{areaId},
+      province = #{province},
+      city = #{city},
+      zone = #{zone},
+      address = #{address},
+      stock_tel = #{stockTel},
+      stock_linkman = #{stockLinkman},
+      comp_id = #{compId},
+      store_id = #{storeId},
+      sort = #{sort},
+      created_at = #{createdAt},
+      updated_at = #{updatedAt},
+      created_person_id = #{createdPersonId},
+      updated_person_id = #{updatedPersonId},
+      is_deleted = #{isDeleted},
+      forbidden = #{forbidden},
+      is_public = #{isPublic}
+    where stock_id = #{stockId}
+  </update>
+
+</mapper>

@@ -1,0 +1,17 @@
+ALTER TABLE `baseinfo_company_org_0`
+MODIFY COLUMN `org_id`  bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '组织架构id' FIRST ,
+MODIFY COLUMN `org_name`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '组织架构名称 一个企业内部级别下需要唯一' AFTER `org_id`,
+MODIFY COLUMN `org_path`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '组织架构路径 1,2,3,路径格式' AFTER `org_name`,
+MODIFY COLUMN `org_ no`  varchar(6) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '组织架构编号' AFTER `org_path`,
+MODIFY COLUMN `org_memo`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '组织架构介绍 组织部门的职能介绍' AFTER `org_ no`,
+MODIFY COLUMN `parent_orgid`  int(11) NOT NULL DEFAULT 0 COMMENT '上层组织id' AFTER `org_memo`,
+MODIFY COLUMN `org_depth`  tinyint(1) NOT NULL DEFAULT 1 COMMENT '分层深度 设置该字段是方便程序编写' AFTER `parent_orgid`,
+MODIFY COLUMN `org_sort`  int(11) UNSIGNED NOT NULL DEFAULT 1 COMMENT '组织架构排序 根据该排序号来确定在页面上位置，越小越在前面。' AFTER `org_depth`,
+MODIFY COLUMN `comp_id`  int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '公司id' AFTER `org_sort`,
+MODIFY COLUMN `created_at`  bigint(14) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间' AFTER `comp_id`,
+MODIFY COLUMN `updated_at`  bigint(14) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间' AFTER `created_at`,
+MODIFY COLUMN `created_person_id`  bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建人id' AFTER `updated_at`,
+MODIFY COLUMN `updated_person_id`  bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '修改人id' AFTER `created_person_id`,
+MODIFY COLUMN `is_deleted`  tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '否软删除 0 未删除，1已删除' AFTER `updated_person_id`,
+COMMENT='企业组织架构表';
+

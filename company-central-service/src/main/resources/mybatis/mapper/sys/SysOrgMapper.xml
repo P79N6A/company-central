@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ihappy.company.infrastructure.repo.mybatis.mapper.sys.SysOrgMapper" >
+  <resultMap id="BaseResultMap" type="com.ihappy.company.domain.dbdo.SysOrg" >
+    <id column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="org_path" property="orgPath" jdbcType="VARCHAR" />
+    <result column="org_no" property="orgNo" jdbcType="VARCHAR" />
+    <result column="org_memo" property="orgMemo" jdbcType="VARCHAR" />
+    <result column="parent_orgid" property="parentOrgid" jdbcType="INTEGER" />
+    <result column="org_depth" property="orgDepth" jdbcType="BIT" />
+    <result column="org_sort" property="orgSort" jdbcType="INTEGER" />
+    <result column="comp_id" property="compId" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="updated_at" property="updatedAt" jdbcType="BIGINT" />
+    <result column="created_person_id" property="createdPersonId" jdbcType="BIGINT" />
+    <result column="updated_person_id" property="updatedPersonId" jdbcType="BIGINT" />
+    <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    org_id, org_name, org_path, org_no, org_memo, parent_orgid, org_depth, org_sort, 
+    comp_id, created_at, updated_at, created_person_id, updated_person_id, is_deleted
+  </sql>
+
+  <select id="selectChildren" resultMap="BaseResultMap" parameterType="com.ihappy.company.domain.dbdo.SysOrg" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_org
+    where parent_orgid = #{orgId,jdbcType=BIGINT} and is_deleted = 0
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_org
+    where org_id = #{orgId,jdbcType=BIGINT} and is_deleted = 0
+  </select>
+
+  <select id="getSysOrgListByOrgIdList" resultMap="BaseResultMap" parameterType="com.ihappy.company.domain.bo.SysOrgByOrgListBO" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_org
+    where is_deleted = 0 and org_id in
+    <foreach collection="orgIdList" item="item" open="(" separator="," close=")">
+        #{item}
+    </foreach>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_org
+    where org_id = #{orgId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ihappy.company.domain.dbdo.SysOrg" >
+    insert into sys_org (org_id, org_name, org_path, 
+      org_no, org_memo, parent_orgid, 
+      org_depth, org_sort, comp_id, 
+      created_at, updated_at, created_person_id, 
+      updated_person_id, is_deleted)
+    values (#{orgId,jdbcType=BIGINT}, #{orgName,jdbcType=VARCHAR}, #{orgPath,jdbcType=VARCHAR}, 
+      #{orgNo,jdbcType=VARCHAR}, #{orgMemo,jdbcType=VARCHAR}, #{parentOrgid,jdbcType=INTEGER}, 
+      #{orgDepth,jdbcType=BIT}, #{orgSort,jdbcType=INTEGER}, #{compId,jdbcType=INTEGER}, 
+      #{createdAt,jdbcType=BIGINT}, #{updatedAt,jdbcType=BIGINT}, #{createdPersonId,jdbcType=BIGINT}, 
+      #{updatedPersonId,jdbcType=BIGINT}, #{isDeleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ihappy.company.domain.dbdo.SysOrg" >
+    insert into sys_org
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="orgName != null" >
+        org_name,
+      </if>
+      <if test="orgPath != null" >
+        org_path,
+      </if>
+      <if test="orgNo != null" >
+        org_no,
+      </if>
+      <if test="orgMemo != null" >
+        org_memo,
+      </if>
+      <if test="parentOrgid != null" >
+        parent_orgid,
+      </if>
+      <if test="orgDepth != null" >
+        org_depth,
+      </if>
+      <if test="orgSort != null" >
+        org_sort,
+      </if>
+      <if test="compId != null" >
+        comp_id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="createdPersonId != null" >
+        created_person_id,
+      </if>
+      <if test="updatedPersonId != null" >
+        updated_person_id,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orgId != null" >
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgPath != null" >
+        #{orgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null" >
+        #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgMemo != null" >
+        #{orgMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="parentOrgid != null" >
+        #{parentOrgid,jdbcType=INTEGER},
+      </if>
+      <if test="orgDepth != null" >
+        #{orgDepth,jdbcType=BIT},
+      </if>
+      <if test="orgSort != null" >
+        #{orgSort,jdbcType=INTEGER},
+      </if>
+      <if test="compId != null" >
+        #{compId,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdPersonId != null" >
+        #{createdPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedPersonId != null" >
+        #{updatedPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ihappy.company.domain.dbdo.SysOrg" >
+    update sys_org
+    <set >
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgPath != null" >
+        org_path = #{orgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null" >
+        org_no = #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgMemo != null" >
+        org_memo = #{orgMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="parentOrgid != null" >
+        parent_orgid = #{parentOrgid,jdbcType=INTEGER},
+      </if>
+      <if test="orgDepth != null" >
+        org_depth = #{orgDepth,jdbcType=BIT},
+      </if>
+      <if test="orgSort != null" >
+        org_sort = #{orgSort,jdbcType=INTEGER},
+      </if>
+      <if test="compId != null" >
+        comp_id = #{compId,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdPersonId != null" >
+        created_person_id = #{createdPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedPersonId != null" >
+        updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where org_id = #{orgId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ihappy.company.domain.dbdo.SysOrg" >
+    update sys_org
+    set org_name = #{orgName,jdbcType=VARCHAR},
+      org_path = #{orgPath,jdbcType=VARCHAR},
+      org_no = #{orgNo,jdbcType=VARCHAR},
+      org_memo = #{orgMemo,jdbcType=VARCHAR},
+      parent_orgid = #{parentOrgid,jdbcType=INTEGER},
+      org_depth = #{orgDepth,jdbcType=BIT},
+      org_sort = #{orgSort,jdbcType=INTEGER},
+      comp_id = #{compId,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      updated_at = #{updatedAt,jdbcType=BIGINT},
+      created_person_id = #{createdPersonId,jdbcType=BIGINT},
+      updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where org_id = #{orgId,jdbcType=BIGINT}
+  </update>
+</mapper>

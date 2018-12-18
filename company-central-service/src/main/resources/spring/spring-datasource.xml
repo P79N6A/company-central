@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:sharding="http://shardingjdbc.io/schema/shardingjdbc/sharding"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       		           http://www.springframework.org/schema/beans/spring-beans.xsd
+
+  http://shardingjdbc.io/schema/shardingjdbc/sharding
+                        http://shardingjdbc.io/schema/shardingjdbc/sharding/sharding.xsd"
+       default-autowire="byName">
+
+
+    <!-- 配置企业中心数据库连接 -->
+    <bean id="compDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!-- 基本属性 url、user、password -->
+        <property name="driverClassName" value="${jdbc-0.druid.driver-class}"/>
+        <property name="url" value="${jdbc-0.druid.driver-url}"/>
+        <property name="username" value="${jdbc-0.user}"/>
+        <property name="password" value="${jdbc-0.password}"/>
+
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="${jdbc-0.druid.connection-initial-size}"/>
+        <property name="minIdle" value="${jdbc-0.druid.connection-minimum-size}"/>
+        <property name="maxActive" value="${jdbc-0.druid.connection-maximum-size}"/>
+
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="${jdbc-0.druid.connection-maxwait-time}"/>
+
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="${jdbc-0.druid.connection-minlive-time}"/>
+
+        <property name="validationQuery" value="SELECT 'x'"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
+
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="stat"/>
+    </bean>
+
+    <!-- 合作伙伴分表策略 -->
+    <sharding:complex-strategy id="baseinfoCompanyPartnerTbSty" sharding-columns="partner_id,comp_id"
+                               algorithm-class="io.shardingjdbc.core.api.algorithm.sharding.complex.custom.ShardSkipColumsByLastFourCharComplexAlg"/>
+
+    <!-- 企业角色分表策略 -->
+    <sharding:complex-strategy id="baseinfoCompanyRoleTbSty" sharding-columns="role_id,comp_id"
+                               algorithm-class="io.shardingjdbc.core.api.algorithm.sharding.complex.custom.ShardSkipColumsByLastFourCharComplexAlg"/>
+
+    <!-- 合作伙伴欠款订单流水分表策略 -->
+    <sharding:complex-strategy id="baseinfoPartnerArrearsOrderTbSty" sharding-columns="order_id,comp_id"
+                               algorithm-class="io.shardingjdbc.core.api.algorithm.sharding.complex.custom.ShardSkipColumsByLastFourCharComplexAlg"/>
+
+    <!-- 门店过期时间分表策略 -->
+    <sharding:complex-strategy id="baseinfoCompanyStoreCtTbSty" sharding-columns="store_ct_id,comp_id"
+                               algorithm-class="io.shardingjdbc.core.api.algorithm.sharding.complex.custom.ShardSkipColumsByLastFourCharComplexAlg"/>
+
+    <!-- 会员/合作会员等级分表策略 -->
+    <sharding:complex-strategy id="baseinfoCompanyPartnerLevelTbSty" sharding-columns="partner_level_id,comp_id"
+                               algorithm-class="io.shardingjdbc.core.api.algorithm.sharding.complex.custom.ShardSkipColumsByLastFourCharComplexAlg"/>
+
+    <!-- 微商铺访问信息分表策略 -->
+    <sharding:complex-strategy id="weshopVisitTbSty" sharding-columns="weshop_visit_id,comp_id"
+                               algorithm-class="io.shardingjdbc.core.api.algorithm.sharding.complex.custom.ShardSkipColumsByLastFourCharComplexAlg"/>
+
+    <!-- 个人访问信息记录表-->
+    <sharding:complex-strategy id="personWeshopCollectionPurchaseTbSty"
+                               sharding-columns="person_weshop_collection_purchase_id,person_id"
+                               algorithm-class="io.shardingjdbc.core.api.algorithm.sharding.complex.custom.ShardSkipColumsByLastFourCharComplexAlg"/>
+
+    <!-- 微商铺访问流水分表策略 -->
+    <sharding:complex-strategy id="weshopVisitJournalTbSty" sharding-columns="weshop_visit_id,comp_id,store_id"
+                               algorithm-class="io.shardingjdbc.core.api.algorithm.sharding.complex.custom.ShardSkipColumsByLastFourCharComplexAlg"/>
+
+    <!-- 微商铺收藏流水分表策略 -->
+    <sharding:complex-strategy id="weshopCollectionJournalTbSty"
+                               sharding-columns="weshop_collection_journal_id,comp_id,store_id"
+                               algorithm-class="io.shardingjdbc.core.api.algorithm.sharding.complex.custom.ShardSkipColumsByLastFourCharComplexAlg"/>
+
+    <sharding:data-source id="shardingDataSource">
+        <sharding:sharding-rule data-source-names="compDataSource">
+            <sharding:table-rules>
+                <sharding:table-rule logic-table="baseinfo_company_partner"
+                                     actual-data-nodes="compDataSource.baseinfo_company_partner_${0..8}"
+                                     table-strategy-ref="baseinfoCompanyPartnerTbSty"/>
+                <sharding:table-rule logic-table="baseinfo_company_role"
+                                     actual-data-nodes="compDataSource.baseinfo_company_role_${0..5}"
+                                     table-strategy-ref="baseinfoCompanyRoleTbSty"/>
+                <sharding:table-rule logic-table="baseinfo_partner_arrears_order"
+                                     actual-data-nodes="compDataSource.baseinfo_partner_arrears_order_${0..8}"
+                                     table-strategy-ref="baseinfoPartnerArrearsOrderTbSty"/>
+                <sharding:table-rule logic-table="baseinfo_company_store_ct"
+                                     actual-data-nodes="compDataSource.baseinfo_company_store_ct_${0..5}"
+                                     table-strategy-ref="baseinfoCompanyStoreCtTbSty"/>
+                <sharding:table-rule logic-table="baseinfo_company_partner_level"
+                                     actual-data-nodes="compDataSource.baseinfo_company_partner_level_${0..8}"
+                                     table-strategy-ref="baseinfoCompanyPartnerLevelTbSty"/>
+                <sharding:table-rule logic-table="weshop_visit" actual-data-nodes="compDataSource.weshop_visit_${0..29}"
+                                     table-strategy-ref="weshopVisitTbSty"/>
+                <sharding:table-rule logic-table="person_weshop_collection_purchase"
+                                     actual-data-nodes="compDataSource.person_weshop_collection_purchase_${0..29}"
+                                     table-strategy-ref="personWeshopCollectionPurchaseTbSty"/>
+                <sharding:table-rule logic-table="weshop_visit_journal"
+                                     actual-data-nodes="compDataSource.weshop_visit_journal_${0..59}"
+                                     table-strategy-ref="weshopVisitJournalTbSty"/>
+                <sharding:table-rule logic-table="weshop_collection_journal"
+                                     actual-data-nodes="compDataSource.weshop_collection_journal_${0..29}"
+                                     table-strategy-ref="weshopCollectionJournalTbSty"/>
+            </sharding:table-rules>
+        </sharding:sharding-rule>
+    </sharding:data-source>
+    <bean id="compTransactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="shardingDataSource"/>
+    </bean>
+    <bean id="compTransactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="compTransactionManager"></property>
+    </bean>
+
+    <bean id="compSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="shardingDataSource"/>
+        <!--sql_map_service_config.xml 中设置有些配置项-->
+        <property name="configLocation" value="classpath:sql_map_service_config.xml"/>
+        <property name="mapperLocations">
+            <array>
+                <value>classpath:mybatis/mapper/comp/*.xml</value>
+            </array>
+        </property>
+        <!-- DO类型的包路径，如果配置了该项，在mybatis配置xml里parameterType,ResultType直接以类名为别名，不用再加上路劲-->
+        <property name="typeAliasesPackage" value="com.ihappy.company.domain.dbdo"/>
+        <!--<property name="plugins">-->
+        <!--<array>-->
+        <!--<bean class="com.github.pagehelper.PageInterceptor">-->
+        <!--<property name="properties">-->
+        <!--<value>-->
+        <!--helperDialect=mysql-->
+        <!--</value>-->
+        <!--</property>-->
+        <!--</bean>-->
+        <!--</array>-->
+        <!--</property>-->
+    </bean>
+    <!-- 数据接口 -->
+    <!--<bean id="myBatisDao" class="com.ihappy.company.infrastructure.repo.mybatis.base.impl.MyBatisDaoImpl">-->
+    <!--<property name="sqlSessionFactory" ref="sqlSessionFactory" />-->
+    <!--</bean>-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.ihappy.company.infrastructure.repo.mybatis.mapper.comp,
+        com.ihappy.partner.infrastructure.repo.mybatis.mapper,
+        com.ihappy.stock.infrastructure.repo.mybatis.mapper,
+        com.ihappy.role.infrastructure.repo.mybatis.mapper.company,
+        com.ihappy.store.infrastructure.repo.mybatis.mapper.store,
+        com.ihappy.store.infrastructure.repo.mybatis.mapper.weshop"/>
+        <property name="sqlSessionFactoryBeanName" value="compSqlSessionFactory"/>
+    </bean>
+
+    <bean id="companyTransactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="shardingDataSource"/>
+    </bean>
+
+    <bean id="companyTransactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="companyTransactionManager"></property>
+    </bean>
+
+    <!-- scan for mappers and let them be autowired -->
+    <!--<mybatis:scan base-package="com.ihappy.company.infrastructure.repo.mybatis.mapper" />-->
+
+    <!-- 运营平台数据源 -->
+    <bean id="sysDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!-- 基本属性 url、user、password -->
+        <property name="driverClassName" value="${jdbc-sys.druid.driver-class}"/>
+        <property name="url" value="${jdbc-sys.druid.driver-url}"/>
+        <property name="username" value="${jdbc-sys.user}"/>
+        <property name="password" value="${jdbc-sys.password}"/>
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="${jdbc-sys.druid.connection-initial-size}"/>
+        <property name="minIdle" value="${jdbc-sys.druid.connection-minimum-size}"/>
+        <property name="maxActive" value="${jdbc-sys.druid.connection-maximum-size}"/>
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="${jdbc-sys.druid.connection-maxwait-time}"/>
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="${jdbc-sys.druid.connection-maxactive-time}"/>
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="${jdbc-sys.druid.connection-minlive-time}"/>
+        <property name="validationQuery" value="${jdbc-sys.druid.connection-test-sql}"/>
+        <!-- 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效 -->
+        <property name="testWhileIdle" value="${jdbc-sys.druid.test-while-idle}"/>
+        <!-- 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能 所以关了 -->
+        <property name="testOnBorrow" value="${jdbc-sys.druid.test-on-borrow}"/>
+        <!-- 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能 所以关了 -->
+        <property name="testOnReturn" value="${jdbc-sys.druid.test-on-return}"/>
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="${jdbc-sys.druid.pool-prepared-statements}"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize"
+                  value="${jdbc-sys.druid.max-pool-prepared-statement-per-connection-size}"/>
+        <property name="connectionInitSqls" value="set names utf8mb4"/>
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="${jdbc-sys.druid.filters}"/>
+    </bean>
+
+    <bean id="sysSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="sysDataSource"/>
+        <property name="configLocation" value="classpath:sql_map_service_config.xml"/>
+        <!-- 去掉sql_map_service_config配置 -->
+        <property name="mapperLocations">
+            <array>
+                <value>classpath:mybatis/mapper/sys/*.xml</value>
+            </array>
+        </property>
+        <!-- DO类型的包路劲，如果配置了该项，在mybatis配置xml里parameterType,ResultType直接以类名为别名，不用再加上路劲-->
+        <!--<property name="typeAliasesPackage" value="com.ihappy.item.domain.dbdo"/>-->
+        <!--<property name="plugins">-->
+        <!--<array>-->
+        <!--<bean class="com.github.pagehelper.PageInterceptor">-->
+        <!--<property name="properties">-->
+        <!--<value>-->
+        <!--helperDialect=mysql-->
+        <!--</value>-->
+        <!--</property>-->
+        <!--</bean>-->
+        <!--</array>-->
+        <!--</property>-->
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.ihappy.company.infrastructure.repo.mybatis.mapper.sys,
+        com.ihappy.role.infrastructure.repo.mybatis.mapper.sys"/>
+        <property name="sqlSessionFactoryBeanName" value="sysSqlSessionFactory"/>
+    </bean>
+    <!-- 数据接口 -->
+    <!--<bean id="myBatisDao" class="com.ihappy.item.infrastructure.repo.mybatis.base.impl.MyBatisDaoImpl">-->
+    <!--<property name="sqlSessionFactory" ref="sqlSessionFactory" />-->
+    <!--</bean>-->
+
+    <bean id="sysTransactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="sysDataSource"/>
+    </bean>
+    <bean id="sysTransactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="sysTransactionManager"></property>
+    </bean>
+
+</beans>

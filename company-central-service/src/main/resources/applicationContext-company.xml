@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <context:property-placeholder ignore-unresolvable="true"/>
+    <!-- 这个不能打开，打开会与上一个配置冲突 -->
+    <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" />-->
+
+    <bean id="springApplicationContextHolder" class="com.yx.eweb.handler.SpringApplicationContextHolder"/>
+
+    <import resource="spring/spring-datasource.xml"/>
+    <import resource="spring/performance-datasource.xml"/>
+    <import resource="spring/spring-redis.xml"/>
+    <import resource="spring/spring-service.xml"/>
+    <import resource="spring/spring-process.xml"/>
+    <import resource="spring/spring-dubbo-productor.xml"/>
+    <import resource="spring/spring-dubbo-consumer.xml"/>
+    <import resource="spring/spring-mq.xml"/>
+    <import resource="spring/spring-task.xml"/>
+
+    <!-- 统一日志 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+    </bean>
+
+
+    <bean id="unifiedLogAdvisorPointCut" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="patterns">
+            <list>
+                <value>com.ihappy.company.interfaces.*</value>
+                <value>com.ihappy.company.application.process.*</value>
+                <value>com.ihappy.company.infrastructure.repo.*</value>
+                <value>com.ihappy.company.infrastructure.service.*</value>
+
+                <value>com.ihappy.partner.interfaces.*</value>
+                <value>com.ihappy.partner.application.process.*</value>
+                <value>com.ihappy.partner.infrastructure.repo.*</value>
+                <value>com.ihappy.partner.infrastructure.service.*</value>
+
+                <value>com.ihappy.role.interfaces.*</value>
+                <value>com.ihappy.role.application.process.*</value>
+                <value>com.ihappy.role.infrastructure.repo.*</value>
+                <value>com.ihappy.role.infrastructure.service.*</value>
+
+                <value>com.ihappy.stock.interfaces.*</value>
+                <value>com.ihappy.stock.application.process.*</value>
+                <value>com.ihappy.stock.infrastructure.repo.*</value>
+                <value>com.ihappy.stock.infrastructure.service.*</value>
+
+                <value>com.ihappy.store.interfaces.*</value>
+                <value>com.ihappy.store.application.process.*</value>
+                <value>com.ihappy.store.infrastructure.repo.*</value>
+                <value>com.ihappy.store.infrastructure.service.*</value>
+            </list>
+        </property>
+        <property name="advice">
+            <ref bean="unifiedLogAdvisor"/>
+        </property>
+    </bean>
+
+    <bean id="unifiedLogAdvisor" class="com.ihappy.unifiedLog.advisor.UnifiedLogAdvisor">
+        <property name="localAppName" value="company-central-service"/>
+        <property name="asPartPath" value="true"/>
+    </bean>
+
+    <bean class="com.konglong.dubbo.DragonDubboMain"/>
+
+</beans>

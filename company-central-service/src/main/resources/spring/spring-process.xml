@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName">
+
+    <!-- 企业基础信息相关 -->
+    <bean id="queryCompanyListProcess" class="com.ihappy.company.application.process.query.QueryCompanyListProcess"/>
+    <bean id="updateCompanyStatusProcess"
+          class="com.ihappy.company.application.process.write.UpdateCompanyStatusProcess"/>
+    <bean id="queryCompanyInfoProcess" class="com.ihappy.company.application.process.query.QueryCompanyInfoProcess"/>
+    <bean id="updateCompanyInfoProcess" class="com.ihappy.company.application.process.write.UpdateCompanyInfoProcess"/>
+    <bean id="updateCompanyInfoRpcProcess"
+          class="com.ihappy.company.application.process.write.UpdateCompanyInfoRpcProcess"/>
+    <bean id="addCompanyInfoProcess" class="com.ihappy.company.application.process.write.AddCompanyInfoProcess"/>
+    <bean id="addCompanyInfoByRpcProcess"
+          class="com.ihappy.company.application.process.write.AddCompanyInfoByRpcProcess"/>
+    <bean id="queryCompanyInfoListByIdsProcess"
+          class="com.ihappy.company.application.process.query.QueryCompanyInfoListByIdsProcess"/>
+    <bean id="queryCompanyInfoWithoutLoginProcess"
+          class="com.ihappy.company.application.process.query.companyinfo.QueryCompanyInfoWithoutLoginProcess"/>
+    <bean id="completionCompanyInfoProcess"
+          class="com.ihappy.company.application.process.write.companyinfo.CompletionCompanyInfoProcess"/>
+    <bean id="queryCompanyExpireDateProcess"
+          class="com.ihappy.company.application.process.query.companyinfo.QueryCompanyExpireDateProcess"/>
+    <bean id="addCompanyExtendServiceJournalProcess"
+          class="com.ihappy.company.application.process.write.companyinfo.AddCompanyExtendServiceJournalProcess"/>
+    <bean id="queryCompanyServiceStatusPageProcess"
+          class="com.ihappy.company.application.process.query.companyinfo.QueryCompanyServiceStatusPageProcess"/>
+    <bean id="updateCompanyPayRemarkProcess"
+          class="com.ihappy.company.application.process.write.companyinfo.UpdateCompanyPayRemarkProcess"/>
+    <bean id="updateCompanyExpireStatusProcess"
+          class="com.ihappy.company.application.process.write.companyinfo.UpdateCompanyExpireStatusProcess"/>
+    <bean id="queryCompInfoExpireStatueProcess"
+          class="com.ihappy.company.application.process.query.companyinfo.QueryCompInfoExpireStatueProcess"/>
+    <bean id="companyInfoQueryProcess"
+          class="com.ihappy.company.application.process.query.companyinfo.CompanyInfoQueryProcess"/>
+
+
+    <!-- 企业审核认证相关 -->
+    <bean id="queryVerifyCompanyInfoProcess"
+          class="com.ihappy.company.application.process.query.companyverify.QueryVerifyCompanyInfoProcess"/>
+    <bean id="addVerifyCompanyInfoProcess"
+          class="com.ihappy.company.application.process.write.companyverify.AddVerifyCompanyInfoProcess"/>
+    <bean id="verifyCompanyInfoProcess"
+          class="com.ihappy.company.application.process.write.companyverify.VerifyCompanyInfoProcess"/>
+
+    <!-- 企业角色相关 -->
+    <bean id="queryCompanyRoleListProcess"
+          class="com.ihappy.role.application.process.query.company.QueryCompanyRoleListProcess"/>
+    <bean id="querySysCompanyRoleListProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysCompanyRoleListProcess"/>
+    <bean id="queryRolePageByCompIdProcess"
+          class="com.ihappy.role.application.process.query.company.QueryRolePageByCompIdProcess"/>
+    <bean id="addCompanyRoleByCompIdProcess"
+          class="com.ihappy.role.application.process.write.company.AddCompanyRoleByCompIdProcess"/>
+    <bean id="updateCompanyRoleByRoleIdProcess"
+          class="com.ihappy.role.application.process.write.company.UpdateCompanyRoleByRoleIdProcess"/>
+    <bean id="deleteCompanyRoleByRoleIdProcess"
+          class="com.ihappy.role.application.process.write.company.DeleteCompanyRoleByRoleIdProcess"/>
+    <bean id="queryRoleByRoleIdProcess"
+          class="com.ihappy.role.application.process.query.company.QueryRoleByRoleIdProcess"/>
+    <bean id="addSysCompanyRoleConfigRoleInfoProcess"
+          class="com.ihappy.role.application.process.write.sys.AddSysCompanyRoleConfigRoleInfoProcess"/>
+    <bean id="queryCompanyRoleMenuProcess"
+          class="com.ihappy.role.application.process.query.company.QueryCompanyRoleMenuProcess"/>
+    <bean id="queryRoleListByCompIdListProcess"
+          class="com.ihappy.role.application.process.query.company.QueryRoleListByCompIdListProcess"/>
+    <bean id="findSysCompanyRoleListProcess"
+          class="com.ihappy.role.application.process.query.company.FindSysCompanyRoleListProcess"/>
+    <bean id="findAppRoleListByDiffPowerProcess"
+          class="com.ihappy.role.application.process.query.company.FindAppRoleListByDiffPowerProcess"/>
+    <!--运营后台角色相关-->
+    <bean id="querySysRoleListByRoleIdListProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysRoleListByRoleIdListProcess"/>
+    <bean id="querySysRoleManagePageProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysRoleManagePageProcess"/>
+    <bean id="querySysRoleManageRoleInfoByRoleIdProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysRoleManageRoleInfoByRoleIdProcess"/>
+    <bean id="addSysRoleManageRoleInfoProcess"
+          class="com.ihappy.role.application.process.write.sys.AddSysRoleManageRoleInfoProcess"/>
+    <bean id="updateSysRoleManageRoleInfoProcess"
+          class="com.ihappy.role.application.process.write.sys.UpdateSysRoleManageRoleInfoProcess"/>
+    <bean id="querySysCompanyRoleConfigListProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysCompanyRoleConfigListProcess"/>
+    <bean id="querySysCompanyRoleConfigRoleInfoProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysCompanyRoleConfigRoleInfoProcess"/>
+    <bean id="deleteSysCompanyRoleConfigRoleInfoProcess"
+          class="com.ihappy.role.application.process.write.sys.DeleteSysCompanyRoleConfigRoleInfoProcess"/>
+    <bean id="deleteSysRoleManageRoleInfoProcess"
+          class="com.ihappy.role.application.process.write.sys.DeleteSysRoleManageRoleInfoProcess"/>
+    <bean id="updateSysCompanyRoleConfigRoleInfoProcess"
+          class="com.ihappy.role.application.process.write.sys.UpdateSysCompanyRoleConfigRoleInfoProcess"/>
+    <bean id="querySysCompanyRoleInfoTypeClientFuncListProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysCompanyRoleInfoTypeClientFuncListProcess"/>
+    <bean id="querySysCompanyRoleInfoTypeClientListProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysCompanyRoleInfoTypeClientListProcess"/>
+    <bean id="querySysCompanyRoleAddTypeClientListProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysCompanyRoleAddTypeClientListProcess"/>
+    <bean id="querySysCompanyRoleAddTypeClientFuncListProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysCompanyRoleAddTypeClientFuncListProcess"/>
+
+    <!-- 供应商/客户 相关 -->
+    <bean id="queryPartnerListProcess"
+          class="com.ihappy.partner.application.process.query.partner.QueryPartnerListProcess"/>
+    <bean id="findPartnerListProcess"
+          class="com.ihappy.partner.application.process.query.partner.FindPartnerListProcess"/>
+    <bean id="queryPartnerProcess" class="com.ihappy.partner.application.process.query.partner.QueryPartnerProcess"/>
+    <bean id="queryCustomerListProcess"
+          class="com.ihappy.partner.application.process.query.partner.QueryCustomerListProcess"/>
+    <bean id="queryCustomerProcess" class="com.ihappy.partner.application.process.query.partner.QueryCustomerProcess"/>
+    <bean id="queryDefProviderListProcess"
+          class="com.ihappy.partner.application.process.query.partner.QueryDefProviderListProcess"/>
+    <bean id="queryDefCustomerListProcess"
+          class="com.ihappy.partner.application.process.query.partner.QueryDefCustomerListProcess"/>
+    <bean id="findPartnerProcess" class="com.ihappy.partner.application.process.query.partner.FindPartnerProcess"/>
+    <bean id="queryRetailCustomerProcess"
+          class="com.ihappy.partner.application.process.query.partner.QueryRetailCustomerProcess"/>
+    <bean id="queryRetailCustomerPageProcess"
+          class="com.ihappy.partner.application.process.query.partner.QueryRetailCustomerPageProcess"/>
+    <bean id="findPartnerStatisticsProcess"
+          class="com.ihappy.partner.application.process.query.partner.FindPartnerStatisticsProcess"/>
+    <bean id="findPartnerPageProcess"
+          class="com.ihappy.partner.application.process.query.partner.FindPartnerPageProcess"/>
+    <bean id="findDefaultPartnerProcess"
+          class="com.ihappy.partner.application.process.query.partner.FindDefaultPartnerProcess"/>
+    <bean id="queryShouldPartnerBeNotifiedProcess"
+          class="com.ihappy.partner.application.process.query.partner.QueryShouldPartnerBeNotifiedProcess"/>
+    <bean id="partnerQueryOrAddProcess"
+          class="com.ihappy.partner.application.process.write.partner.PartnerQueryOrAddProcess"/>
+
+
+    <bean id="delCompanyPartnerProcess"
+          class="com.ihappy.partner.application.process.write.partner.DelCompanyPartnerProcess"/>
+    <bean id="forbidCompanyPartnerProcess"
+          class="com.ihappy.partner.application.process.write.partner.ForbidCompanyPartnerProcess"/>
+    <bean id="addPartnerArrearsOrderProcess"
+          class="com.ihappy.partner.application.process.write.partner.AddPartnerArrearsOrderProcess"/>
+    <bean id="updatePartnerLastContactTimeProcess"
+          class="com.ihappy.partner.application.process.write.partner.UpdatePartnerLastContactTimeProcess"/>
+    <bean id="addOrQueryProviderInsideProcess"
+          class="com.ihappy.partner.application.process.write.partner.AddOrQueryProviderInsideProcess"/>
+    <bean id="addRetailCustomerProcess"
+          class="com.ihappy.partner.application.process.write.partner.AddRetailCustomerProcess"/>
+    <bean id="updateRetailCustomerProcess"
+          class="com.ihappy.partner.application.process.write.partner.UpdateRetailCustomerProcess"/>
+    <bean id="addCustomerProcess" class="com.ihappy.partner.application.process.write.partner.AddCustomerProcess"/>
+    <bean id="addProviderProcess" class="com.ihappy.partner.application.process.write.partner.AddProviderProcess"/>
+    <bean id="updateCustomerProcess"
+          class="com.ihappy.partner.application.process.write.partner.UpdateCustomerProcess"/>
+    <bean id="updateProviderProcess"
+          class="com.ihappy.partner.application.process.write.partner.UpdateProviderProcess"/>
+    <bean id="addPartnerByInvateRegisterProcess"
+          class="com.ihappy.partner.application.process.write.partner.AddPartnerByInvateRegisterProcess"/>
+    <!--会员管理相关-->
+    <bean id="enableRetailCustomerInfoProcess"
+          class="com.ihappy.partner.application.process.write.partner.EnableRetailCustomerInfoProcess"/>
+
+    <!-- 企业品牌相关 -->
+    <bean id="queryCompanyBrandListProcess"
+          class="com.ihappy.company.application.process.query.QueryCompanyBrandListProcess"/>
+    <bean id="addCompanyBrandProcess" class="com.ihappy.company.application.process.write.AddCompanyBrandProcess"/>
+    <bean id="delCompanyBrandProcess" class="com.ihappy.company.application.process.write.DelCompanyBrandProcess"/>
+    <bean id="delCompanyBrandsProcess" class="com.ihappy.company.application.process.write.DelCompanyBrandsProcess"/>
+
+
+    <!-- 企业门店相关 -->
+    <bean id="queryStoreListByCompIdAndStoreIdsProcess"
+          class="com.ihappy.store.application.process.query.store.QueryStoreListByCompIdAndStoreIdsProcess"/>
+    <bean id="queryStoreListByUserProcess"
+          class="com.ihappy.store.application.process.query.store.QueryStoreListByUserProcess"/>
+    <bean id="queryPrintIpAndPortProcess"
+          class="com.ihappy.store.application.process.query.store.QueryPrintIpAndPortProcess"/>
+    <bean id="updateCompanyStoreProcess"
+          class="com.ihappy.store.application.process.write.store.UpdateCompanyStoreProcess"/>
+    <bean id="queryWeshopVisitDetailListProcess"
+          class="com.ihappy.store.application.process.query.weshop.QueryWeshopVisitDetailListProcess"/>
+    <bean id="updateWeshopCollectionProcess"
+          class="com.ihappy.store.application.process.write.weshop.UpdateWeshopCollectionProcess"/>
+    <bean id="addWeshopVisitProcess" class="com.ihappy.store.application.process.write.weshop.AddWeshopVisitProcess"/>
+    <bean id="queryWeshopListByPageProcess"
+          class="com.ihappy.store.application.process.query.weshop.QueryWeshopListByPageProcess"/>
+    <bean id="queryWeshopDetailProcess"
+          class="com.ihappy.store.application.process.query.weshop.QueryWeshopDetailProcess"/>
+    <bean id="queryStoreInfoByInfoProcess"
+          class="com.ihappy.store.application.process.query.store.QueryStoreInfoByInfoProcess"/>
+    <bean id="queryWeshopDetailProcessWithoutLogin"
+          class="com.ihappy.store.application.process.query.weshop.QueryWeshopDetailProcessWithoutLogin"/>
+    <bean id="shareWeshopProcess" class="com.ihappy.store.application.process.query.weshop.ShareWeshopProcess"/>
+    <bean id="queryStoreListWithPublicByCompIdAndStoreIdsProcess"
+          class="com.ihappy.store.application.process.query.store.QueryStoreListWithPublicByCompIdAndStoreIdsProcess"/>
+    <bean id="queryStoreByLoginPersonProcess"
+          class="com.ihappy.store.application.process.query.store.QueryStoreByLoginPersonProcess"/>
+    <bean id="queryStoreInfoByNameProcess"
+          class="com.ihappy.store.application.process.query.store.QueryStoreInfoByNameProcess"/>
+    <bean id="queryStorePageProcess"
+          class="com.ihappy.store.application.process.query.store.QueryStorePageProcess"/>
+    <bean id="queryStoreInfoPayPageProcess"
+          class="com.ihappy.store.application.process.query.store.QueryStoreInfoPayPageProcess"/>
+    <bean id="queryStoreServiceStatusPageProcess"
+          class="com.ihappy.store.application.process.query.store.QueryStoreServiceStatusPageProcess"/>
+    <bean id="rpcQueryStoreListProcess"
+          class="com.ihappy.store.application.process.query.store.RpcQueryStoreListProcess"/>
+    <bean id="queryStoreManagerProcess"
+          class="com.ihappy.store.application.process.query.store.QueryStoreManagerProcess"/>
+    <bean id="querySalePerformanceByConditionProcess"
+          class="com.ihappy.store.application.process.query.store.QuerySalePerformanceByConditionProcess"/>
+    <bean id="queryStorePerformanceProcess"
+          class="com.ihappy.store.application.process.query.store.QueryStorePerformanceProcess"/>
+
+    <bean id="addPersonPerformanceProcess"
+          class="com.ihappy.store.application.process.write.store.AddPersonPerformanceProcess"/>
+    <bean id="updatePrintIpAndPortProcess"
+          class="com.ihappy.store.application.process.write.store.UpdatePrintIpAndPortProcess"/>
+    <bean id="updateStorePayRemarkProcess"
+          class="com.ihappy.store.application.process.write.store.UpdateStorePayRemarkProcess"/>
+
+
+    <!--企业门店新增/修改/删除/查询-->
+    <bean id="addCompanyStoreAdminProcess"
+          class="com.ihappy.store.application.process.write.store.AddCompanyStoreAdminProcess"/>
+    <bean id="updateCompanyStoreAdminProcess"
+          class="com.ihappy.store.application.process.write.store.UpdateCompanyStoreAdminProcess"/>
+    <bean id="deleteCompanyStoreAdminProcess"
+          class="com.ihappy.store.application.process.write.store.DeleteCompanyStoreAdminProcess"/>
+    <bean id="queryPerformancePageProcess"
+          class="com.ihappy.store.application.process.query.store.QueryPerformancePageProcess"/>
+    <bean id="queryPersonPerformancePageProcess"
+          class="com.ihappy.store.application.process.query.store.QueryPersonPerformancePageProcess"/>
+    <bean id="queryStoreInfoProcess" class="com.ihappy.store.application.process.query.store.QueryStoreInfoProcess"/>
+    <bean id="querySharingStoreInfoProcess"
+          class="com.ihappy.store.application.process.query.store.QuerySharingStoreInfoProcess"/>
+    <bean id="queryStoreListProcess" class="com.ihappy.store.application.process.query.store.QueryStoreListProcess"/>
+    <bean id="disableStoreProcess" class="com.ihappy.store.application.process.write.store.DisableStoreProcess"/>
+    <bean id="enableStoreProcess" class="com.ihappy.store.application.process.write.store.EnableStoreProcess"/>
+    <bean id="queryAllStoreByCompIdProcess"
+          class="com.ihappy.store.application.process.query.store.QueryAllStoreByCompIdProcess"/>
+
+    <!-- 企业仓库相关 -->
+    <bean id="queryStoreStockListProcess"
+          class="com.ihappy.company.application.process.query.QueryStoreStockListProcess"/>
+    <bean id="getStockListByPersonIdProcess"
+          class="com.ihappy.stock.application.process.query.stock.GetStockListByPersonIdProcess"/>
+    <bean id="addStockProcess" class="com.ihappy.company.application.process.write.AddStockProcess"/>
+    <bean id="queryStockProcess" class="com.ihappy.stock.application.process.query.stock.QueryStockProcess"/>
+    <bean id="updateStockProcess" class="com.ihappy.stock.application.process.write.stock.UpdateStockProcess"/>
+    <bean id="updateStockStatusProcess"
+          class="com.ihappy.stock.application.process.write.stock.UpdateStockStatusProcess"/>
+    <bean id="queryStockListByIdsProcess"
+          class="com.ihappy.stock.application.process.query.stock.QueryStockListByIdsProcess"/>
+    <bean id="updateStockInventoryingProcess"
+          class="com.ihappy.stock.application.process.write.stock.UpdateStockInventoryingProcess"/>
+    <bean id="clearStockInventoryingProcess"
+          class="com.ihappy.stock.application.process.write.stock.ClearStockInventoryingProcess"/>
+    <bean id="getStockListByStoreIdListProcess"
+          class="com.ihappy.stock.application.process.query.stock.GetStockListByStoreIdListProcess"/>
+    <bean id="getStockMapByUserInfoProcess"
+          class="com.ihappy.stock.application.process.query.stock.GetStockMapByUserInfoProcess"/>
+    <bean id="addOrQueryStockProcess"
+          class="com.ihappy.stock.application.process.write.stock.AddOrQueryStockProcess"/>
+    <bean id="getStockListByConditionProcess"
+          class="com.ihappy.stock.application.process.query.stock.GetStockListByConditionProcess"/>
+    <bean id="getAllStockListByStoreIdListProcess"
+          class="com.ihappy.stock.application.process.query.stock.GetAllStockListByStoreIdListProcess"/>
+
+
+    <!-- 会员等级相关 -->
+    <bean id="queryPartnerLevelProcess"
+          class="com.ihappy.partner.application.process.query.level.QueryPartnerLevelProcess"/>
+    <bean id="queryPartnerLevelListProcess"
+          class="com.ihappy.partner.application.process.query.level.QueryPartnerLevelListProcess"/>
+
+    <bean id="addPartnerLevelProcess"
+          class="com.ihappy.partner.application.process.write.level.AddPartnerLevelProcess"/>
+    <bean id="updatePartnerLevelProcess"
+          class="com.ihappy.partner.application.process.write.level.UpdatePartnerLevelProcess"/>
+    <bean id="delPartnerLevelProcess"
+          class="com.ihappy.partner.application.process.write.level.DelPartnerLevelProcess"/>
+    <bean id="updateReferenceCountProcess"
+          class="com.ihappy.partner.application.process.write.level.UpdateReferenceCountProcess"/>
+    <bean id="addCompanyBrandInsideProcess"
+          class="com.ihappy.company.application.process.write.AddCompanyBrandInsideProcess"/>
+
+    <bean id="queryAllSysCompanyTypeProcess"
+          class="com.ihappy.company.application.process.query.companytype.QueryAllSysCompanyTypeProcess"/>
+    <bean id="querySysOrgByOrgIdListProcess"
+          class="com.ihappy.company.application.process.query.org.QuerySysOrgByOrgIdListProcess"/>
+    <bean id="queryAllChildSysOrgByIdProcess"
+          class="com.ihappy.company.application.process.query.org.QueryAllChildSysOrgByIdProcess"/>
+
+
+    <!--给所有企业生成默认信息-->
+    <bean id="generateDefaultInformationProcess"
+          class="com.ihappy.company.application.process.write.GenerateDefaultInformationProcess"/>
+    <!--企业职能相关-->
+    <bean id="querySysCompanyFuncListProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysCompanyFuncListProcess"></bean>
+    <bean id="querySysFuncListProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysFuncListProcess"/>
+
+    <!--打印配置相关-->
+    <bean id="queryCompanyPrintConfigProcess"
+          class="com.ihappy.company.application.process.query.QueryCompanyPrintConfigProcess"/>
+    <bean id="updateCompanyPrintConfigProcess"
+          class="com.ihappy.company.application.process.write.UpdateCompanyPrintConfigProcess"/>
+    <bean id="queryCompanyPrintConfigListProcess"
+          class="com.ihappy.company.application.process.query.QueryCompanyPrintConfigListProcess"/>
+    <bean id="updateCompanyPrintModeProcess"
+          class="com.ihappy.company.application.process.write.UpdateCompanyPrintModeProcess"/>
+
+    <!--缴费 -->
+    <bean id="addOrderCompanyJournalProcess"
+          class="com.ihappy.store.application.process.write.ordercompanyjournal.AddOrderCompanyJournalProcess"/>
+    <bean id="updateOrderCompanyJournalProcess"
+          class="com.ihappy.store.application.process.write.ordercompanyjournal.UpdateOrderCompanyJournalProcess"/>
+    <bean id="cancelOrderCompanyJournalProcess"
+          class="com.ihappy.store.application.process.write.ordercompanyjournal.CancelOrderCompanyJournalProcess"/>
+    <bean id="passReviewOrderCompanyJournalProcess"
+          class="com.ihappy.store.application.process.write.ordercompanyjournal.PassReviewOrderCompanyJournalProcess"/>
+
+    <bean id="queryOrderCompanyJournalPageProcess"
+          class="com.ihappy.store.application.process.query.ordercompanyjournal.QueryOrderCompanyJournalPageProcess"/>
+    <bean id="queryOrderCompanyJournalDetailProcess"
+          class="com.ihappy.store.application.process.query.ordercompanyjournal.QueryOrderCompanyJournalDetailProcess"/>
+
+    <!--后门-->
+    <bean id="refreshPartnerStaticsProcess"
+          class="com.ihappy.company.application.process.write.backdoor.RefreshPartnerStaticsProcess"/>
+    <bean id="deleteRedisProcess"
+          class="com.ihappy.communal.application.process.write.DeleteRedisProcess"/>
+
+    <bean id="queryCompanyFactoryInfoListProcess"
+          class="com.ihappy.company.application.process.query.companyinfo.QueryCompanyFactoryInfoListProcess"></bean>
+    <bean id="queryCompanyFactoryInfoObjectProcess"
+          class="com.ihappy.company.application.process.query.companyinfo.QueryCompanyFactoryInfoObjectProcess"></bean>
+    <bean id="updateFactoryInfoProcess"
+          class="com.ihappy.company.application.process.write.companyinfo.UpdateFactoryInfoProcess"/>
+
+    <!--运营后台菜单相关-->
+    <bean id="querySysFuncMenuBackstageMenuListProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysFuncMenuBackstageMenuListProcess"/>
+    <bean id="delSysFuncMenuBackstageMenuProcess"
+          class="com.ihappy.role.application.process.write.sys.DelSysFuncMenuBackstageMenuProcess"/>
+    <bean id="addSysFuncMenuBackstageMenuProcess"
+          class="com.ihappy.role.application.process.write.sys.AddSysFuncMenuBackstageMenuProcess"/>
+    <bean id="querySysFuncMenuBackstageMenuInfoProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysFuncMenuBackstageMenuInfoProcess"/>
+    <bean id="updateSysFuncMenuBackstageMenuInfoProcess"
+          class="com.ihappy.role.application.process.write.sys.UpdateSysFuncMenuBackstageMenuInfoProcess"/>
+    <bean id="querySysFuncMenuApplyTypeListProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysFuncMenuApplyTypeListProcess"/>
+    <bean id="querySysFuncMenuApplyTypeMenuListProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysFuncMenuApplyTypeMenuListProcess"/>
+    <bean id="querySysCompanyFuncMenuApplyTypeMenuInfoProcess"
+          class="com.ihappy.role.application.process.query.sys.QuerySysCompanyFuncMenuApplyTypeMenuInfoProcess"/>
+    <bean id="addSysCompanyFuncMenuApplyTypeMenuProcess"
+          class="com.ihappy.role.application.process.write.sys.AddSysCompanyFuncMenuApplyTypeMenuProcess"/>
+    <bean id="updateSysCompanyFuncMenuApplyTypeMenuProcess"
+          class="com.ihappy.role.application.process.write.sys.UpdateSysCompanyFuncMenuApplyTypeMenuProcess"/>
+    <bean id="delSysCompanyFuncMenuApplyTypeMenuProcess"
+          class="com.ihappy.role.application.process.write.sys.DelSysCompanyFuncMenuApplyTypeMenuProcess"/>
+
+    <!--系统参数相关-->
+    <bean id="quereyUpdateStatusProcess"
+          class="com.ihappy.company.application.process.query.sys.QuereyUpdateStatusProcess"/>
+</beans>

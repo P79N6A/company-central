@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihappy.role.infrastructure.repo.mybatis.mapper.company.BaseinfoCompanyRoleMapper">
+    <resultMap id="BaseResultMap" type="com.ihappy.role.domain.dbdo.company.BaseinfoCompanyRole">
+        <id column="role_id" jdbcType="BIGINT" property="roleId"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="role_no" jdbcType="VARCHAR" property="roleNo"/>
+        <result column="role_memo" jdbcType="VARCHAR" property="roleMemo"/>
+        <result column="role_rights" jdbcType="VARCHAR" property="roleRights"/>
+        <result column="role_sort" jdbcType="INTEGER" property="roleSort"/>
+        <result column="comp_id" jdbcType="INTEGER" property="compId"/>
+        <result column="created_at" jdbcType="BIGINT" property="createdAt"/>
+        <result column="updated_at" jdbcType="BIGINT" property="updatedAt"/>
+        <result column="created_person_id" jdbcType="BIGINT" property="createdPersonId"/>
+        <result column="updated_person_id" jdbcType="BIGINT" property="updatedPersonId"/>
+        <result column="is_deleted" jdbcType="BIT" property="isDeleted"/>
+        <result column="is_hide" jdbcType="BIT" property="isHide"/>
+        <result column="is_default" property="isDefault"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    role_id, role_name, role_no, role_memo, role_rights, role_sort, comp_id, created_at,
+    updated_at, created_person_id, updated_person_id, is_deleted,is_hide,is_default
+  </sql>
+
+    <select id="selectByCompIdList" parameterType="java.util.List" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company_role
+        where is_deleted = 0
+        <if test="list != null and list.size > 0">
+            and comp_id in
+            <foreach collection="list" index="roleIdList" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKeyList" parameterType="java.util.List" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company_role
+        where is_deleted = 0
+        <if test="list != null and list.size > 0">
+            and role_id in
+            <foreach collection="list" index="roleIdList" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company_role
+        where role_id = #{roleId,jdbcType=BIGINT} and is_deleted = 0
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from baseinfo_company_role
+    where role_id = #{roleId,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.ihappy.role.domain.dbdo.company.BaseinfoCompanyRole">
+    insert into baseinfo_company_role (role_id, role_name, role_no,
+      role_memo, role_rights, role_sort, 
+      comp_id, created_at, updated_at, 
+      created_person_id, updated_person_id, is_deleted,is_hide,is_default
+      )
+    values (#{roleId,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{roleNo,jdbcType=VARCHAR}, 
+      #{roleMemo,jdbcType=VARCHAR}, #{roleRights,jdbcType=VARCHAR}, #{roleSort,jdbcType=INTEGER}, 
+      #{compId,jdbcType=INTEGER}, #{createdAt,jdbcType=BIGINT}, #{updatedAt,jdbcType=BIGINT}, 
+      #{createdPersonId,jdbcType=BIGINT}, #{updatedPersonId,jdbcType=BIGINT}, #{isDeleted,jdbcType=BIT},#{isHide,jdbcType=BIT},#{isDefault}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.ihappy.role.domain.dbdo.company.BaseinfoCompanyRole">
+        insert into baseinfo_company_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            role_id,
+            <if test="roleName != null">
+                role_name,
+            </if>
+            <if test="roleNo != null">
+                role_no,
+            </if>
+            <if test="roleMemo != null">
+                role_memo,
+            </if>
+            <if test="roleRights != null">
+                role_rights,
+            </if>
+            <if test="roleSort != null">
+                role_sort,
+            </if>
+            <if test="compId != null">
+                comp_id,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="createdPersonId != null">
+                created_person_id,
+            </if>
+            <if test="updatedPersonId != null">
+                updated_person_id,
+            </if>
+            <if test="isDeleted != null">
+                is_deleted,
+            </if>
+            <if test="isHide != null">
+                is_hide,
+            </if>
+            <if test="isDefault != null">
+                is_default,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{roleId,jdbcType=BIGINT},
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleNo != null">
+                #{roleNo,jdbcType=VARCHAR},
+            </if>
+            <if test="roleMemo != null">
+                #{roleMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="roleRights != null">
+                #{roleRights,jdbcType=VARCHAR},
+            </if>
+            <if test="roleSort != null">
+                #{roleSort,jdbcType=INTEGER},
+            </if>
+            <if test="compId != null">
+                #{compId,jdbcType=INTEGER},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=BIGINT},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=BIGINT},
+            </if>
+            <if test="createdPersonId != null">
+                #{createdPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="updatedPersonId != null">
+                #{updatedPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="isDeleted != null">
+                #{isDeleted,jdbcType=BIT},
+            </if>
+            <if test="isHide != null">
+                #{isHide,jdbcType=BIT},
+            </if>
+            <if test="isDefault != null">
+                #{isDefault},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertCompanyRole" parameterType="com.ihappy.role.domain.dbdo.company.BaseinfoCompanyRole">
+    insert into baseinfo_company_role (role_id,role_name,role_no,role_memo,is_hide,role_rights,role_sort,comp_id,created_at,created_person_id)
+    values(#{roleId},#{roleName,jdbcType=VARCHAR}, #{roleNo,jdbcType=VARCHAR}, #{roleMemo,jdbcType=VARCHAR}, #{isHide,jdbcType=BIT},
+     #{roleRights,jdbcType=VARCHAR}, #{roleSort,jdbcType=INTEGER}, #{compId,jdbcType=INTEGER}, #{createdAt,jdbcType=BIGINT},
+    #{createdPersonId,jdbcType=BIGINT})
+  </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ihappy.role.domain.dbdo.company.BaseinfoCompanyRole">
+        <!--
+          WARNING - @mbg.generated
+          This element is automatically generated by MyBatis Generator, do not modify.
+          This element was generated on Sat Mar 31 16:19:51 CST 2018.
+        -->
+        update baseinfo_company_role
+        <set>
+            <if test="roleName != null">
+                role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleNo != null">
+                role_no = #{roleNo,jdbcType=VARCHAR},
+            </if>
+            <if test="roleMemo != null">
+                role_memo = #{roleMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="roleRights != null">
+                role_rights = #{roleRights,jdbcType=VARCHAR},
+            </if>
+            <if test="roleSort != null">
+                role_sort = #{roleSort,jdbcType=INTEGER},
+            </if>
+            <if test="compId != null">
+                comp_id = #{compId,jdbcType=INTEGER},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=BIGINT},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=BIGINT},
+            </if>
+            <if test="createdPersonId != null">
+                created_person_id = #{createdPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="updatedPersonId != null">
+                updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=BIT},
+            </if>
+            <if test="isDefault != null">
+                is_default = #{isDefault},
+            </if>
+        </set>
+        where role_id = #{roleId,jdbcType=BIGINT} and is_deleted = 0
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ihappy.role.domain.dbdo.company.BaseinfoCompanyRole">
+        <!--
+          WARNING - @mbg.generated
+          This element is automatically generated by MyBatis Generator, do not modify.
+          This element was generated on Sat Mar 31 16:19:51 CST 2018.
+        -->
+        update baseinfo_company_role
+        set role_name = #{roleName,jdbcType=VARCHAR},
+        role_no = #{roleNo,jdbcType=VARCHAR},
+        role_memo = #{roleMemo,jdbcType=VARCHAR},
+        role_rights = #{roleRights,jdbcType=VARCHAR},
+        role_sort = #{roleSort,jdbcType=INTEGER},
+        comp_id = #{compId,jdbcType=INTEGER},
+        created_at = #{createdAt,jdbcType=BIGINT},
+        updated_at = #{updatedAt,jdbcType=BIGINT},
+        created_person_id = #{createdPersonId,jdbcType=BIGINT},
+        updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+        is_deleted = #{isDeleted,jdbcType=BIT},
+        is_default = #{isDefault}
+        where role_id = #{roleId,jdbcType=BIGINT} and is_deleted = 0
+    </update>
+    <select id="selectRolePageByCompId" parameterType="com.ihappy.role.domain.bo.QueryCompanyRolePageBO"
+            resultMap="BaseResultMap">
+        select  <include refid="Base_Column_List"/> from baseinfo_company_role where comp_id=#{compId} and is_deleted = 0 order by role_sort asc , role_id
+        desc
+        <if test="limit != null and offset != null ">
+            limit #{limit} offset #{offset}
+        </if>
+    </select>
+    <select id="selectOneRoleByCompIdAndRoleId" parameterType="map" resultMap="BaseResultMap">
+    select  <include refid="Base_Column_List"/> from baseinfo_company_role where comp_id = #{compId} and role_id = #{roleId}
+  </select>
+    <select id="checkRoleNameIsExist" parameterType="com.ihappy.role.domain.bo.CheckRoleNameBO"
+            resultMap="BaseResultMap">
+        select  <include refid="Base_Column_List"/> from baseinfo_company_role where comp_id = #{compId} and role_name = #{roleName}
+        <if test="roleId != null">
+            and role_id != #{roleId}
+        </if>
+    </select>
+    <select id="checkCompanyRoleNoIsOrNotRepeat" parameterType="com.ihappy.role.domain.bo.CompanyRoleBO"
+            resultMap="BaseResultMap">
+        select  <include refid="Base_Column_List"/> from baseinfo_company_role where comp_id = #{compId} and role_no = #{roleNo}
+        <if test="roleId != null">
+            and role_id != #{roleId}
+        </if>
+    </select>
+    <select id="selectCompanyRoleByRoleId" parameterType="com.ihappy.company.domain.bo.GetCompanyRoleFuncMenuBO"
+            resultMap="BaseResultMap">
+        select  <include refid="Base_Column_List"/> from baseinfo_company_role where role_id = #{roleId}
+        <if test="isDeleted != null">
+            and is_deleted = #{isDeleted}
+        </if>
+    </select>
+    <update id="updateOneRoleInfoByRoleId" parameterType="com.ihappy.role.domain.bo.CompanyRoleBO">
+        update baseinfo_company_role
+        <set>
+            <if test="roleName != null and roleName != ''">
+                role_name = #{roleName},
+            </if>
+            <if test="roleNo != null and roleNo != ''">
+                role_no = #{roleNo},
+            </if>
+            <if test="roleMemo != null and roleMemo != ''">
+                role_memo = #{roleMemo},
+            </if>
+            <if test="roleRights != null and roleRights != ''">
+                role_rights = #{roleRights},
+            </if>
+            <if test="isHide != null">
+                is_hide = #{isHide},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt},
+            </if>
+            <if test="updatedPersonId != null">
+                updated_person_id = #{updatedPersonId},
+            </if>
+        </set>
+        where role_id = #{roleId}
+        <if test="isDeleted != null">
+            and is_deleted = #{isDeleted}
+        </if>
+    </update>
+    <update id="deleteCompanyRoleByRoleId" parameterType="com.ihappy.role.domain.bo.CompanyRoleBO">
+    update baseinfo_company_role set is_deleted = 1,updated_at=#{updatedAt},updated_person_id=#{updatedPersonId}
+    where role_id = #{roleId} and is_deleted = 0
+  </update>
+    <select id="selectCompRoleByCondition" resultMap="BaseResultMap" parameterType="com.ihappy.role.domain.bo.QueryCompanyRolePageBO">
+        select  <include refid="Base_Column_List"/> from baseinfo_company_role
+        where comp_id = #{compId}
+        <if test="roleNo != null and roleNo != ''">
+            and role_no = #{roleNo}
+        </if>
+        <if test="isDeleted != null">
+            and is_deleted = #{isDeleted}
+        </if>
+        order by role_sort asc , role_id
+        desc
+    </select>
+</mapper>

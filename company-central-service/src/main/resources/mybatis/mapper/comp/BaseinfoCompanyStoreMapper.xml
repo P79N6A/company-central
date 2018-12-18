@@ -1,0 +1,1273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihappy.store.infrastructure.repo.mybatis.mapper.store.BaseinfoCompanyStoreMapper">
+    <resultMap id="BaseResultMap" type="com.ihappy.store.domain.dbdo.store.BaseinfoCompanyStore">
+        <id column="store_id" jdbcType="BIGINT" property="storeId"/>
+        <result column="store_no" jdbcType="VARCHAR" property="storeNo"/>
+        <result column="store_name" jdbcType="VARCHAR" property="storeName"/>
+        <result column="store_region_id" jdbcType="INTEGER" property="storeRegionId"/>
+        <result column="store_region_name" jdbcType="VARCHAR" property="storeRegionName"/>
+        <result column="area_id" jdbcType="INTEGER" property="areaId"/>
+        <result column="province" jdbcType="VARCHAR" property="province"/>
+        <result column="city" jdbcType="VARCHAR" property="city"/>
+        <result column="zone" jdbcType="VARCHAR" property="zone"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="store_acreage" jdbcType="INTEGER" property="storeAcreage"/>
+        <result column="zip" jdbcType="VARCHAR" property="zip"/>
+        <result column="store_phone" jdbcType="VARCHAR" property="storePhone"/>
+        <result column="store_tel" jdbcType="VARCHAR" property="storeTel"/>
+        <result column="store_contact" jdbcType="VARCHAR" property="storeContact"/>
+        <result column="store_type" jdbcType="BIT" property="storeType"/>
+        <result column="is_valid" jdbcType="BIT" property="isValid"/>
+        <result column="create_time" jdbcType="INTEGER" property="createTime"/>
+        <result column="close_time" jdbcType="INTEGER" property="closeTime"/>
+        <result column="business_hours" jdbcType="VARCHAR" property="businessHours"/>
+        <result column="online" jdbcType="BIT" property="online"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+        <result column="logo_url" jdbcType="VARCHAR" property="logoUrl"/>
+        <result column="comp_id" jdbcType="INTEGER" property="compId"/>
+        <result column="admin_person_id" property="adminPersonId"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="manage_pattern" jdbcType="INTEGER" property="managePattern"/>
+        <result column="channel_type" jdbcType="BIT" property="channelType"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="Online_show_sales" jdbcType="BIT" property="onlineShowSales"/>
+        <result column="Online_show_stocks" jdbcType="BIT" property="onlineShowStocks"/>
+        <result column="Online_Reduce_after_payed" jdbcType="BIT" property="onlineReduceAfterPayed"/>
+        <result column="created_at" jdbcType="BIGINT" property="createdAt"/>
+        <result column="updated_at" jdbcType="BIGINT" property="updatedAt"/>
+        <result column="created_person_id" jdbcType="BIGINT" property="createdPersonId"/>
+        <result column="updated_person_id" jdbcType="BIGINT" property="updatedPersonId"/>
+        <result column="is_deleted" jdbcType="BIT" property="isDeleted"/>
+        <result column="print_ip" property="printIp"/>
+        <result column="print_port" property="printPort"/>
+        <result column="weshop_name" jdbcType="VARCHAR" property="weshopName"/>
+        <result column="weshop_logo_images" jdbcType="VARCHAR" property="weshopLogoImages"/>
+        <result column="weshop_manager_name" jdbcType="VARCHAR" property="weshopManagerName"/>
+        <result column="weshop_manager_id" jdbcType="BIGINT" property="weshopManagerId"/>
+        <result column="weshop_contact_type" jdbcType="VARCHAR" property="weshopContactType"/>
+
+        <result column="weshop_province" jdbcType="VARCHAR" property="weshopProvince"/>
+        <result column="weshop_city" jdbcType="VARCHAR" property="weshopCity"/>
+        <result column="weshop_zone" jdbcType="VARCHAR" property="weshopZone"/>
+        <result column="weshop_address" jdbcType="VARCHAR" property="weshopAddress"/>
+
+        <result column="business_category" jdbcType="VARCHAR" property="businessCategory"/>
+        <result column="weshop_images" jdbcType="VARCHAR" property="weshopImages"/>
+        <result column="weshop_notice" jdbcType="VARCHAR" property="weshopNotice"/>
+        <result column="is_open_weshop_notice" jdbcType="BIT" property="isOpenWeshopNotice"/>
+        <result column="weshop_status" jdbcType="BIT" property="weshopStatus"/>
+        <result column="is_deleted_weshop" jdbcType="BIT" property="isDeletedWeshop"/>
+        <result column="print_ip" jdbcType="VARCHAR" property="printIp"/>
+        <result column="print_port" jdbcType="VARCHAR" property="printPort"/>
+        <result column="is_has_weshop" jdbcType="BIT" property="isHasWeshop"/>
+        <result column="is_default" property="isDefault"/>
+
+        <result column="attributes" property="attributes"/>
+        <result column="is_public" property="isPublic"/>
+        <result column="alipay_account_name" property="alipayAccountName"/>
+        <result column="alipay_receipt_qrcode" property="alipayReceiptQrcode"/>
+        <result column="alipay_receipt_qrcode_content" property="alipayReceiptQrcodeContent"/>
+        <result column="wechat_account_name" property="wechatAccountName"/>
+        <result column="wechat_account_qrcode" property="wechatAccountQrcode"/>
+        <result column="wechat_account_qrcode_content" property="wechatAccountQrcodeContent"/>
+        <result column="wechat_receipt_qrcode" property="wechatReceiptQrcode"/>
+        <result column="wechat_receipt_qrcode_content" property="wechatReceiptQrcodeContent"/>
+        <result column="forbidden" property="forbidden"/>
+        <result column="expire_date" property="expireDate"/>
+        <result column="pay_remark" property="payRemark"/>
+        <result column="pay_remark_user_name" property="payRemarkUserName"/>
+        <result column="pay_remark_user_id" property="payRemarkUserId"/>
+        <result column="pay_remark_time" property="payRemarkTime"/>
+        <result column="version" property="version"/>
+        <result column="expire_status" property="expireStatus"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    store_id, store_no, store_name, store_region_id, store_region_name, area_id, province,
+    city, zone, address, store_acreage, zip, store_phone,store_tel,store_contact, store_type,
+    is_valid, create_time, close_time, business_hours, online, location, logo_url, comp_id,
+    admin_person_id, status, manage_pattern, channel_type, sort, description, Online_show_sales,
+    Online_show_stocks, Online_Reduce_after_payed, created_at, updated_at, created_person_id,
+    updated_person_id, is_deleted,print_ip,print_port,expire_status,
+    updated_person_id, is_deleted,weshop_name,weshop_logo_images,weshop_manager_name,weshop_manager_id,
+    weshop_contact_type,business_category,weshop_images,weshop_notice,is_open_weshop_notice,
+    weshop_status,is_deleted_weshop,print_ip,print_port,is_has_weshop,is_default,weshop_province,
+    weshop_city, weshop_zone, weshop_address,attributes,is_public,forbidden,attributes,
+      alipay_account_name,alipay_account_qrcode,alipay_account_qrcode_content,alipay_receipt_qrcode,alipay_receipt_qrcode_content,
+      wechat_account_name,wechat_account_qrcode,wechat_account_qrcode_content,
+      wechat_receipt_qrcode,wechat_receipt_qrcode_content,expire_date,pay_remark,pay_remark_user_name,pay_remark_user_id,pay_remark_time,version
+  </sql>
+
+    <select id="selectByStoreIdAndCompId" parameterType="com.ihappy.store.domain.dbdo.store.BaseinfoCompanyStore"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company_store
+        where comp_id = #{compId} and store_id = #{storeId} and is_deleted = 0
+    </select>
+
+    <select id="queryStoreInfoByInfoList" parameterType="com.ihappy.store.domain.bo.store.StoreInfoQueryBO"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company_store
+        where comp_id = #{compId} and is_deleted = 0
+        <if test="defaultFlag != null">
+            and is_default = #{defaultFlag}
+        </if>
+    </select>
+
+    <update id="updatePrintIpAndPort" parameterType="com.ihappy.store.domain.dbdo.store.BaseinfoCompanyStore">
+        update baseinfo_company_store
+        <set>
+            <if test="printIp != null">
+                print_ip = #{printIp},
+            </if>
+            <if test="printPort != null">
+                print_port = #{printPort},
+            </if>
+        </set>
+        where comp_id = #{compId} and store_id = #{storeId} and is_deleted = 0
+    </update>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company_store
+        where store_id = #{storeId,jdbcType=BIGINT} and is_deleted = 0
+    </select>
+
+    <select id="selectByStoreIds" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company_store
+        where is_deleted = 0
+        <if test="storeIds != null and storeIds.size > 0">
+            and store_id in
+            <foreach collection="storeIds" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="selectSelective" resultMap="BaseResultMap"
+            parameterType="com.ihappy.store.domain.dbdo.store.BaseinfoCompanyStore">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company_store where 1 = 1
+        <if test="storeId != null">
+            and store_id = #{storeId}
+        </if>
+        <if test="storeNo != null">
+            and store_no = #{storeNo,jdbcType=VARCHAR}
+        </if>
+        <if test="storeName != null">
+            and store_name = #{storeName,jdbcType=VARCHAR}
+        </if>
+        <if test="storeRegionId != null">
+            and store_region_id = #{storeRegionId,jdbcType=INTEGER}
+        </if>
+        <if test="storeRegionName != null">
+            and store_region_name = #{storeRegionName,jdbcType=VARCHAR}
+        </if>
+        <if test="areaId != null">
+            and area_id = #{areaId,jdbcType=INTEGER}
+        </if>
+        <if test="province != null">
+            and province = #{province,jdbcType=VARCHAR}
+        </if>
+        <if test="city != null">
+            and city = #{city,jdbcType=VARCHAR}
+        </if>
+        <if test="zone != null">
+            and zone = #{zone,jdbcType=VARCHAR}
+        </if>
+        <if test="address != null">
+            and address = #{address,jdbcType=VARCHAR}
+        </if>
+        <if test="storeAcreage != null">
+            and store_acreage = #{storeAcreage,jdbcType=INTEGER}
+        </if>
+        <if test="zip != null">
+            and zip = #{zip,jdbcType=VARCHAR}
+        </if>
+        <if test="storePhone != null">
+            and store_phone = #{storePhone,jdbcType=VARCHAR}
+        </if>
+        <if test="storeTel != null">
+            and store_tel = #{storeTel,jdbcType=VARCHAR}
+        </if>
+        <if test="storeContact != null">
+            and store_contact = #{storeContact,jdbcType=VARCHAR}
+        </if>
+        <if test="storeType != null">
+            and store_type = #{storeType,jdbcType=BIT}
+        </if>
+        <if test="isValid != null">
+            and is_valid = #{isValid,jdbcType=BIT}
+        </if>
+        <if test="createTime != null">
+            and create_time = #{createTime,jdbcType=INTEGER}
+        </if>
+        <if test="closeTime != null">
+            and close_time = #{closeTime,jdbcType=INTEGER}
+        </if>
+        <if test="businessHours != null">
+            and business_hours = #{businessHours,jdbcType=VARCHAR}
+        </if>
+        <if test="online != null">
+            and online = #{online,jdbcType=BIT}
+        </if>
+        <if test="location != null">
+            and location = #{location,jdbcType=VARCHAR}
+        </if>
+        <if test="logoUrl != null">
+            and logo_url = #{logoUrl,jdbcType=VARCHAR}
+        </if>
+        <if test="compId != null">
+            and comp_id = #{compId,jdbcType=INTEGER}
+        </if>
+        <if test="adminPersonId != null">
+            and admin_person_id = #{adminPersonId}
+        </if>
+        <if test="status != null">
+            and status = #{status,jdbcType=INTEGER}
+        </if>
+        <if test="managePattern != null">
+            and manage_pattern = #{managePattern,jdbcType=INTEGER}
+        </if>
+        <if test="channelType != null">
+            and channel_type = #{channelType,jdbcType=BIT}
+        </if>
+        <if test="sort != null">
+            and sort = #{sort,jdbcType=INTEGER}
+        </if>
+        <if test="description != null">
+            and description = #{description,jdbcType=VARCHAR}
+        </if>
+        <if test="onlineShowSales != null">
+            and Online_show_sales = #{onlineShowSales,jdbcType=BIT}
+        </if>
+        <if test="onlineShowStocks != null">
+            and Online_show_stocks = #{onlineShowStocks,jdbcType=BIT}
+        </if>
+        <if test="onlineReduceAfterPayed != null">
+            and Online_Reduce_after_payed = #{onlineReduceAfterPayed,jdbcType=BIT}
+        </if>
+        <if test="createdAt != null">
+            and created_at = #{createdAt,jdbcType=BIGINT}
+        </if>
+        <if test="updatedAt != null">
+            and updated_at = #{updatedAt,jdbcType=BIGINT}
+        </if>
+        <if test="createdPersonId != null">
+            and created_person_id = #{createdPersonId,jdbcType=BIGINT}
+        </if>
+        <if test="updatedPersonId != null">
+            and updated_person_id = #{updatedPersonId,jdbcType=BIGINT}
+        </if>
+        <if test="isDeleted != null">
+            and is_deleted = #{isDeleted,jdbcType=BIT}
+        </if>
+        <if test="weshopName != null">
+            and weshop_name = #{weshopName,jdbcType=VARCHAR}
+        </if>
+        <if test="weshopLogoImages != null">
+            and weshop_logo_images = #{weshopLogoImages,jdbcType=VARCHAR}
+        </if>
+        <if test="weshopManagerName != null">
+            and weshop_manager_name = #{weshopManagerName,jdbcType=VARCHAR}
+        </if>
+        <if test="weshopManagerId != null">
+            and weshop_manager_id = #{weshopName,jdbcType=BIGINT}
+        </if>
+        <if test="weshopContactType != null">
+            and weshop_contact_type = #{weshopContactType,jdbcType=VARCHAR}
+        </if>
+        <if test="businessCategory != null">
+            and business_category = #{businessCategory,jdbcType=VARCHAR}
+        </if>
+        <if test="weshopImages != null">
+            and weshop_images = #{weshopImages,jdbcType=VARCHAR}
+        </if>
+        <if test="weshopNotice != null">
+            and weshop_notice = #{weshopNotice,jdbcType=VARCHAR}
+        </if>
+        <if test="isOpenWeshopNotice != null">
+            and is_open_weshop_notice = #{isOpenWeshopNotice,jdbcType=BIT}
+        </if>
+        <if test="weshopStatus != null">
+            and weshop_status = #{weshopStatus,jdbcType=BIT}
+        </if>
+        <if test="isDeletedWeshop != null">
+            and is_deleted_weshop = #{isDeletedWeshop,jdbcType=BIT}
+        </if>
+        <if test="printIp != null">
+            and print_ip = #{printIp,jdbcType=VARCHAR}
+        </if>
+        <if test="printPort != null">
+            and print_port = #{printPort,jdbcType=VARCHAR}
+        </if>
+        <if test="isHasWeshop != null">
+            and is_has_weshop = #{isHasWeshop,jdbcType=BIT}
+        </if>
+        <if test="isDefault != null">
+            and is_default = #{isDefault}
+        </if>
+        <if test="attributes != null">
+            and attributes = #{attributes}
+        </if>
+        <if test="isPublic != null">
+            and is_public = #{isPublic}
+        </if>
+        <if test="storeNameSearch != null and storeNameSearch != ''">
+            and store_name like CONCAT(#{storeNameSearch},'%')
+        </if>
+        <if test="expireDate != null">
+            and expire_date = #{expireDate}
+        </if>
+        <if test="payRemark != null and payRemark != ''">
+            and pay_remark = #{payRemark}
+        </if>
+        <if test="payRemarkUserName != null and payRemarkUserName != ''">
+            and pay_remark_user_name = #{payRemarkUserName}
+        </if>
+        <if test="payRemarkUserId != null">
+            and pay_remark_user_id = #{payRemarkUserId}
+        </if>
+        <if test="payRemarkTime != null">
+            and pay_remark_time = #{payRemarkTime}
+        </if>
+        <if test="alipayAccountName">
+            and alipay_account_name = #{alipayAccountName}
+        </if>
+        <if test="alipayReceiptQrcode!=null">
+            and alipay_receipt_qrcode = #{alipayReceiptQrcode}
+        </if>
+        <if test="alipayReceiptQrcodeContent!=null">
+            and alipay_receipt_qrcode_content = #{alipayReceiptQrcodeContent}
+        </if>
+        <if test="wechatAccountName!=null">
+            and wechat_account_name = #{wechatAccountName}
+        </if>
+        <if test="wechatAccountQrcode!=null">
+            and wechat_account_qrcode = #{wechatAccountQrcode}
+        </if>
+        <if test="wechatAccountQrcodeContent!=null">
+            and wechat_account_qrcode_content = #{wechatAccountQrcodeContent}
+        </if>
+        <if test="wechatReceiptQrcode!=null">
+            and wechat_receipt_qrcode = #{wechatReceiptQrcode}
+        </if>
+        <if test="wechatReceiptQrcodeContent!=null">
+            and wechat_receipt_qrcode_content = #{wechatReceiptQrcodeContent}
+        </if>
+        <if test="version != null">
+            and version = #{version}
+        </if>
+        <if test="forbidden != null">
+            and forbidden = #{forbidden}
+        </if>
+    </select>
+
+    <select id="selectByCompIdAndStoreIds" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company_store
+        where comp_id = #{compId} and is_deleted = 0
+        <if test="forbidden != null">
+            and forbidden=#{forbidden}
+        </if>
+        <if test="isPublic != null">
+            and is_public = #{isPublic}
+        </if>
+        <if test="storeIds != null and storeIds.size > 0">
+            and store_id in
+            <foreach collection="storeIds" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="storeNameSearch != null and storeNameSearch != ''">
+            and store_name like CONCAT(#{storeNameSearch},'%')
+        </if>
+        order by store_name
+    </select>
+
+    <select id="selectByCompId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company_store
+        where comp_id = #{compId} and is_deleted = 0
+        order by store_name
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from baseinfo_company_store
+    where store_id = #{storeId,jdbcType=BIGINT}
+  </delete>
+    <insert id="insertSelective" parameterType="com.ihappy.store.domain.dbdo.store.BaseinfoCompanyStore">
+        insert into baseinfo_company_store
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeNo != null">
+                store_no,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="storeRegionId != null">
+                store_region_id,
+            </if>
+            <if test="storeRegionName != null">
+                store_region_name,
+            </if>
+            <if test="areaId != null">
+                area_id,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="zone != null">
+                zone,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="storeAcreage != null">
+                store_acreage,
+            </if>
+            <if test="zip != null">
+                zip,
+            </if>
+            <if test="storePhone != null">
+                store_phone,
+            </if>
+            <if test="storeTel != null">
+                store_tel,
+            </if>
+            <if test="storeContact != null">
+                store_contact,
+            </if>
+            <if test="storeType != null">
+                store_type,
+            </if>
+            <if test="isValid != null">
+                is_valid,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="closeTime != null">
+                close_time,
+            </if>
+            <if test="businessHours != null">
+                business_hours,
+            </if>
+            <if test="online != null">
+                online,
+            </if>
+            <if test="location != null">
+                location,
+            </if>
+            <if test="logoUrl != null">
+                logo_url,
+            </if>
+            <if test="compId != null">
+                comp_id,
+            </if>
+            <if test="adminPersonId != null">
+                admin_person_id,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="managePattern != null">
+                manage_pattern,
+            </if>
+            <if test="channelType != null">
+                channel_type,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="onlineShowSales != null">
+                Online_show_sales,
+            </if>
+            <if test="onlineShowStocks != null">
+                Online_show_stocks,
+            </if>
+            <if test="onlineReduceAfterPayed != null">
+                Online_Reduce_after_payed,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="createdPersonId != null">
+                created_person_id,
+            </if>
+            <if test="updatedPersonId != null">
+                updated_person_id,
+            </if>
+            <if test="isDeleted != null">
+                is_deleted,
+            </if>
+            <if test="weshopName != null">
+                weshop_name,
+            </if>
+            <if test="weshopLogoImages != null">
+                weshop_logo_images,
+            </if>
+            <if test="weshopManagerName != null">
+                weshop_manager_name,
+            </if>
+            <if test="weshopManagerId != null">
+                weshop_manager_id,
+            </if>
+            <if test="weshopContactType != null">
+                weshop_contact_type,
+            </if>
+            <if test="businessCategory != null">
+                business_category,
+            </if>
+            <if test="weshopImages != null">
+                weshop_images,
+            </if>
+            <if test="weshopNotice != null">
+                weshop_notice,
+            </if>
+            <if test="isOpenWeshopNotice != null">
+                is_open_weshop_notice,
+            </if>
+            <if test="weshopStatus != null">
+                weshop_status,
+            </if>
+            <if test="isDeletedWeshop != null">
+                is_deleted_weshop,
+            </if>
+            <if test="printIp != null">
+                print_ip,
+            </if>
+            <if test="printPort != null">
+                print_port,
+            </if>
+            <if test="isHasWeshop != null">
+                is_has_weshop,
+            </if>
+            <if test="isDefault != null">
+                is_default,
+            </if>
+            <if test="weshopProvince != null">
+                weshop_province,
+            </if>
+            <if test="weshopCity != null">
+                weshop_city,
+            </if>
+            <if test="weshopZone != null">
+                weshop_zone,
+            </if>
+            <if test="weshopAddress != null">
+                weshop_address,
+            </if>
+            <if test="attributes != null">
+                attributes,
+            </if>
+            <if test="isPublic != null">
+                is_public,
+            </if>
+            <if test="expireDate != null">
+                expire_date,
+            </if>
+            <if test="payRemark != null and payRemark != ''">
+                pay_remark,
+            </if>
+            <if test="payRemarkUserName != null and payRemarkUserName != ''">
+                pay_remark_user_name,
+            </if>
+            <if test="payRemarkUserId != null">
+                pay_remark_user_id,
+            </if>
+            <if test="payRemarkTime != null">
+                pay_remark_time,
+            </if>
+            <if test="alipayAccountName != null">
+                alipay_account_name,
+            </if>
+            <if test="alipayReceiptQrcode!=null">
+                alipay_receipt_qrcode,
+            </if>
+            <if test="alipayReceiptQrcodeContent!=null">
+                alipay_receipt_qrcode_content,
+            </if>
+            <if test="wechatAccountName!=null">
+                wechat_account_name,
+            </if>
+            <if test="wechatAccountQrcode!=null">
+                wechat_account_qrcode,
+            </if>
+            <if test="wechatAccountQrcodeContent!=null">
+                wechat_account_qrcode_content,
+            </if>
+            <if test="wechatReceiptQrcode!=null">
+                wechat_receipt_qrcode,
+            </if>
+            <if test="wechatReceiptQrcodeContent!=null">
+                wechat_receipt_qrcode_content,
+            </if>
+            <if test="version != null">
+                version
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="storeId != null">
+                #{storeId,jdbcType=BIGINT},
+            </if>
+            <if test="storeNo != null">
+                #{storeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="storeRegionId != null">
+                #{storeRegionId,jdbcType=INTEGER},
+            </if>
+            <if test="storeRegionName != null">
+                #{storeRegionName,jdbcType=VARCHAR},
+            </if>
+            <if test="areaId != null">
+                #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="zone != null">
+                #{zone,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="storeAcreage != null">
+                #{storeAcreage,jdbcType=INTEGER},
+            </if>
+            <if test="zip != null">
+                #{zip,jdbcType=VARCHAR},
+            </if>
+            <if test="storePhone != null">
+                #{storePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="storeTel != null">
+                #{storeTel,jdbcType=VARCHAR},
+            </if>
+            <if test="storeContact != null">
+                #{storeContact,jdbcType=VARCHAR},
+            </if>
+            <if test="storeType != null">
+                #{storeType,jdbcType=BIT},
+            </if>
+            <if test="isValid != null">
+                #{isValid,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=INTEGER},
+            </if>
+            <if test="closeTime != null">
+                #{closeTime,jdbcType=INTEGER},
+            </if>
+            <if test="businessHours != null">
+                #{businessHours,jdbcType=VARCHAR},
+            </if>
+            <if test="online != null">
+                #{online,jdbcType=BIT},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="logoUrl != null">
+                #{logoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="compId != null">
+                #{compId,jdbcType=INTEGER},
+            </if>
+            <if test="adminPersonId != null">
+                #{adminPersonId},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="managePattern != null">
+                #{managePattern,jdbcType=INTEGER},
+            </if>
+            <if test="channelType != null">
+                #{channelType,jdbcType=BIT},
+            </if>
+            <if test="sort != null">
+                #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="onlineShowSales != null">
+                #{onlineShowSales,jdbcType=BIT},
+            </if>
+            <if test="onlineShowStocks != null">
+                #{onlineShowStocks,jdbcType=BIT},
+            </if>
+            <if test="onlineReduceAfterPayed != null">
+                #{onlineReduceAfterPayed,jdbcType=BIT},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=BIGINT},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=BIGINT},
+            </if>
+            <if test="createdPersonId != null">
+                #{createdPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="updatedPersonId != null">
+                #{updatedPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="isDeleted != null">
+                #{isDeleted,jdbcType=BIT},
+            </if>
+            <if test="weshopName != null">
+                #{weshopName},
+            </if>
+            <if test="weshopLogoImages != null">
+                #{weshopLogoImages},
+            </if>
+            <if test="weshopManagerName != null">
+                #{weshopManagerName},
+            </if>
+            <if test="weshopManagerId != null">
+                #{weshopManagerId},
+            </if>
+            <if test="weshopContactType != null">
+                #{weshopContactType},
+            </if>
+            <if test="businessCategory != null">
+                #{businessCategory},
+            </if>
+            <if test="weshopImages != null">
+                #{weshopImages},
+            </if>
+            <if test="weshopNotice != null">
+                #{weshopNotice},
+            </if>
+            <if test="isOpenWeshopNotice != null">
+                #{isOpenWeshopNotice},
+            </if>
+            <if test="weshopStatus != null">
+                #{weshopStatus},
+            </if>
+            <if test="isDeletedWeshop != null">
+                #{isDeletedWeshop},
+            </if>
+            <if test="printIp != null">
+                #{printIp},
+            </if>
+            <if test="printPort != null">
+                #{printPort},
+            </if>
+            <if test="isHasWeshop != null">
+                #{isHasWeshop},
+            </if>
+            <if test="isDefault != null">
+                #{isDefault},
+            </if>
+            <if test="weshopProvince != null">
+                #{weshopProvince},
+            </if>
+            <if test="weshopCity != null">
+                #{weshopCity},
+            </if>
+            <if test="weshopZone != null">
+                #{weshopZone},
+            </if>
+            <if test="weshopAddress != null">
+                #{weshopAddress},
+            </if>
+            <if test="attributes != null">
+                #{attributes},
+            </if>
+            <if test="isPublic != null">
+                #{isPublic},
+            </if>
+            <if test="expireDate != null">
+                #{expireDate},
+            </if>
+            <if test="payRemark != null and payRemark != ''">
+                #{payRemark},
+            </if>
+            <if test="payRemarkUserName != null and payRemarkUserName != ''">
+                #{payRemarkUserName},
+            </if>
+            <if test="payRemarkUserId != null">
+                #{payRemarkUserId},
+            </if>
+            <if test="payRemarkTime != null">
+                #{payRemarkTime},
+            </if>
+
+            <if test="alipayAccountName != null">
+                #{alipayAccountName},
+            </if>
+            <if test="alipayReceiptQrcode!=null">
+                #{alipayReceiptQrcode},
+            </if>
+            <if test="alipayReceiptQrcodeContent!=null">
+                #{alipayReceiptQrcodeContent},
+            </if>
+            <if test="wechatAccountName!=null">
+                #{wechatAccountName},
+            </if>
+            <if test="wechatAccountQrcode!=null">
+                #{wechatAccountQrcode},
+            </if>
+            <if test="wechatAccountQrcodeContent!=null">
+                #{wechatAccountQrcodeContent},
+            </if>
+            <if test="wechatReceiptQrcode!=null">
+                #{wechatReceiptQrcode},
+            </if>
+            <if test="wechatReceiptQrcodeContent!=null">
+                #{wechatReceiptQrcodeContent}
+            </if>
+            <if test="version != null">
+                #{version}
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ihappy.store.domain.dbdo.store.BaseinfoCompanyStore">
+        update baseinfo_company_store
+        <set>
+            <if test="storeNo != null">
+                store_no = #{storeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="storeRegionId != null">
+                store_region_id = #{storeRegionId,jdbcType=INTEGER},
+            </if>
+            <if test="storeRegionName != null">
+                store_region_name = #{storeRegionName,jdbcType=VARCHAR},
+            </if>
+            <if test="areaId != null">
+                area_id = #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="zone != null">
+                zone = #{zone,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="storeAcreage != null">
+                store_acreage = #{storeAcreage,jdbcType=INTEGER},
+            </if>
+            <if test="zip != null">
+                zip = #{zip,jdbcType=VARCHAR},
+            </if>
+            <if test="storePhone != null">
+                store_phone = #{storePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="storeTel != null">
+                store_tel = #{storeTel,jdbcType=VARCHAR},
+            </if>
+            <if test="storeContact != null">
+                store_contact = #{storeContact,jdbcType=VARCHAR},
+            </if>
+            <if test="storeType != null">
+                store_type = #{storeType,jdbcType=BIT},
+            </if>
+            <if test="isValid != null">
+                is_valid = #{isValid,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=INTEGER},
+            </if>
+            <if test="closeTime != null">
+                close_time = #{closeTime,jdbcType=INTEGER},
+            </if>
+            <if test="businessHours != null">
+                business_hours = #{businessHours,jdbcType=VARCHAR},
+            </if>
+            <if test="online != null">
+                online = #{online,jdbcType=BIT},
+            </if>
+            <if test="location != null">
+                location = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="logoUrl != null">
+                logo_url = #{logoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="adminPersonId != null">
+                admin_person_id = #{adminPersonId},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="managePattern != null">
+                manage_pattern = #{managePattern,jdbcType=INTEGER},
+            </if>
+            <if test="channelType != null">
+                channel_type = #{channelType,jdbcType=BIT},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="onlineShowSales != null">
+                Online_show_sales = #{onlineShowSales,jdbcType=BIT},
+            </if>
+            <if test="onlineShowStocks != null">
+                Online_show_stocks = #{onlineShowStocks,jdbcType=BIT},
+            </if>
+            <if test="onlineReduceAfterPayed != null">
+                Online_Reduce_after_payed = #{onlineReduceAfterPayed,jdbcType=BIT},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=BIGINT},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=BIGINT},
+            </if>
+            <if test="createdPersonId != null">
+                created_person_id = #{createdPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="updatedPersonId != null">
+                updated_person_id = #{updatedPersonId,jdbcType=BIGINT},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=BIT},
+            </if>
+            <if test="weshopName != null">
+                weshop_name = #{weshopName,jdbcType=VARCHAR},
+            </if>
+            <if test="weshopLogoImages != null">
+                weshop_logo_images = #{weshopLogoImages,jdbcType=VARCHAR},
+            </if>
+            <if test="weshopManagerName != null">
+                weshop_manager_name = #{weshopManagerName,jdbcType=VARCHAR},
+            </if>
+            <if test="weshopManagerId != null">
+                weshop_manager_id = #{weshopManagerId,jdbcType=BIGINT},
+            </if>
+            <if test="weshopContactType != null">
+                weshop_contact_type = #{weshopContactType,jdbcType=VARCHAR},
+            </if>
+            <if test="businessCategory != null">
+                business_category = #{businessCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="weshopImages != null">
+                weshop_images = #{weshopImages,jdbcType=VARCHAR},
+            </if>
+            <if test="weshopNotice != null">
+                weshop_notice = #{weshopNotice,jdbcType=VARCHAR},
+            </if>
+            <if test="isOpenWeshopNotice != null">
+                is_open_weshop_notice = #{isOpenWeshopNotice,jdbcType=BIT},
+            </if>
+            <if test="weshopStatus != null">
+                weshop_status = #{weshopStatus,jdbcType=BIT},
+            </if>
+            <if test="isDeletedWeshop != null">
+                is_deleted_weshop = #{isDeletedWeshop,jdbcType=BIT},
+            </if>
+            <if test="printIp != null">
+                print_ip = #{printIp,jdbcType=VARCHAR},
+            </if>
+            <if test="printPort != null">
+                print_port = #{printPort,jdbcType=VARCHAR},
+            </if>
+            <if test="isHasWeshop != null">
+                is_has_weshop = #{isHasWeshop,jdbcType=BIT},
+            </if>
+            <if test="isDefault != null">
+                is_default = #{isDefault},
+            </if>
+            <if test="weshopProvince != null">
+                weshop_province = #{weshopProvince},
+            </if>
+            <if test="weshopCity != null">
+                weshop_city = #{weshopCity},
+            </if>
+            <if test="weshopZone != null">
+                weshop_zone = #{weshopZone},
+            </if>
+            <if test="weshopAddress != null">
+                weshop_address = #{weshopAddress},
+            </if>
+            <if test="attributes != null">
+                attributes = #{attributes},
+            </if>
+            <if test="isPublic != null">
+                is_public = #{isPublic},
+            </if>
+            <if test="forbidden != null">
+                forbidden = #{forbidden},
+            </if>
+            <if test="expireDate != null">
+                expire_date = #{expireDate},
+            </if>
+            <if test="payRemark != null and payRemark != ''">
+                pay_remark = #{payRemark},
+            </if>
+            <if test="payRemarkUserName != null and payRemarkUserName != ''">
+                pay_remark_user_name = #{payRemarkUserName},
+            </if>
+            <if test="payRemarkUserId != null">
+                pay_remark_user_id = #{payRemarkUserId},
+            </if>
+            <if test="payRemarkTime != null">
+                pay_remark_time = #{payRemarkTime},
+            </if>
+            <if test="alipayAccountName != null">
+                alipay_account_name=#{alipayAccountName},
+            </if>
+            <if test="alipayReceiptQrcode!=null">
+                alipay_receipt_qrcode=#{alipayReceiptQrcode},
+            </if>
+            <if test="alipayReceiptQrcodeContent!=null">
+                alipay_receipt_qrcode_content=#{alipayReceiptQrcodeContent},
+            </if>
+            <if test="wechatAccountName!=null">
+                wechat_account_name=#{wechatAccountName},
+            </if>
+            <if test="wechatAccountQrcode!=null">
+                wechat_account_qrcode=#{wechatAccountQrcode},
+            </if>
+            <if test="wechatAccountQrcodeContent!=null">
+                wechat_account_qrcode_content=#{wechatAccountQrcodeContent},
+            </if>
+            <if test="wechatReceiptQrcode!=null">
+                wechat_receipt_qrcode=#{wechatReceiptQrcode},
+            </if>
+            <if test="wechatReceiptQrcodeContent!=null">
+                wechat_receipt_qrcode_content=#{wechatReceiptQrcodeContent},
+            </if>
+            <if test="version != null">
+                version = #{version},
+            </if>
+        </set>
+        where store_id = #{storeId,jdbcType=BIGINT} and comp_id = #{compId}
+    </update>
+
+    <select id="selectCompanyStoreWeshopByIds"
+            parameterType="com.ihappy.store.domain.bo.store.CompanyStoreListQueryByStoreIdsReqBo"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company_store
+        where 1 = 1
+        <if test="storeIds != null and storeIds.size > 0">
+            and store_id in
+            <foreach collection="storeIds" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="compId != null">
+            and comp_id = #{compId,jdbcType=INTEGER}
+        </if>
+        <if test="weshopStatus != null">
+            and weshop_status = #{weshopStatus}
+        </if>
+        <if test="limit != null and offset != null ">
+            limit #{limit} offset #{offset}
+        </if>
+    </select>
+
+    <select id="queryStoreByStoreName" parameterType="com.ihappy.store.domain.dbdo.store.BaseinfoCompanyStore"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company_store
+        where comp_id = #{compId} and store_name = #{storeName}
+    </select>
+    <!--删除门店-->
+    <update id="deleteCompanyStore" parameterType="com.ihappy.store.domain.dbdo.store.BaseinfoCompanyStore">
+        update baseinfo_company_store
+        <set>
+            is_deleted = 1,
+            updated_at = #{updatedAt},
+            updated_person_id = #{updatedPersonId}
+        </set>
+        where comp_id = #{compId} and store_id = #{storeId} and is_deleted = 0
+    </update>
+
+
+    <select id="checkStoreNameIsExist" parameterType="com.ihappy.store.domain.bo.store.CheckStoreNameBO"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company_store
+        where
+        comp_id = #{compId}
+        and store_name = #{storeName}
+        <if test="deleteFlag != null">
+            and is_deleted = #{deleteFlag}
+        </if>
+        <if test="storeId != null">
+            and store_id != #{storeId}
+        </if>
+    </select>
+    <select id="selectStoreList" parameterType="com.ihappy.store.domain.dto.request.store.StoreListQueryReqDTO"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from baseinfo_company_store
+        where comp_id = #{loginCompId} and is_deleted = 0
+    </select>
+    <select id="selectStoreNamesByCompId" parameterType="com.ihappy.store.domain.bo.store.StoreNamesQueryBO"
+                resultType="java.lang.String">
+        select store_name from baseinfo_company_store where comp_id = #{compId} and is_deleted = 0;
+    </select>
+    <update id="updateStoreExpireDate" parameterType="com.ihappy.store.domain.bo.store.UpdateStoreExpireDateBO">
+        update baseinfo_company_store
+        <set>
+            expire_date = #{expireDate},
+            expire_status = #{expireStatus},
+            updated_at = #{updatedAt},
+            updated_person_id = #{updatedPersonId},
+            version = version+1
+        </set>
+        where comp_id = #{compId} and store_id = #{storeId} and is_deleted = 0 and version=#{version}
+    </update>
+    <update id="updateStoreState" parameterType="com.ihappy.store.domain.bo.store.StoreInfoBO">
+        update baseinfo_company_store
+        <set>
+            forbidden = #{forbidden} ,
+            updated_at = #{updatedAt},
+            updated_person_id = #{updatedPersonId}
+        </set>
+        where comp_id = #{compId} and store_id = #{storeId} and is_deleted = 0
+    </update>
+
+    <select id="queryStoreNames" parameterType="com.ihappy.store.domain.bo.store.StoreInfoBO" resultMap="BaseResultMap">
+        select store_name from baseinfo_company_store where comp_id = #{compId} and is_deleted = 0 order by created_at desc
+    </select>
+
+    <select id="selectStorePayCount" parameterType="com.ihappy.store.domain.bo.store.StoreInfoQueryBO"
+            resultType="java.lang.Integer">
+        select count(*) from
+        (select * from baseinfo_company_store where is_deleted = 0) s,
+        (select * from baseinfo_company where is_deleted = 0) c where s.comp_id = c.comp_id
+        <if test="compId != null">
+            and c.comp_id = #{compId}
+        </if>
+        <if test="storeId">
+            and s.store_id = #{storeId}
+        </if>
+        <if test="registerStartTime != null">
+            and s.created_at &gt;= #{registerStartTime}
+        </if>
+        <if test="registerEndTime != null">
+            and s.created_at &lt;= #{registerEndTime}
+        </if>
+        <if test="compShortName != null and compShortName != ''">
+            and (c.comp_short_name like CONCAT('%',#{compShortName},'%') or c.comp_id = #{compShortName})
+        </if>
+        <if test="storeName != null and storeName != ''">
+            and (s.store_name like CONCAT(#{storeName},'%') or s.store_id = #{storeName})
+        </if>
+        <if test="bossMobile != null and bossMobile != ''">
+            and c.admin_person_mobile like CONCAT(#{bossMobile},'%')
+        </if>
+        <if test="startValidTime != null">
+            and s.expire_date &gt;= #{startValidTime}
+        </if>
+        <if test="endValidTime != null">
+            and s.expire_date &lt;= #{endValidTime}
+        </if>
+        <if test="status != null">
+            and c.status = #{status}
+        </if>
+        <if test="expireStatus != null">
+            and s.expire_status = #{expireStatus}
+        </if>
+        <if test="ctIds != null and ctIds != ''">
+            and find_in_set(#{ctIds},c.ct_ids)
+        </if>
+        <if test="payRemarkUserId != null">
+            and c.pay_remark_user_id = #{payRemarkUserId}
+        </if>
+        <if test="payRemarkUserName != null and payRemarkUserName != ''">
+            and s.pay_remark_user_name like CONCAT(#{payRemarkUserName},'%')
+        </if>
+    </select>
+
+    <select id="selectStorePayPage" parameterType="com.ihappy.store.domain.bo.store.StoreInfoQueryBO"
+            resultType="com.ihappy.store.domain.bo.store.StoreInfoBO">
+        select
+        s.store_id,s.store_name,s.comp_id,s.created_at,s.expire_date,s.expire_status,s.pay_remark_user_name,s.pay_remark_user_id,s.pay_remark_time,s.pay_remark,s.updated_at,s.updated_person_id,
+        c.comp_short_name,c.ct_ids,c.admin_person_mobile,c.status,c.ct_names,c.comp_id
+        from
+        (select * from baseinfo_company_store where is_deleted = 0 order by expire_date) s,
+        (select * from baseinfo_company where is_deleted = 0) c where s.comp_id = c.comp_id
+        <if test="compId != null">
+            and c.comp_id = #{compId}
+        </if>
+        <if test="storeId">
+            and s.store_id = #{storeId}
+        </if>
+        <if test="registerStartTime != null">
+            and s.created_at &gt;= #{registerStartTime}
+        </if>
+        <if test="registerEndTime != null">
+            and s.created_at &lt;= #{registerEndTime}
+        </if>
+        <if test="compShortName != null and compShortName != ''">
+            and (c.comp_short_name like CONCAT('%',#{compShortName},'%') or c.comp_id = #{compShortName})
+        </if>
+        <if test="storeName != null and storeName != ''">
+            and (s.store_name like CONCAT(#{storeName},'%') or s.store_id = #{storeName})
+        </if>
+        <if test="bossMobile != null and bossMobile != ''">
+            and c.admin_person_mobile like CONCAT(#{bossMobile},'%')
+        </if>
+        <if test="startValidTime != null">
+            and s.expire_date &gt;= #{startValidTime}
+        </if>
+        <if test="endValidTime != null">
+            and s.expire_date &lt;= #{endValidTime}
+        </if>
+        <if test="status != null">
+            and c.status = #{status}
+        </if>
+        <if test="expireStatus != null">
+            and s.expire_status = #{expireStatus}
+        </if>
+        <if test="ctIds != null and ctIds != ''">
+            and find_in_set(#{ctIds},c.ct_ids)
+        </if>
+        <if test="payRemarkUserId != null">
+            and c.pay_remark_user_id = #{payRemarkUserId}
+        </if>
+        <if test="payRemarkUserName != null and payRemarkUserName != ''">
+            and s.pay_remark_user_name like CONCAT(#{payRemarkUserName},'%')
+        </if>
+        limit #{limit} offset #{offset}
+    </select>
+</mapper>

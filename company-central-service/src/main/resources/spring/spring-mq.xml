@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       		           http://www.springframework.org/schema/beans/spring-beans.xsd"
+>
+    <bean id="declareConfig" class="com.ihappy.rabbitmq.config.ListenerDeclareConfig">
+        <property name="addresses" value="${rabbit.mq.address}"/>
+        <property name="username" value="${rabbit.mq.username}"/>
+        <property name="password" value="${rabbit.mq.password}"/>
+        <property name="environment" value="${rabbit.mq.environment}"/>
+        <property name="version" value="${rabbit.mq.version}"/>
+        <property name="target" value="${rabbit.mq.target}"/>
+        <property name="declares">
+            <list>
+                <map>
+                    <entry key="routingKey" value="company"/>
+                    <entry key="queues" value="company"/>
+                </map>
+            </list>
+        </property>
+        <property name="prefetch" value="25"/>
+    </bean>
+    <!--生产者-->
+    <bean id="rabbitHelper" class="com.ihappy.rabbitmq.RabbitHelper">
+        <constructor-arg name="declareConfig" ref="declareConfig"/>
+    </bean>
+    <!--消费者-->
+    <bean class="com.ihappy.rabbitmq.listener.UniversalMessageListener">
+        <constructor-arg name="declareConfig" ref="declareConfig"/>
+        <property name="handlers">
+            <list>
+                <bean class="com.ihappy.communal.infrastructure.mq.consumer.impl.PartnerOrderStatisticConsumerImpl"/>
+                <bean class="com.ihappy.communal.infrastructure.mq.consumer.impl.OrderModifiedConsumerImpl"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

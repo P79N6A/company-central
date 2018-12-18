@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eweb>
+    <config antisamyxml="antisamy-anythinggoes.xml" xsssecurity="true" >
+
+    </config>
+    <pipeLines>
+        <pipeLine id="securityPipeLine"></pipeLine>
+    </pipeLines>
+    <ignores >
+        <ignore page="/error/timeOut.htm"></ignore>
+        <ignore page="/error/systemError.htm"></ignore>
+        <ignore page="/error/error.htm"></ignore>
+    </ignores>
+    <notIgnores>
+        <notIgnore regular="^[\w\W]*/rest/[\w\W]*$"></notIgnore>
+    </notIgnores>
+    <staticResources>
+        <resource regular="^[\w\W]*\\.js$"></resource>
+        <resource regular="^[\w\W]*\\.css$"></resource>
+        <resource regular="^[\w\W]*\\.gif$"></resource>
+        <resource regular="^[\w\W]*\\.png$"></resource>
+    </staticResources>
+    <redirectConfigs>
+        <redirect regular="^[\w\W]*/rest/[\w\W]*$" requestVm="" moduleName=""></redirect>
+    </redirectConfigs>
+    <errorPages>
+        <errorPage page="/error/error.htm" errorCode="default" default="true"></errorPage>
+        <errorPage page="/error/timeOut.htm" errorCode="SESSION_TIME_OUT"></errorPage>
+        <errorPage page="/error/systemError.htm" errorCode="SYSTEM_ERROR"></errorPage>
+    </errorPages>
+</eweb>

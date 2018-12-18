@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>company-central</artifactId>
+        <groupId>com.ihappy</groupId>
+        <version>1.0.0.SNAPSHOT</version>
+    </parent>
+    <groupId>com.ihappy</groupId>
+    <artifactId>company-central-client</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <!-- SpringFramework start -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-instrument</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+        </dependency>
+        <!-- SpringFramework end -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+
+
+        <!-- ihappy start -->
+        <dependency>
+            <groupId>com.ihappy</groupId>
+            <artifactId>myredis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ihappy</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ihappy</groupId>
+            <artifactId>eweb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ihappy</groupId>
+            <artifactId>config-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.konglong</groupId>
+            <artifactId>dragon-dubbo</artifactId>
+        </dependency>
+        <!-- ihappy end -->
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ihappy</groupId>
+            <artifactId>gateway-client</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ihappy</groupId>
+            <artifactId>usop-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.konglong</groupId>
+            <artifactId>dragon-dubbo</artifactId>
+        </dependency>
+    </dependencies>
+</project>

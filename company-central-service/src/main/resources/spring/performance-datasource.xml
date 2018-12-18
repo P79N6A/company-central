@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xmlns:sharding="http://shardingjdbc.io/schema/shardingjdbc/sharding"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       		           http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd
+  http://shardingjdbc.io/schema/shardingjdbc/sharding
+                        http://shardingjdbc.io/schema/shardingjdbc/sharding/sharding.xsd"
+       default-autowire="byName">
+    <!-- 配置业绩数据库连接 -->
+    <bean id="performanceDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
+          destroy-method="close">
+        <!-- 基本属性 url、user、password -->
+        <property name="driverClassName" value="${jdbc-0.druid.driver-class}"/>
+        <property name="url" value="${jdbc-performance.druid.driver-url}"/>
+        <property name="username" value="${jdbc-performance.user}"/>
+        <property name="password" value="${jdbc-performance.password}"/>
+
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="${jdbc-0.druid.connection-initial-size}"/>
+        <property name="minIdle" value="${jdbc-0.druid.connection-minimum-size}"/>
+        <property name="maxActive" value="${jdbc-0.druid.connection-maximum-size}"/>
+
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="${jdbc-0.druid.connection-maxwait-time}"/>
+
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="${jdbc-0.druid.connection-minlive-time}"/>
+
+        <property name="validationQuery" value="SELECT 'x'"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
+
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="stat"/>
+    </bean>
+
+    <!-- 业绩表分表策略 -->
+    <sharding:complex-strategy id="salePerformanceTbSty" sharding-columns="sale_performance_id,comp_id"
+                               algorithm-class="io.shardingjdbc.core.api.algorithm.sharding.complex.custom.ShardSkipColumsByLastFourCharComplexAlg"/>
+
+    <sharding:data-source id="performanceShardingDataSource">
+        <sharding:sharding-rule data-source-names="performanceDataSource">
+            <sharding:table-rules>
+                <sharding:table-rule logic-table="sale_performance"
+                                     actual-data-nodes="performanceDataSource.sale_performance_${0..29}"
+                                     table-strategy-ref="salePerformanceTbSty"/>
+            </sharding:table-rules>
+        </sharding:sharding-rule>
+    </sharding:data-source>
+
+    <bean id="salePerformanceSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="performanceShardingDataSource"/>
+        <!--sql_map_service_config.xml 中设置有些配置项-->
+        <property name="configLocation" value="classpath:sql_map_service_config.xml"/>
+        <property name="mapperLocations">
+            <array>
+                <value>classpath:mybatis/mapper/performance/*.xml</value>
+            </array>
+        </property>
+        <!-- DO类型的包路径，如果配置了该项，在mybatis配置xml里parameterType,ResultType直接以类名为别名，不用再加上路劲-->
+        <!--<property name="typeAliasesPackage" value="com.ihappy.company.domain.dbdo.performance"/>-->
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.ihappy.store.infrastructure.repo.mybatis.mapper.performance"/>
+        <property name="sqlSessionFactoryBeanName" value="salePerformanceSqlSessionFactory"/>
+    </bean>
+
+    <bean id="performanceTransactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="performanceShardingDataSource"/>
+    </bean>
+
+    <bean id="performanceTransactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="performanceTransactionManager"></property>
+    </bean>
+</beans>

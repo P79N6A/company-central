@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName">
+
+
+    <bean id="companyInfoService" class="com.ihappy.company.infrastructure.service.inside.impl.CompanyInfoServiceImpl"/>
+    <bean id="companyRoleService" class="com.ihappy.role.infrastructure.service.inside.impl.CompanyRoleServiceImpl"/>
+    <bean id="sysRoleService" class="com.ihappy.role.infrastructure.service.inside.impl.SysRoleServiceImpl"/>
+    <bean id="companyBrandService" class="com.ihappy.company.infrastructure.service.inside.impl.CompanyBrandServiceImpl"/>
+    <bean id="companyPartnerService" class="com.ihappy.partner.infrastructure.service.inside.impl.CompanyPartnerServiceImpl"/>
+    <bean id="commParamService" class="com.ihappy.company.infrastructure.service.inside.impl.CommParamServiceImpl"/>
+    <bean id="sysCompanyRoleService" class="com.ihappy.role.infrastructure.service.inside.impl.SysCompanyRoleServiceImpl"/>
+    <bean id="companyStoreService" class="com.ihappy.store.infrastructure.service.inside.impl.CompanyStoreServiceImpl"/>
+    <bean id="stockService" class="com.ihappy.stock.infrastructure.service.inside.impl.StockServiceImpl"/>
+    <bean id="partnerArrearsOrderService" class="com.ihappy.partner.infrastructure.service.inside.impl.PartnerArrearsOrderServiceImpl"/>
+    <bean id="partnerLevelService" class="com.ihappy.partner.infrastructure.service.inside.impl.PartnerLevelServiceImpl"/>
+
+    <bean id="sysCompanyTypeService" class="com.ihappy.company.infrastructure.service.inside.impl.SysCompanyTypeServiceImpl"/>
+    <bean id="sysOrgService" class="com.ihappy.company.infrastructure.service.inside.impl.SysOrgServiceImpl"/>
+    <bean id="sysFuncService" class="com.ihappy.role.infrastructure.service.inside.impl.SysFuncServiceImpl"/>
+    <!--交易中心rpc-->
+    <bean id="orderCompanyJournalService" class="com.ihappy.company.infrastructure.service.inside.impl.OrderCompanyJournalServiceImpl"/>
+    <bean id="payJournalWriteOutService" class="com.ihappy.communal.infrastructure.service.outside.trade.impl.PayJournalWriteOutServiceImpl"/>
+    <bean id="itemGoodsStockOutSideService" class="com.ihappy.communal.infrastructure.service.outside.item.impl.ItemGoodsStockOutSideServiceImpl"/>
+
+    <bean id="orderSellerReadService" class="com.ihappy.communal.infrastructure.service.outside.trade.impl.OrderSellerReadServiceImpl"/>
+    <bean id="payJournalReadOutService" class="com.ihappy.communal.infrastructure.service.outside.trade.impl.PayJournalReadOutServiceImpl"/>
+
+
+    <bean id="companyBaseInfoGrantService" class="com.ihappy.communal.infrastructure.service.outside.impl.CompanyBaseInfoGrantServiceImpl"/>
+    <bean id="companyPrintConfigService" class="com.ihappy.company.infrastructure.service.inside.impl.CompanyPrintConfigServiceImpl"/>
+    <bean id="sysCompanyFuncService" class="com.ihappy.role.infrastructure.service.inside.impl.SysCompanyFuncServiceImpl"></bean>
+    <!--企业认证审核-->
+    <bean id="verifyCompanyInfoService" class="com.ihappy.company.infrastructure.service.inside.impl.VerifyCompanyInfoServiceImpl"></bean>
+    <!--用户信息相关-->
+    <bean id="userInfoService" class="com.ihappy.company.infrastructure.service.inside.impl.UserInfoServiceImpl"></bean>
+    <bean id="userInfoOutSideService" class="com.ihappy.communal.infrastructure.service.outside.user.impl.UserInfoOutSideServiceImpl"></bean>
+    <bean id="sysPerosnInfoOutSideService" class="com.ihappy.communal.infrastructure.service.outside.user.impl.SysPerosnInfoOutSideServiceImpl"></bean>
+
+    <!--延长公司服务到期时间-->
+    <bean id="companyExtendService" class="com.ihappy.company.infrastructure.service.inside.impl.CompanyExtendServiceImpl"/>
+    <!--微信相关-->
+    <bean id = "wechatQRCodePathOutRpcService" class="com.ihappy.communal.infrastructure.service.outside.wechat.impl.WechatQRCodePathOutRpcServiceImpl"/>
+    <!--刷新Partner 统计数据-->
+    <bean id = "partnerOrderStatisticConsumer" class="com.ihappy.communal.infrastructure.mq.consumer.impl.PartnerOrderStatisticConsumerImpl"/>
+    <bean id = "orderModifiedConsumer" class="com.ihappy.communal.infrastructure.mq.consumer.impl.OrderModifiedConsumerImpl"/>
+
+    <!--运营后台客户端相关-->
+    <bean id="sysClientService" class="com.ihappy.role.infrastructure.service.inside.impl.SysClientServiceImpl"/>
+
+    <bean id="statisticsReadService" class="com.ihappy.communal.infrastructure.service.outside.trade.impl.StatisticsReadServiceImpl"/>
+
+    <!--系统相关-->
+    <bean id="sysParamService" class="com.ihappy.company.infrastructure.service.inside.impl.SysParamServiceImpl"/>
+
+</beans>
